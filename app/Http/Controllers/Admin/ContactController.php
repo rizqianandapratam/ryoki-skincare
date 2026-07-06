@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Contact;
+
+class ContactController extends Controller
+{
+    public function index()
+    {
+        $contacts = Contact::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.contacts.index', compact('contacts'));
+    }
+
+    public function show(Contact $contact)
+    {
+        if (!$contact->is_read) {
+            $contact->update(['is_read' => true]);
+        }
+        return view('admin.contacts.show', compact('contact'));
+    }
+
+    public function markRead(Contact $contact)
+    {
+        $contact->update(['is_read' => true]);
+        return redirect()->back()->with('success', 'Pesan ditandai sudah dibaca.');
+    }
+
+    public function destroy(Contact $contact)
+    {
+        $contact->delete();
+        return redirect()->route('admin.contacts.index')->with('success', 'Pesan berhasil dihapus.');
+    }
+}
