@@ -28,7 +28,7 @@
                     </a>
                     @endforeach
                 </div>
-                
+
                 <!-- Search -->
                 <form action="{{ route('products.index') }}" method="GET" class="w-full md:w-auto relative group">
                     @if(request('category'))
@@ -45,39 +45,38 @@
             @forelse($products as $index => $product)
             <div class="bento-card flex flex-col group h-full" style="padding: 20px !important;">
                 <div class="flex justify-between items-start mb-4">
-                    <span class="font-mono text-[10px] text-muted border border-white/10 bg-white/5 px-2 py-1 rounded">[ CAT: {{ strtoupper($product->category) }} ]</span>
                     <span class="font-mono text-xs font-bold text-neon">IDR {{ number_format($product->price, 0, ',', '.') }}</span>
                 </div>
-                
+
                 <a href="{{ route('products.show', $product->slug) }}" class="relative w-full rounded-lg overflow-hidden mb-4 bg-[#020617] border border-white/5 block" style="height: 200px; max-height: 220px;">
                     @if($product->image)
                         <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="product-img mix-blend-luminosity group-hover:mix-blend-normal transform group-hover:scale-105 transition duration-700 ease-in-out" style="width:100%; height:100%; object-fit:cover;">
                     @else
                         <img src="https://placehold.co/400x220/020617/F8FAFC?text={{ urlencode($product->name) }}" alt="{{ $product->name }}" class="product-img mix-blend-luminosity group-hover:mix-blend-normal transform group-hover:scale-105 transition duration-700 ease-in-out" style="width:100%; height:100%; object-fit:cover;">
                     @endif
-                    
+
                     @if($product->is_best_seller)
                     <div class="absolute top-3 left-3 bg-[#CCFF00] text-[#020617] text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest z-10 font-mono">
                         TOP_RATED
                     </div>
                     @endif
-                    
+
                     @if(!$product->in_stock)
                     <div class="absolute inset-0 bg-[#020617]/80 flex items-center justify-center z-20 backdrop-blur-sm">
                         <span class="border border-red-500 text-red-500 font-mono text-xs font-bold py-1 px-3 rounded bg-red-500/10">ERR: OUT_OF_STOCK</span>
                     </div>
                     @endif
                 </a>
-                
+
                 <h3 class="text-lg font-bold text-white mb-2 line-clamp-1 group-hover:text-neon transition-colors">
                     <a href="{{ route('products.show', $product->slug) }}">{{ $product->name }}</a>
                 </h3>
-                
+
                 <p class="text-xs text-muted line-clamp-3 mb-4 flex-grow font-light">
                     {{ Str::limit($product->description ?? 'Modul skincare ini dirancang untuk optimalisasi tekstur wajah.', 80) }}
                 </p>
-                
-                <a href="https://tiktok.com/@ryokiskincare" target="_blank" class="btn-premium btn-premium-neon w-full text-xs font-mono py-2 rounded-lg text-center mt-auto">
+
+                <a href="https://www.tiktok.com/@ryokijapanskin?is_from_webapp=1&sender_device=pc" target="_blank" class="btn-premium btn-premium-neon w-full text-xs font-mono py-2 rounded-lg text-center mt-auto">
                     TIKTOK SHOP ↗
                 </a>
             </div>
