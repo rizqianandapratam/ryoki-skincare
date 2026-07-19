@@ -48,14 +48,13 @@
                 <div class="absolute inset-0" style="background-image: linear-gradient(rgba(204,255,0,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(204,255,0,.06) 1px, transparent 1px); background-size: 36px 36px;"></div>
 
                 {{-- Lingkaran neon tengah --}}
-                <div class="relative z-10 flex flex-col items-center gap-3">
+                <div class="relative z-10 flex flex-col items-center gap-4">
                     <div class="w-20 h-20 rounded-full border border-[#CCFF00]/20 bg-[#CCFF00]/5 flex items-center justify-center">
                         <div class="w-10 h-10 rounded-full border border-[#CCFF00]/40 bg-[#CCFF00]/10 flex items-center justify-center">
                             <div class="w-4 h-4 rounded-full bg-[#CCFF00] animate-pulse"></div>
                         </div>
                     </div>
-                    <span class="font-mono text-[#94A3B8] text-xs tracking-widest">[ RYOKI_HERO_IMAGE ]</span>
-                    <div class="w-20 h-px bg-gradient-to-r from-transparent via-[#CCFF00]/50 to-transparent"></div>
+                    <div class="w-24 h-px bg-gradient-to-r from-transparent via-[#CCFF00]/50 to-transparent"></div>
                     <span class="font-mono text-[#CCFF00] text-[10px] opacity-50">PT GOLDEN INTAN BERLIAN</span>
                 </div>
             </div>
@@ -140,30 +139,16 @@
             @forelse($bestSellers->take(3) as $product)
             <div class="bento-card flex flex-col group h-full">
 
-                {{-- Label Kategori & Harga --}}
-                <div class="flex justify-between items-center mb-4">
-                    <span class="font-mono text-[10px] text-[#94A3B8] border border-white/10 bg-white/5 px-2 py-1 rounded">[ CAT: {{ strtoupper($product->category) }} ]</span>
-                    <span class="font-mono text-xs font-bold text-[#CCFF00]">IDR {{ number_format($product->price, 0, ',', '.') }}</span>
-                </div>
-
-                {{-- Gambar Produk --}}
-                <a href="{{ route('products.show', $product->slug) }}" class="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-5 bg-[#020617] border border-white/5 block flex-shrink-0">
-                    @if($product->image)
-                        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transform group-hover:scale-105 transition duration-700">
-                    @else
-                        <img src="https://placehold.co/400x300/1E293B/94A3B8?text={{ urlencode($product->name) }}" alt="{{ $product->name }}" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transform group-hover:scale-105 transition duration-700">
-                    @endif
-                    @if($product->is_best_seller)
-                    <div class="absolute top-3 left-3 bg-[#CCFF00] text-[#020617] text-[10px] font-bold px-2 py-1 rounded font-mono uppercase tracking-widest z-10">
+                @if($product->is_best_seller)
+                    <div class="inline-flex items-center mb-4 px-3 py-2 rounded-full bg-[#CCFF00]/10 text-[#CCFF00] text-[10px] font-bold font-mono uppercase tracking-widest">
                         BEST SELLER
                     </div>
-                    @endif
-                    @if(!$product->in_stock)
-                    <div class="absolute inset-0 bg-[#020617]/80 flex items-center justify-center z-20 backdrop-blur-sm">
-                        <span class="border border-red-500 text-red-500 font-mono text-xs font-bold py-1 px-3 rounded bg-red-500/10">HABIS TERJUAL</span>
+                @endif
+                @if(!$product->in_stock)
+                    <div class="inline-flex items-center mb-4 px-3 py-2 rounded-full bg-[#f87171]/10 text-[#f87171] text-[10px] font-bold font-mono uppercase tracking-widest">
+                        HABIS TERJUAL
                     </div>
-                    @endif
-                </a>
+                @endif
 
                 {{-- Nama Produk --}}
                 <h3 class="text-base font-bold text-white mb-1.5 line-clamp-1 group-hover:text-[#CCFF00] transition-colors">
@@ -176,7 +161,7 @@
                 </p>
 
                 {{-- Tombol CTA --}}
-                <a href="https://www.tiktok.com/@ryokiskincare" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.tiktok.com/@ryokijapanskin?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer"
                    class="btn-premium btn-premium-neon w-full text-xs font-mono py-3 rounded-xl text-center mt-auto">
                     TIKTOK SHOP ↗
                 </a>
