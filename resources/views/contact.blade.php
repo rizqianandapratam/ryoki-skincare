@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
+
         <!-- Header Bento Box -->
         <div class="bento-card flex flex-col items-center justify-center text-center mb-8 py-12 relative overflow-hidden group">
             <div class="absolute inset-0 bg-[#CCFF00] opacity-5 filter blur-[100px] rounded-full transform group-hover:scale-110 transition-transform duration-1000"></div>
@@ -17,12 +17,12 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            
+
             <!-- Contact Information & Map Bento -->
             <div class="bento-card p-8 md:p-10 flex flex-col h-full">
                 <span class="text-neon font-mono text-xs uppercase mb-4 block">[ CONTACT_INFO ]</span>
                 <h2 class="text-2xl font-bold text-white mb-8">Informasi Kontak</h2>
-                
+
                 <div class="space-y-6 mb-10 flex-grow">
                     <div class="flex items-start group">
                         <div class="flex-shrink-0 w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center group-hover:bg-[#CCFF00]/10 transition-colors">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="ml-4">
                             <h3 class="text-lg font-bold text-white">WhatsApp Hotline</h3>
-                            <p class="mt-1 text-muted">+62 812-3456-7890<br><span class="text-xs font-mono">AKTIF: SENIN-JUMAT (09:00 - 17:00)</span></p>
+                            <p class="mt-1 text-muted">+62 896-9188-0237<br><span class="text-xs font-mono">AKTIF: SENIN-JUMAT (09:00 - 17:00)</span></p>
                         </div>
                     </div>
 
@@ -68,7 +68,7 @@
             <div class="bento-card p-8 md:p-10 h-full">
                 <span class="text-neon font-mono text-xs uppercase mb-4 block">[ CONNECT_WITH_US ]</span>
                 <h2 class="text-2xl font-bold text-white mb-6">Kirim Pesan</h2>
-                
+
                 @if(session('success'))
                     <div class="bg-[#CCFF00]/10 border border-[#CCFF00]/30 text-neon px-4 py-3 rounded-xl mb-6 flex items-start font-mono text-sm">
                         <svg class="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
