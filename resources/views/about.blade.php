@@ -19,12 +19,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div class="bento-card p-0 relative overflow-hidden group h-full min-h-[400px]">
                 <div class="absolute inset-0 bg-[#CCFF00] opacity-20 filter blur-3xl transform group-hover:scale-125 transition-transform duration-1000"></div>
-                <img src="https://placehold.co/800x1000/1E293B/CCFF00?text=SYS.STORY" alt="Ryoki Skincare Story" class="w-full h-full object-cover relative z-10 mix-blend-luminosity hover:mix-blend-normal transition duration-700">
+                <img src="https://placehold.co/800x1000/1E293B/CCFF00?text=STORY" alt="Ryoki Skincare Story" class="w-full h-full object-cover relative z-10 mix-blend-luminosity hover:mix-blend-normal transition duration-700">
                 <div class="absolute inset-0 ring-1 ring-inset ring-white/10 z-20 rounded-[20px]"></div>
             </div>
-            
+
             <div class="bento-card flex flex-col justify-center p-8 md:p-12">
-                <span class="text-neon font-mono text-xs uppercase mb-4 block">[INIT: AWAL_MULA]</span>
                 <h2 class="text-3xl font-bold text-white mb-6">Berawal dari Keresahan</h2>
                 <div class="space-y-4 text-muted leading-relaxed">
                     <p>
@@ -46,9 +45,9 @@
                 <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#CCFF00]/10 transition-colors">
                     <svg class="w-6 h-6 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                 </div>
-                <h2 class="text-2xl font-bold text-white mb-4">Visi [SYS.VISION]</h2>
+                <h2 class="text-2xl font-bold text-white mb-4">Visi</h2>
                 <p class="text-muted leading-relaxed">
-                    Menjadi protokol perawatan kulit lokal terpercaya yang mengedepankan integritas <em>skin barrier</em> dan memberdayakan setiap pengguna untuk tampil dengan versi terbaik mereka.
+                    Menjadi perusahaan pemasaran digital dan e-commerce berstandar emas yang paling terpercaya di Indonesia, dengan mentransformasi potensi bisnis menjadi berlian yang bersinar melalui inovasi teknologi dan strategi iklan yang presisi.
                 </p>
             </div>
 
@@ -56,19 +55,27 @@
                 <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#CCFF00]/10 transition-colors">
                     <svg class="w-6 h-6 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                 </div>
-                <h2 class="text-2xl font-bold text-white mb-4">Misi [SYS.MISSION]</h2>
+                <h2 class="text-2xl font-bold text-white mb-4">Misi</h2>
                 <ul class="text-muted leading-relaxed space-y-4">
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-neon mr-3 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <span>Menghadirkan formulasi inovatif, aman (BPOM), dan berkualitas.</span>
+                        <span>Akselerasi pertumbuhan multi-platform.</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-neon mr-3 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <span>Edukasi perawatan kulit yang komprehensif untuk basis pengguna.</span>
+                        <span>inovasi berbasis data (Data-Driven).</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-neon mr-3 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        <span>Praktik operasional yang <em>cruelty-free</em> dan efisien.</span>
+                        <span>Membangun ekosistem e-commerce.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-neon mr-3 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span>integritas dan kualitas pelayanan.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-neon mr-3 mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span>pengembangan kreativitas tanpa batas.</span>
                     </li>
                 </ul>
             </div>
