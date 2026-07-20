@@ -5,7 +5,7 @@
 @section('content')
 <div class="min-h-[80vh] flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-[#020617]">
     <div class="w-full sm:max-w-md mt-6 px-8 py-10" style="background: #1E293B; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
-        
+
         <div class="flex justify-center mb-8">
             <div class="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[#CCFF00] font-mono text-xs font-semibold uppercase tracking-wider relative z-10">
                 <span class="w-2 h-2 rounded-full bg-[#CCFF00] mr-2 animate-pulse"></span>
@@ -50,10 +50,10 @@
                 @endif
 
                 <button type="submit" class="inline-flex items-center px-6 py-2.5 bg-[#CCFF00] border border-transparent rounded-lg font-mono text-sm text-[#020617] font-bold uppercase tracking-widest hover:bg-[#b3ff00] focus:bg-[#b3ff00] active:bg-[#99cc00] focus:outline-none focus:ring-2 focus:ring-[#CCFF00] focus:ring-offset-2 focus:ring-offset-[#1E293B] transition ease-in-out duration-150">
-                    _LOGIN
+                    LOGIN
                 </button>
             </div>
-            
+
         </form>
     </div>
 </div>
