@@ -12,8 +12,8 @@
                 <span class="w-2 h-2 rounded-full bg-[#CCFF00] mr-2 animate-pulse"></span>
                 COMMS LINK
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">Koneksi Sistem</h1>
-            <p class="text-lg text-muted max-w-2xl mx-auto relative z-10 font-light">Ada anomali, pertanyaan sistem, atau butuh bantuan? Tim kami siap merespons.</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">Pusat Bantuan & Kontak</h1>
+            <p class="text-lg text-muted max-w-2xl mx-auto relative z-10 font-light">Tim kami siap memberikan informasi dan bantuan terbaik untuk perjalanan perawatan kulitmu.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="ml-4">
                             <h3 class="text-lg font-bold text-white">WhatsApp Hotline</h3>
-                            <p class="mt-1 text-muted">+62 896-9188-0237<br><span class="text-xs font-mono">AKTIF: SENIN-JUMAT (09:00 - 17:00)</span></p>
+                            <p class="mt-1 text-muted">+62 896-9188-0237<br><span class="text-xs font-mono">AKTIF: SENIN-SABTU (09:00 - 16 :00)</span></p>
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
                             @enderror
                         </div>
                         <div>
-                            <label for="phone" class="block text-xs font-mono text-muted mb-2 uppercase">No. WhatsApp</label>
+                            <label for="phone" class="block text-xs font-mono text-muted mb-2 uppercase">No. HP</label>
                             <input type="text" name="phone" id="phone" value="{{ old('phone') }}" class="contact-input w-full rounded-xl transition shadow-sm" style="padding: 0.65rem 1rem;">
                         </div>
                     </div>
