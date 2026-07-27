@@ -1,16 +1,21 @@
-# 03 — Tasks & Action Plan
+# 03 — Tasks & Action Plan (Sprint Roadmap)
 
-## Phase 1: Overhaul Theme & Visual (Priority 1)
-- [ ] Update `public/css/style.css` dengan CSS variables warna baru (Light Aquatic).
-- [ ] Refactor `resources/views/layouts/public.blade.php` (Navbar & Footer ke Light Theme).
-- [ ] Refactor `resources/views/home.blade.php` (Hero section, Bento cards, Products section).
-- [ ] Refactor `resources/views/about.blade.php`, `products/`, `articles/`, dan `contact.blade.php`.
+## Sprint 1: Polish Frontend & Visual (Anti-AI Smell)
+- [ ] Import font 'Playfair Display' untuk `<h1>` dan `<h2>` di layout publik.
+- [ ] Refactor Hero Section di `home.blade.php` agar gambar produk PNG overlapping melayang.
+- [ ] Clean up seluruh teks `[BRACKET]` dan nuansa sistem di semua view publik.
+- [ ] Pastikan warna sesuai palet Light Aquatic di `02-design-system.md`.
 
-## Phase 2: Refactoring Modul Artikel -> Skinpedia (Priority 2)
-- [ ] Ubah label "Artikel" / "Journal" menjadi "Skinpedia" di Navbar, Footer, dan Views.
-- [ ] Sembunyikan tanggal `created_at` di daftar dan detail Skinpedia.
+## Sprint 2: Perbaikan Bug & Dashboard Admin
+- [ ] Perbaiki statistik hardcoded di `Admin/DashboardController.php` dengan query DB asli.
+- [ ] Kirim data `$latest_products` ke view dashboard admin.
+- [ ] Perbaiki link sidebar admin yang mati (`#`) ke route Skinpedia/Artikel.
 
-## Phase 3: Perbaikan Dashboard Admin & Bug Fixes (Priority 3)
-- [ ] Perbaiki statistik hardcoded di `Admin/DashboardController.php` agar dinamis dari DB.
-- [ ] Pass data produk terbaru ke view dashboard admin.
-- [ ] Perbaiki link sidebar admin yang mati (`#`).
+## Sprint 3: Fitur Micro & Interaktivitas
+- [ ] Tambahkan CTA "Order via WhatsApp" otomatis di detail produk.
+- [ ] Refactor modul Artikel menjadi Skinpedia ( Evergreen & Sembunyikan `created_at`).
+
+## Sprint 4: Cleanup & Production Readiness
+- [ ] Hapus file demo bawaan Breeze `resources/views/welcome.blade.php`.
+- [ ] Buat file `robots.txt` dan `sitemap.xml` sederhana di folder `public/`.
+- [ ] Testing responsivitas mobile dan build aset dengan `npm run build`.

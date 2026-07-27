@@ -8,62 +8,146 @@
 
     <!-- HERO SECTION -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-[#E0F2FE] via-[#F0F9FF] to-white rounded-3xl border border-sky-100 p-8 md:p-14 overflow-hidden relative shadow-xs">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+        <div class="relative rounded-[2rem] overflow-hidden bg-gradient-to-br from-[#E0F2FE] via-[#F0F9FF] to-white border border-sky-100/80 shadow-sm">
 
-                <!-- Left Content -->
-                <div class="lg:col-span-7 space-y-6">
-                    <p class="text-xs font-semibold uppercase tracking-widest text-[#0284C7]">Formulasi Jepang & BPOM Certified</p>
+            <!-- Decorative Background Elements -->
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-[#BAE6FD]/30 to-transparent rounded-full blur-3xl -translate-y-1/3 translate-x-1/4 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-[#A5F3FC]/20 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#0284C7]/[0.03] rounded-full blur-3xl pointer-events-none"></div>
 
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-slate-900 leading-[1.12] tracking-tight">
-                        Rahasia Kulit <span class="text-[#0284C7] font-editorial italic font-normal">Cerah & Glowing</span> Sepanjang Hari
-                    </h1>
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4 items-center p-8 sm:p-10 md:p-14 lg:p-16">
 
-                    <p class="text-base sm:text-lg text-slate-600 font-light leading-relaxed max-w-xl">
-                        Diformulasikan secara presisi dengan Niacinamide, Alpha Arbutin, Collagen & Ekstrak Botanikal untuk merawat dan memperkuat kesehatan skin barrier Anda.
-                    </p>
+                <!-- Left: Copy Content -->
+                <div class="space-y-7 max-w-xl">
 
-                    <!-- CTAs -->
-                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                        <a href="{{ route('products.index') }}" class="btn-ryoki btn-ryoki-primary text-sm px-8 py-3.5 shadow-md">
+                    <!-- Tagline Badge -->
+                    <div class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-sky-200/60 rounded-full px-4 py-1.5 shadow-sm">
+                        <span class="flex h-2 w-2 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        <span class="text-xs font-semibold text-slate-600 tracking-wide">Formulasi Jepang — BPOM Certified</span>
+                    </div>
+
+                    <!-- Main Heading -->
+                    <div class="space-y-3">
+                        <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold font-playfair text-[#0F172A] leading-[1.1] tracking-tight">
+                            Rahasia Kulit
+                            <span class="relative inline-block">
+                                <span class="relative z-10 text-[#0284C7] italic">Cerah & Glowing</span>
+                                <span class="absolute bottom-1 left-0 right-0 h-3 bg-[#BAE6FD]/40 -skew-x-3 rounded-sm"></span>
+                            </span>
+                            <br class="hidden sm:block">Sepanjang Hari
+                        </h1>
+
+                        <p class="text-base sm:text-lg text-slate-500 font-light leading-relaxed max-w-lg">
+                            Diformulasikan secara presisi dengan <strong class="font-medium text-slate-700">Niacinamide</strong>, <strong class="font-medium text-slate-700">Alpha Arbutin</strong>, <strong class="font-medium text-slate-700">Collagen</strong> & Ekstrak Botanikal untuk merawat skin barrier Anda.
+                        </p>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-3 pt-1">
+                        <a href="{{ route('products.index') }}" class="btn-ryoki btn-ryoki-primary text-sm px-8 py-3.5 shadow-lg shadow-sky-500/20 hover:shadow-sky-500/30">
                             Lihat Produk Skincare
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                         </a>
                         <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" rel="noopener noreferrer" class="btn-ryoki btn-ryoki-secondary text-sm px-8 py-3.5">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-                            Toko Resmi TikTok Shop
+                            TikTok Shop Official
                         </a>
                     </div>
 
                     <!-- Trust Indicators -->
-                    <div class="pt-6 border-t border-sky-200/60 flex flex-wrap gap-8 text-xs font-semibold text-slate-700">
-                        <div class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span>Terdaftar BPOM RI</span>
+                    <div class="flex flex-wrap gap-x-6 gap-y-2 pt-5 border-t border-sky-200/50">
+                        <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-600">
+                            <svg class="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            Terdaftar BPOM RI
                         </div>
-                        <div class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span>Dermatologically Tested</span>
+                        <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-600">
+                            <svg class="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            Dermatologically Tested
                         </div>
-                        <div class="flex items-center gap-2">
-                            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span>Halal & Cruelty-Free</span>
+                        <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-600">
+                            <svg class="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            Halal & Cruelty-Free
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Hero Image -->
-                <div class="lg:col-span-5 relative flex justify-center">
-                    <div class="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border-4 border-white">
-                        <img src="{{ asset('images/hero-banner.png') }}" alt="Ryoki Skincare" class="w-full h-full object-cover">
-                        <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-white/80 shadow-md flex items-center justify-between">
-                            <div>
-                                <p class="text-xs font-bold text-slate-900 font-heading">Ryoki α Niacin Series</p>
-                                <p class="text-[11px] text-sky-600 font-medium">Original Formulasi Jepang</p>
+                <!-- Right: Overlapping Product Images Showcase -->
+                <div class="relative flex items-center justify-center lg:justify-end min-h-[380px] sm:min-h-[440px] lg:min-h-[500px]">
+
+                    <!-- Background glow behind products -->
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-[#BAE6FD]/40 via-[#E0F2FE]/30 to-[#A5F3FC]/20 blur-2xl"></div>
+                    </div>
+
+                    <!-- Product 1: Facial Wash (Back-left, rotated) -->
+                    <div class="absolute left-4 sm:left-8 lg:left-4 xl:left-8 bottom-8 sm:bottom-10 lg:bottom-12
+                                z-10 w-36 sm:w-44 lg:w-48 xl:w-52
+                                -rotate-6 transition-transform duration-500 hover:rotate-0 hover:scale-105">
+                        <div class="relative group">
+                            <div class="absolute inset-0 rounded-2xl bg-white/50 backdrop-blur-sm shadow-lg shadow-sky-900/10 border border-white/60"></div>
+                            <img src="{{ asset('images/facial-wash.png') }}"
+                                 alt="Ryoki α Niacin Facial Wash"
+                                 class="relative z-10 w-full h-auto rounded-2xl p-2 drop-shadow-lg">
+                            <!-- Product label -->
+                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-md border border-sky-100 whitespace-nowrap">
+                                <span class="text-[10px] font-bold text-[#0284C7]">Facial Wash</span>
                             </div>
-                            <span class="text-xs text-amber-500 font-bold">★ 4.9 / 5.0</span>
                         </div>
                     </div>
+
+                    <!-- Product 2: Day Cream (Center-front, largest, hero focus) -->
+                    <div class="relative z-30 w-44 sm:w-52 lg:w-56 xl:w-64
+                                -mt-4 sm:-mt-6
+                                transition-transform duration-500 hover:scale-105 hover:-translate-y-2">
+                        <div class="relative group">
+                            <div class="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-sm shadow-xl shadow-sky-900/15 border border-white/70"></div>
+                            <img src="{{ asset('images/day-cream.png') }}"
+                                 alt="Ryoki Luminous Whitening Day Cream"
+                                 class="relative z-10 w-full h-auto rounded-2xl p-2 drop-shadow-xl">
+                            <!-- Best seller badge -->
+                            <div class="absolute -top-3 -right-2 z-20 bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white rounded-full px-3 py-1 shadow-lg shadow-sky-500/30">
+                                <span class="text-[10px] font-bold tracking-wide">★ BEST SELLER</span>
+                            </div>
+                            <!-- Product label -->
+                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-md border border-sky-100 whitespace-nowrap">
+                                <span class="text-[10px] font-bold text-[#0284C7]">Day Cream</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3: Peeling Spray (Back-right, rotated opposite) -->
+                    <div class="absolute right-4 sm:right-8 lg:right-0 xl:right-4 bottom-8 sm:bottom-10 lg:bottom-12
+                                z-20 w-36 sm:w-44 lg:w-48 xl:w-52
+                                rotate-6 transition-transform duration-500 hover:rotate-0 hover:scale-105">
+                        <div class="relative group">
+                            <div class="absolute inset-0 rounded-2xl bg-white/50 backdrop-blur-sm shadow-lg shadow-sky-900/10 border border-white/60"></div>
+                            <img src="{{ asset('images/peeling-spray.png') }}"
+                                 alt="Ryoki Brightening Peeling Spray"
+                                 class="relative z-10 w-full h-auto rounded-2xl p-2 drop-shadow-lg">
+                            <!-- Product label -->
+                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-md border border-sky-100 whitespace-nowrap">
+                                <span class="text-[10px] font-bold text-[#0284C7]">Peeling Spray</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Rating Card (overlapping bottom-center) -->
+                    <div class="absolute bottom-0 sm:-bottom-2 left-1/2 -translate-x-1/2 z-40
+                                bg-white/95 backdrop-blur-md rounded-2xl px-5 py-3 shadow-lg shadow-sky-900/10 border border-sky-100/80
+                                flex items-center gap-4 min-w-[240px]">
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold text-[#0F172A]">Ryoki α Niacin Series</span>
+                            <span class="text-[11px] text-slate-500 font-medium">Formulasi Jepang Original</span>
+                        </div>
+                        <div class="flex flex-col items-end border-l border-slate-100 pl-4">
+                            <span class="text-sm font-bold text-amber-500">★ 4.9</span>
+                            <span class="text-[10px] text-slate-400 font-medium">1.2k+ Reviews</span>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -139,7 +223,7 @@
                         Ryoki α Niacin Facial Wash
                     </h3>
                     <p class="text-xs text-slate-500 line-clamp-2 mb-4 font-light leading-relaxed">
-                        Sabun pembersih wajah lembut bersertifikat BPOM dengan Niacinamide & Collagen. Membersihkan kotoran tanpa merusak kelembaban alami.
+                        Pembersih wajah lembut bersertifikat BPOM yang diperkaya Niacinamide & Collagen. Mengangkat kotoran secara menyeluruh tanpa mengganggu kelembaban alami kulit.
                     </p>
                 </div>
 
@@ -170,7 +254,7 @@
                         Brightening Peeling Spray
                     </h3>
                     <p class="text-xs text-slate-500 line-clamp-2 mb-4 font-light leading-relaxed">
-                        Spray rontok daki instan untuk kulit wajah dan tubuh. Menghaluskan tekstur kulit dengan kandungan Aloe Vera & Grape Seed Extract.
+                        Exfoliating spray yang mengangkat sel kulit mati secara instan di wajah dan tubuh. Diperkaya Aloe Vera & Grape Seed Extract untuk tekstur kulit lebih halus.
                     </p>
                 </div>
 
@@ -219,7 +303,7 @@
         </div>
     </section>
 
-    <!-- INGREDIENTS & FORMULATION SECTION (Clean, Natural E-Commerce Layout with ZERO AI Smell) -->
+    <!-- INGREDIENTS & FORMULATION SECTION -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
@@ -230,7 +314,7 @@
                 </div>
             </div>
 
-            <!-- Right: Clean Typography Grid (Zero left borders, zero cards, zero numbers) -->
+            <!-- Right: Ingredients Grid -->
             <div class="lg:col-span-6 space-y-6">
                 <div class="space-y-3">
                     <h2 class="text-3xl md:text-4xl font-bold font-heading text-slate-900 leading-tight">
@@ -306,7 +390,7 @@
             <div class="skincare-card p-6 space-y-4">
                 <div class="text-amber-400 text-sm font-bold">★ 5.0</div>
                 <p class="text-xs text-slate-600 leading-relaxed italic font-light">
-                    "Peeling spray-nya ajaib sih, gosok sebentar daki langsung rontok semua. Dipakai di siku dan leher jadi makin cerah. Bakal repurchased terus!"
+                    "Peeling spray-nya ajaib sih, gosok sebentar daki langsung rontok semua. Dipakai di siku dan leher jadi makin cerah. Bakal repurchase terus!"
                 </p>
                 <div class="flex items-center gap-3 pt-2 border-t border-slate-100">
                     <div class="w-9 h-9 rounded-full bg-sky-100 text-sky-700 font-bold text-xs flex items-center justify-center font-heading">RM</div>

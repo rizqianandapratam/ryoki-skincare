@@ -14,6 +14,7 @@ export default {
             fontFamily: {
                 sans: ['"Plus Jakarta Sans"', 'Inter', ...defaultTheme.fontFamily.sans],
                 serif: ['"Playfair Display"', ...defaultTheme.fontFamily.serif],
+                playfair: ['"Playfair Display"', ...defaultTheme.fontFamily.serif],
             },
             colors: {
                 ryoki: {

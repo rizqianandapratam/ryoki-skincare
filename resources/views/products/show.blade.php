@@ -37,13 +37,13 @@
                 <!-- Product Guarantee Badges -->
                 <div class="grid grid-cols-3 gap-2 mt-4 text-center text-[11px] font-medium text-slate-600">
                     <div class="p-2 bg-sky-50 rounded-xl border border-sky-100">
-                        BPOM RI Approved
+                        Terdaftar BPOM RI
                     </div>
                     <div class="p-2 bg-sky-50 rounded-xl border border-sky-100">
-                        100% Halal Safe
+                        Halal Certified
                     </div>
                     <div class="p-2 bg-sky-50 rounded-xl border border-sky-100">
-                        Dermatologist Tested
+                        Teruji Dermatologis
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
 
                     <div class="flex items-center gap-3 mt-3">
                         <span class="text-amber-500 font-bold text-xs">★ 4.9 / 5.0 Rating</span>
-                        <span class="text-xs text-slate-400">| Terjual 1.200+ Pcs di TikTok Shop</span>
+                        <span class="text-xs text-slate-400">| 1.200+ terjual di TikTok Shop</span>
                     </div>
                 </div>
 
@@ -85,7 +85,7 @@
                         Beli Langsung di TikTok Shop Official
                     </a>
                     <p class="text-center text-xs text-slate-400 font-light">
-                        Jaminan Produk 100% Original & Dikirim Langsung dari Pabrik Resmi Ryoki.
+                        Produk 100% original, dikirim langsung dari gudang resmi Ryoki Skincare.
                     </p>
                 </div>
             </div>

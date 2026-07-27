@@ -20,12 +20,12 @@
 
         <!-- Header -->
         <div class="space-y-3 text-center max-w-2xl mx-auto">
-            <p class="text-xs font-semibold uppercase tracking-widest text-[#0284C7]">Ryoki Skincare Guide</p>
+            <p class="text-xs font-semibold uppercase tracking-widest text-[#0284C7]">Ryoki Skinpedia</p>
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-slate-900 leading-tight">
                 {{ $article->title }}
             </h1>
             <p class="text-xs text-slate-400 font-medium pt-1">
-                Ditulis oleh <strong class="text-slate-700">Tim Pakar Formulasi Ryoki Skincare</strong>
+                Ditulis oleh <strong class="text-slate-700">Tim Ryoki Skincare</strong>
             </p>
         </div>
 
