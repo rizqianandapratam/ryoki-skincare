@@ -1,65 +1,62 @@
 @extends('layouts.public')
 
-@section('title', 'Ryoki Skincare - Artikel & Tips')
+@section('title', 'Skinpedia by Ryoki — Edukasi & Tips Perawatan Kulit')
+@section('meta_description', 'Kumpulan artikel dan panduan skincare Ryoki tentang kesehatan skin barrier, bahan aktif, dan rutinitas kecantikan harian.')
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
-        <!-- Header Bento Box -->
-        <div class="bento-card flex flex-col items-center justify-center text-center mb-10 py-12 relative overflow-hidden group">
-            <div class="absolute inset-0 bg-[#CCFF00] opacity-5 filter blur-[100px] rounded-full transform group-hover:scale-110 transition-transform duration-1000"></div>
-            <div class="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-neon font-mono text-xs font-semibold uppercase tracking-wider mb-6 relative z-10">
-                <span class="w-2 h-2 rounded-full bg-[#CCFF00] mr-2 animate-pulse"></span>
-                DATA_LOGS
-            </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 relative z-10">Ryoki Journal</h1>
-            <p class="text-lg text-muted max-w-2xl mx-auto relative z-10 font-light">Arsip data, panduan teknis, dan informasi terbaru seputar kalibrasi kulit.</p>
-        </div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            @forelse($articles as $article)
-            <article class="bento-card flex flex-col h-full group p-5">
-                <a href="{{ route('articles.show', $article->slug) }}" class="block overflow-hidden relative aspect-video rounded-lg bg-[#020617] border border-white/5 mb-6">
-                    @if($article->thumbnail)
-                        <img src="{{ Storage::url($article->thumbnail) }}" alt="{{ $article->title }}" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transform group-hover:scale-105 transition duration-700">
-                    @else
-                        <img src="https://placehold.co/800x450/1E293B/94A3B8?text=Ryoki+Journal" alt="{{ $article->title }}" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transform group-hover:scale-105 transition duration-700">
-                    @endif
-                    <div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-lg pointer-events-none"></div>
-                </a>
-                
-                <div class="flex flex-col flex-grow">
-                    <div class="flex items-center text-xs text-muted mb-4">
-                        <svg class="w-3.5 h-3.5 mr-1.5 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span>Published: {{ $article->created_at->translatedFormat('d F Y') }}</span>
-                    </div>
-                    
-                    <h2 class="text-xl font-bold text-white mb-3 leading-tight line-clamp-2 group-hover:text-neon transition-colors">
-                        <a href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
-                    </h2>
-                    
-                    <p class="text-sm text-muted mb-6 line-clamp-3 flex-grow font-light">
-                        {{ Str::limit(strip_tags($article->content), 120) }}
-                    </p>
-                    
-                    <a href="{{ route('articles.show', $article->slug) }}" class="mt-auto inline-flex items-center text-xs font-semibold text-white hover:text-neon transition-colors group/link w-max uppercase tracking-wider">
-                        <span class="border-b border-white/20 group-hover/link:border-neon pb-0.5">READ ARTICLE</span> 
-                        <svg class="w-4 h-4 ml-1.5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
-                </div>
-            </article>
-            @empty
-            <div class="col-span-full bento-card p-12 text-center flex flex-col items-center justify-center border-dashed border-white/20">
-                <svg class="w-12 h-12 text-muted mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H14"></path></svg>
-                <p class="text-neon font-mono text-sm">[ERROR: ARCHIVE_EMPTY]</p>
-                <p class="text-muted mt-2">Belum ada log data yang diarsip.</p>
-            </div>
-            @endforelse
-        </div>
-
-        <!-- Pagination -->
-        <div class="mt-12 flex justify-center">
-            {{ $articles->links() }}
-        </div>
+    <!-- Header Section -->
+    <div class="bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-100 rounded-3xl p-8 md:p-12 text-center space-y-3">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-slate-900">
+            Ryoki Skinpedia
+        </h1>
+        <p class="text-slate-600 font-light text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            Panduan terlengkap dari pakar kecantikan untuk memahami kebutuhan kulit Anda, mengenal kandungan aktif, dan memilih rutinitas terbaik.
+        </p>
     </div>
+
+    <!-- Article List Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        @forelse($articles as $article)
+        <article class="skincare-card p-5 flex flex-col justify-between group">
+            <div>
+                <a href="{{ route('articles.show', $article->slug) }}" class="block aspect-video rounded-xl overflow-hidden bg-slate-100 mb-4 border border-slate-100 relative">
+                    @if($article->thumbnail)
+                        <img src="{{ Storage::url($article->thumbnail) }}" alt="{{ $article->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    @else
+                        <img src="{{ asset('images/hero-banner.png') }}" alt="{{ $article->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    @endif
+                </a>
+
+                <h2 class="text-lg font-bold text-slate-900 group-hover:text-[#0284C7] transition-colors mb-2 line-clamp-2 leading-snug">
+                    <a href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
+                </h2>
+
+                <p class="text-xs text-slate-500 line-clamp-3 font-light leading-relaxed mb-4">
+                    {{ Str::limit(strip_tags($article->content), 120) }}
+                </p>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-xs font-semibold text-sky-600">Oleh Tim Ryoki Skincare</span>
+                <a href="{{ route('articles.show', $article->slug) }}" class="text-xs font-bold text-[#0284C7] hover:underline flex items-center gap-1">
+                    Baca Artikel <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </article>
+        @empty
+        <div class="col-span-full py-16 text-center bg-white rounded-2xl border border-dashed border-slate-300">
+            <p class="text-slate-700 font-semibold text-sm">Belum ada artikel Skinpedia</p>
+            <p class="text-slate-400 text-xs mt-1">Nantikan panduan kecantikan terbaru dari tim pakar Ryoki.</p>
+        </div>
+        @endforelse
+    </div>
+
+    <!-- Pagination -->
+    <div class="pt-6 flex justify-center">
+        {{ $articles->links() }}
+    </div>
+
+</div>
 @endsection

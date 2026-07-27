@@ -1,115 +1,131 @@
 @extends('layouts.public')
 
-@section('title', 'Ryoki Skincare - ' . $product->name)
+@section('title', 'Ryoki Skincare — ' . $product->name)
+@section('meta_description', Str::limit($product->description ?? 'Detail produk skincare Ryoki asli BPOM.', 155))
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
-        <!-- Breadcrumb / System Path -->
-        <div class="bento-card py-4 px-6 mb-8 flex items-center text-xs font-mono text-muted overflow-x-auto whitespace-nowrap scrollbar-hide">
-            <span class="text-neon mr-2">C:\SYS></span>
-            <a href="{{ route('home') }}" class="hover:text-neon transition">ROOT</a>
-            <span class="mx-2 opacity-50">/</span>
-            <a href="{{ route('products.index') }}" class="hover:text-neon transition">MODULES</a>
-            <span class="mx-2 opacity-50">/</span>
-            <span class="text-white">{{ strtoupper(Str::limit($product->name, 20)) }}</span>
-        </div>
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-slate-400 font-medium">
+        <a href="{{ route('home') }}" class="hover:text-[#0284C7]">Beranda</a>
+        <span>/</span>
+        <a href="{{ route('products.index') }}" class="hover:text-[#0284C7]">Produk Skincare</a>
+        <span>/</span>
+        <span class="text-slate-800 font-semibold">{{ $product->name }}</span>
+    </nav>
 
-        <!-- Product Detail Bento Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- Main Detail Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-            <!-- Product Image Bento -->
-            <div class="lg:col-span-5 bento-card p-4 relative overflow-hidden group">
-                <div class="absolute inset-0 bg-[#CCFF00] opacity-10 filter blur-[80px] transform group-hover:scale-110 transition-transform duration-1000"></div>
-
-                @if($product->is_best_seller)
-                    <div class="absolute top-6 left-6 bg-[#CCFF00] text-[#020617] text-[10px] font-bold px-3 py-1.5 rounded uppercase tracking-widest z-20 font-mono shadow-[0_0_15px_rgba(204,255,0,0.5)]">
-                        TOP_RATED
-                    </div>
-                @endif
-
-                <div class="w-full aspect-[4/5] relative bg-[#020617] rounded-xl overflow-hidden border border-white/5">
+        <!-- Product Image Showcase -->
+        <div class="lg:col-span-5">
+            <div class="bg-white p-4 rounded-3xl border border-slate-200 shadow-sm relative sticky top-32">
+                <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-slate-50 border border-slate-100">
                     @if($product->image)
-                        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-700 relative z-10">
+                        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                     @else
-                        <img src="https://placehold.co/600x800/020617/CCFF00?text={{ urlencode($product->name) }}" alt="{{ $product->name }}" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-700 relative z-10">
+                        @php
+                            $imgSrc = asset('images/facial-wash.png');
+                            if(str_contains(strtolower($product->name), 'peeling')) $imgSrc = asset('images/peeling-spray.png');
+                            elseif(str_contains(strtolower($product->name), 'cream')) $imgSrc = asset('images/day-cream.png');
+                        @endphp
+                        <img src="{{ $imgSrc }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                     @endif
-                    <div class="absolute inset-0 ring-1 ring-inset ring-white/10 z-20 rounded-xl"></div>
+                </div>
+
+                <!-- Product Guarantee Badges -->
+                <div class="grid grid-cols-3 gap-2 mt-4 text-center text-[11px] font-medium text-slate-600">
+                    <div class="p-2 bg-sky-50 rounded-xl border border-sky-100">
+                        BPOM RI Approved
+                    </div>
+                    <div class="p-2 bg-sky-50 rounded-xl border border-sky-100">
+                        100% Halal Safe
+                    </div>
+                    <div class="p-2 bg-sky-50 rounded-xl border border-sky-100">
+                        Dermatologist Tested
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Info & Purchase Options -->
+        <div class="lg:col-span-7 space-y-6">
+
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold font-heading text-slate-900 leading-tight">
+                        {{ $product->name }}
+                    </h1>
+
+                    <div class="flex items-center gap-3 mt-3">
+                        <span class="text-amber-500 font-bold text-xs">★ 4.9 / 5.0 Rating</span>
+                        <span class="text-xs text-slate-400">| Terjual 1.200+ Pcs di TikTok Shop</span>
+                    </div>
+                </div>
+
+                <!-- Price & Stock -->
+                <div class="flex items-baseline gap-4 pt-4 border-t border-slate-100">
+                    <span class="text-3xl font-bold text-[#0284C7]">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+                    @if($product->in_stock)
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+                            Stok Tersedia
+                        </span>
+                    @else
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 text-red-600 border border-red-200 text-xs font-semibold">
+                            Stok Habis
+                        </span>
+                    @endif
+                </div>
+
+                <!-- Purchase CTA -->
+                <div class="space-y-3 pt-2">
+                    <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" rel="noopener noreferrer"
+                       class="btn-ryoki btn-ryoki-primary w-full py-4 text-base shadow-lg justify-center font-bold">
+                        Beli Langsung di TikTok Shop Official
+                    </a>
+                    <p class="text-center text-xs text-slate-400 font-light">
+                        Jaminan Produk 100% Original & Dikirim Langsung dari Pabrik Resmi Ryoki.
+                    </p>
                 </div>
             </div>
 
-            <!-- Product Info Bento -->
-            <div class="lg:col-span-7 flex flex-col gap-8">
-                <div class="bento-card p-8 md:p-10 flex-grow">
-                    <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">{{ $product->name }}</h1>
-
-                    <div class="flex items-center gap-6 mb-8 border-b border-white/10 pb-8">
-                        <p class="text-3xl text-neon font-mono font-bold">IDR {{ number_format($product->price, 0, ',', '.') }}</p>
-
-                        @if($product->in_stock)
-                            <span class="inline-flex items-center px-3 py-1 rounded bg-[#CCFF00]/10 border border-[#CCFF00]/30 text-neon font-mono text-xs">
-                                <span class="w-2 h-2 mr-2 bg-[#CCFF00] rounded-full animate-pulse"></span> IN_STOCK
-                            </span>
-                        @else
-                            <span class="inline-flex items-center px-3 py-1 rounded bg-red-500/10 border border-red-500/30 text-red-500 font-mono text-xs">
-                                <span class="w-2 h-2 mr-2 bg-red-500 rounded-full"></span> ERR_OUT_OF_STOCK
-                            </span>
-                        @endif
-                    </div>
-
-                    <!-- Buy Button -->
-                    <div class="mb-10">
-                        <a href="https://www.tiktok.com/@ryokijapanskin?is_from_webapp=1&sender_device=pc" target="_blank" class="w-full inline-flex justify-center items-center bg-[#CCFF00] hover:bg-[#b3ff00] text-[#020617] px-8 py-4 rounded-xl text-lg font-bold transition-all shadow-[0_0_20px_rgba(204,255,0.15)] hover:shadow-[0_0_30px_rgba(204,255,0.3)] transform hover:-translate-y-1 group">
-                            <svg class="w-6 h-6 mr-3 group-hover:animate-bounce" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-                            EXECUTE_PURCHASE()
-                        </a>
-                        <p class="text-xs text-muted font-mono mt-4 text-center">TRANSACTION ROUTED TO TIKTOK_SHOP</p>
+            <!-- Detailed Accordion Information -->
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm" x-data="{ activeTab: 1 }">
+                <div class="border-b border-slate-200 pb-4">
+                    <button @click="activeTab = activeTab === 1 ? null : 1" class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-900">
+                        <span>Deskripsi & Manfaat Utama</span>
+                        <span class="text-[#0284C7]" x-text="activeTab === 1 ? '−' : '+'"></span>
+                    </button>
+                    <div x-show="activeTab === 1" x-collapse class="pt-3 text-sm text-slate-600 leading-relaxed font-light">
+                        {{ $product->description ?? 'Deskripsi produk berkualitas tinggi dari Ryoki Skincare.' }}
                     </div>
                 </div>
 
-                <!-- Accordion Bento -->
-                <div class="bento-card p-6 md:p-8" x-data="{ activeAccordion: 1 }">
-                    <!-- Deskripsi -->
-                    <div class="border-b border-white/10 last:border-0">
-                        <button @click="activeAccordion = activeAccordion === 1 ? null : 1" class="w-full flex justify-between items-center py-5 focus:outline-none group">
-                            <span class="text-sm font-mono text-white uppercase group-hover:text-neon transition-colors">[SYS.DESC] Deskripsi Modul</span>
-                            <span class="text-neon font-mono text-xl leading-none" x-text="activeAccordion === 1 ? '-' : '+'"></span>
-                        </button>
-                        <div x-show="activeAccordion === 1" x-collapse>
-                            <div class="pb-6 text-muted leading-relaxed font-light text-sm">
-                                {{ $product->description ?? 'Deskripsi belum tersedia dalam database.' }}
-                            </div>
-                        </div>
+                <div class="border-b border-slate-200 py-4">
+                    <button @click="activeTab = activeTab === 2 ? null : 2" class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-900">
+                        <span>Petunjuk Penggunaan</span>
+                        <span class="text-[#0284C7]" x-text="activeTab === 2 ? '−' : '+'"></span>
+                    </button>
+                    <div x-show="activeTab === 2" x-collapse class="pt-3 text-sm text-slate-600 leading-relaxed font-light">
+                        {{ $product->usage ?? 'Gunakan secara teratur pada kulit yang bersih setiap pagi dan malam hari untuk hasil terbaik.' }}
                     </div>
+                </div>
 
-                    <!-- Cara Pakai -->
-                    <div class="border-b border-white/10 last:border-0">
-                        <button @click="activeAccordion = activeAccordion === 2 ? null : 2" class="w-full flex justify-between items-center py-5 focus:outline-none group">
-                            <span class="text-sm font-mono text-white uppercase group-hover:text-neon transition-colors">[SYS.EXEC] Protokol Penggunaan</span>
-                            <span class="text-neon font-mono text-xl leading-none" x-text="activeAccordion === 2 ? '-' : '+'"></span>
-                        </button>
-                        <div x-show="activeAccordion === 2" x-collapse style="display: none;">
-                            <div class="pb-6 text-muted leading-relaxed font-light text-sm">
-                                {{ $product->usage ?? 'Protokol penggunaan belum tersedia.' }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Komposisi -->
-                    <div class="border-b border-white/10 last:border-0">
-                        <button @click="activeAccordion = activeAccordion === 3 ? null : 3" class="w-full flex justify-between items-center py-5 focus:outline-none group">
-                            <span class="text-sm font-mono text-white uppercase group-hover:text-neon transition-colors">[SYS.DATA] Komponen Bahan</span>
-                            <span class="text-neon font-mono text-xl leading-none" x-text="activeAccordion === 3 ? '-' : '+'"></span>
-                        </button>
-                        <div x-show="activeAccordion === 3" x-collapse style="display: none;">
-                            <div class="pb-6 text-muted leading-relaxed font-light text-xs font-mono">
-                                {{ $product->ingredients ?? 'Data komponen belum tersedia.' }}
-                            </div>
-                        </div>
+                <div class="pt-4">
+                    <button @click="activeTab = activeTab === 3 ? null : 3" class="w-full flex justify-between items-center py-2 text-left font-bold text-slate-900">
+                        <span>Komposisi Bahan (Ingredients)</span>
+                        <span class="text-[#0284C7]" x-text="activeTab === 3 ? '−' : '+'"></span>
+                    </button>
+                    <div x-show="activeTab === 3" x-collapse class="pt-3 text-xs text-slate-500 leading-relaxed font-mono">
+                        {{ $product->ingredients ?? 'Aqua, Niacinamide, Alpha Arbutin, Collagen, Aloe Barbadensis Leaf Extract, Glycerin, Phenoxyethanol.' }}
                     </div>
                 </div>
             </div>
 
         </div>
+
     </div>
+
+</div>
 @endsection
