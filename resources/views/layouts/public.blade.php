@@ -190,9 +190,10 @@
             <!-- Footer Bottom -->
             <div class="pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400 gap-4">
                 <p>&copy; {{ date('Y') }} Ryoki Skincare by PT Golden Intan Berlian. All Rights Reserved.</p>
-                <div class="flex items-center gap-6">
-                    <span class="flex items-center gap-1.5 text-slate-500 font-medium"><svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> BPOM Certified</span>
-                    <span class="flex items-center gap-1.5 text-slate-500 font-medium"><svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Dermatologically Tested</span>
+                <div class="flex items-center gap-3 text-xs text-slate-400 font-light">
+                    <span>BPOM RI Certified</span>
+                    <span class="text-slate-200">|</span>
+                    <span>Dermatology Tested</span>
                 </div>
             </div>
         </div>

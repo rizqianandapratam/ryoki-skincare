@@ -54,11 +54,11 @@
 
         <div class="bg-white p-8 md:p-10 rounded-3xl border border-slate-200 shadow-sm space-y-4">
             <h3 class="text-2xl font-bold font-heading text-slate-900">Misi Perusahaan</h3>
-            <ul class="space-y-2.5 text-xs text-slate-600 font-light">
-                <li class="flex items-center gap-2.5"><span class="text-emerald-500 font-bold">✓</span> Memformulasikan produk skincare aman bersertifikat BPOM RI.</li>
-                <li class="flex items-center gap-2.5"><span class="text-emerald-500 font-bold">✓</span> Menggunakan bahan aktif pilihan tanpa zat berbahaya.</li>
-                <li class="flex items-center gap-2.5"><span class="text-emerald-500 font-bold">✓</span> Memberikan edukasi tepat seputar kesehatan kulit (Skinpedia).</li>
-                <li class="flex items-center gap-2.5"><span class="text-emerald-500 font-bold">✓</span> Menjamin kepuasan dan kemudahan akses produk melalui TikTok Shop Official.</li>
+            <ul class="space-y-3 text-xs text-slate-600 font-light">
+                <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-[#0284C7] mt-1.5 shrink-0"></span> Memformulasikan produk skincare aman bersertifikat BPOM RI.</li>
+                <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-[#0284C7] mt-1.5 shrink-0"></span> Menggunakan bahan aktif pilihan tanpa zat berbahaya.</li>
+                <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-[#0284C7] mt-1.5 shrink-0"></span> Memberikan edukasi tepat seputar kesehatan kulit (Skinpedia).</li>
+                <li class="flex items-start gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-[#0284C7] mt-1.5 shrink-0"></span> Menjamin kepuasan dan kemudahan akses produk melalui TikTok Shop Official.</li>
             </ul>
         </div>
     </div>

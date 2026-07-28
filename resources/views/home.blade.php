@@ -20,28 +20,19 @@
                 <!-- Left: Copy Content -->
                 <div class="space-y-7 max-w-xl">
 
-                    <!-- Tagline Badge -->
-                    <div class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-sky-200/60 rounded-full px-4 py-1.5 shadow-sm">
-                        <span class="flex h-2 w-2 relative">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                        </span>
-                        <span class="text-xs font-semibold text-slate-600 tracking-wide">Formulasi Jepang — BPOM Certified</span>
-                    </div>
-
                     <!-- Main Heading -->
-                    <div class="space-y-3">
-                        <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold font-playfair text-[#0F172A] leading-[1.1] tracking-tight">
+                    <div class="space-y-4">
+                        <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold font-playfair text-slate-900 leading-[1.18] tracking-tight">
                             Rahasia Kulit
                             <span class="relative inline-block">
-                                <span class="relative z-10 text-[#0284C7] italic">Cerah & Glowing</span>
-                                <span class="absolute bottom-1 left-0 right-0 h-3 bg-[#BAE6FD]/40 -skew-x-3 rounded-sm"></span>
+                                <span class="relative z-10 text-[#0284C7] italic font-playfair font-normal">Cerah &amp; Glowing</span>
+                                <span class="absolute bottom-1.5 left-0 right-0 h-3 bg-sky-200/50 -skew-x-2 rounded"></span>
                             </span>
                             <br class="hidden sm:block">Sepanjang Hari
                         </h1>
 
-                        <p class="text-base sm:text-lg text-slate-500 font-light leading-relaxed max-w-lg">
-                            Diformulasikan secara presisi dengan <strong class="font-medium text-slate-700">Niacinamide</strong>, <strong class="font-medium text-slate-700">Alpha Arbutin</strong>, <strong class="font-medium text-slate-700">Collagen</strong> & Ekstrak Botanikal untuk merawat skin barrier Anda.
+                        <p class="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-lg">
+                            Diformulasikan secara presisi dengan <strong class="font-semibold text-slate-800">Niacinamide</strong>, <strong class="font-semibold text-slate-800">Alpha Arbutin</strong>, <strong class="font-semibold text-slate-800">Collagen</strong> &amp; Ekstrak Botanikal untuk merawat skin barrier Anda.
                         </p>
                     </div>
 
@@ -57,19 +48,19 @@
                         </a>
                     </div>
 
-                    <!-- Trust Indicators -->
-                    <div class="flex flex-wrap gap-x-6 gap-y-2 pt-5 border-t border-sky-200/50">
-                        <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-600">
-                            <svg class="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            Terdaftar BPOM RI
+                    <!-- Micro Specification Grid (E-Commerce Luxury Style) -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-sky-200/50 max-w-lg">
+                        <div>
+                            <span class="block text-[11px] font-bold text-slate-800 tracking-wider uppercase font-heading">BPOM RI</span>
+                            <span class="block text-[11px] text-slate-400 font-light mt-0.5">Sertifikasi Resmi</span>
                         </div>
-                        <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-600">
-                            <svg class="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            Dermatologically Tested
+                        <div class="border-l border-slate-200/80 pl-4">
+                            <span class="block text-[11px] font-bold text-slate-800 tracking-wider uppercase font-heading">Formulasi</span>
+                            <span class="block text-[11px] text-slate-400 font-light mt-0.5">Standar Jepang</span>
                         </div>
-                        <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-600">
-                            <svg class="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            Halal & Cruelty-Free
+                        <div class="border-l border-slate-200/80 pl-4">
+                            <span class="block text-[11px] font-bold text-slate-800 tracking-wider uppercase font-heading">Keamanan</span>
+                            <span class="block text-[11px] text-slate-400 font-light mt-0.5">Teruji Dermatologi</span>
                         </div>
                     </div>
                 </div>
@@ -356,9 +347,13 @@
                     </div>
                 </div>
 
-                <div class="pt-4 flex flex-wrap items-center gap-6 text-xs text-slate-500 font-medium border-t border-slate-100">
-                    <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Terdaftar BPOM RI</span>
-                    <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Standar Pabrik GMP</span>
+                <div class="pt-4 flex items-center gap-6 text-xs text-slate-400 font-light border-t border-slate-100">
+                    <div>
+                        <span class="font-bold text-slate-800 font-heading">BPOM RI</span> — Terdaftar Resmi
+                    </div>
+                    <div class="border-l border-slate-200 pl-6">
+                        <span class="font-bold text-slate-800 font-heading">GMP Factory</span> — Quality Standard
+                    </div>
                 </div>
             </div>
 
@@ -382,7 +377,7 @@
                     <div class="w-9 h-9 rounded-full bg-sky-100 text-sky-700 font-bold text-xs flex items-center justify-center font-heading">DN</div>
                     <div>
                         <p class="text-xs font-bold text-slate-900">Dina Nuraeni</p>
-                        <p class="text-[10px] text-emerald-600 font-semibold">Verified TikTok Buyer</p>
+                        <p class="text-[10px] text-sky-600 font-semibold">Pembeli Terverifikasi TikTok</p>
                     </div>
                 </div>
             </div>
@@ -396,7 +391,7 @@
                     <div class="w-9 h-9 rounded-full bg-sky-100 text-sky-700 font-bold text-xs flex items-center justify-center font-heading">RM</div>
                     <div>
                         <p class="text-xs font-bold text-slate-900">Rina Maharani</p>
-                        <p class="text-[10px] text-emerald-600 font-semibold">Verified TikTok Buyer</p>
+                        <p class="text-[10px] text-sky-600 font-semibold">Pembeli Terverifikasi TikTok</p>
                     </div>
                 </div>
             </div>
@@ -410,7 +405,7 @@
                     <div class="w-9 h-9 rounded-full bg-sky-100 text-sky-700 font-bold text-xs flex items-center justify-center font-heading">AS</div>
                     <div>
                         <p class="text-xs font-bold text-slate-900">Anisa Syafitri</p>
-                        <p class="text-[10px] text-emerald-600 font-semibold">Verified TikTok Buyer</p>
+                        <p class="text-[10px] text-sky-600 font-semibold">Pembeli Terverifikasi TikTok</p>
                     </div>
                 </div>
             </div>
