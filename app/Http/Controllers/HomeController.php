@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $featuredProducts = Product::featured()->available()->take(6)->get();
+        $featuredProducts = Product::featured()->available()->take(3)->get();
         $bestSellers = Product::bestSeller()->available()->take(4)->get();
 
         return view('home', compact('featuredProducts', 'bestSellers'));

@@ -20,10 +20,15 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
         <!-- Contact Info Cards -->
-        <div class="lg:col-span-5 space-y-6">
+        <div class="lg:col-span-5 space-y-4">
 
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex items-start gap-4">
-                <div class="w-10 h-10 rounded-xl bg-sky-100 text-[#0284C7] flex items-center justify-center font-bold text-base shrink-0">📍</div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#0284C7] flex items-center justify-center shrink-0 border border-sky-100/60">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </div>
                 <div class="space-y-1">
                     <h3 class="font-bold text-slate-900 text-sm font-heading">Alamat Kantor Utama</h3>
                     <p class="text-xs text-slate-500 font-light leading-relaxed">
@@ -34,36 +39,35 @@
                 </div>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex items-start gap-4">
-                <div class="w-10 h-10 rounded-xl bg-sky-100 text-[#0284C7] flex items-center justify-center font-bold text-base shrink-0">💬</div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#0284C7] flex items-center justify-center shrink-0 border border-sky-100/60">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                </div>
                 <div class="space-y-1">
                     <h3 class="font-bold text-slate-900 text-sm font-heading">WhatsApp Customer Service</h3>
                     <p class="text-xs text-slate-500 font-light leading-relaxed">
-                        +62 896-9188-0237<br>
-                        <span class="text-slate-400">Jam Operasional: Senin – Sabtu (09.00 – 17.00 WIB)</span>
+                        <a href="https://wa.me/6283133919434" target="_blank" rel="noopener noreferrer" class="hover:text-[#0284C7] font-semibold transition-colors">
+                            +62 831-3391-9434
+                        </a>
                     </p>
+                    <p class="text-[11px] text-slate-400 font-light">Jam Operasional: Senin – Sabtu (09.00 – 17.00 WIB)</p>
                 </div>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex items-start gap-4">
-                <div class="w-10 h-10 rounded-xl bg-sky-100 text-[#0284C7] flex items-center justify-center font-bold text-base shrink-0">✉️</div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 text-[#0284C7] flex items-center justify-center shrink-0 border border-sky-100/60">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </div>
                 <div class="space-y-1">
                     <h3 class="font-bold text-slate-900 text-sm font-heading">Email Layanan Pelanggan</h3>
                     <p class="text-xs text-slate-500 font-light">
                         hello@ryokiskincare.com
                     </p>
                 </div>
-            </div>
-
-            <!-- Official Store Box -->
-            <div class="bg-gradient-to-br from-[#0284C7] to-[#0369A1] text-white p-6 rounded-2xl space-y-3">
-                <h3 class="font-bold text-base font-heading">Ingin Belanja Cepat?</h3>
-                <p class="text-xs text-sky-100 font-light leading-relaxed">
-                    Dapatkan penawaran menarik, diskon ongkir, dan gratis konsultasi langsung di Toko Resmi TikTok Shop Ryoki.
-                </p>
-                <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" class="btn-ryoki btn-ryoki-secondary text-xs w-full justify-center">
-                    Buka TikTok Shop Official
-                </a>
             </div>
 
         </div>

@@ -40,18 +40,25 @@
 
         <!-- Body Content -->
         <div class="prose prose-slate prose-lg max-w-none font-light leading-relaxed text-slate-700">
-            {!! nl2br(e($article->content)) !!}
+            {!! $article->content !!}
         </div>
 
-        <!-- Author / Footer Box -->
-        <div class="bg-sky-50 border border-sky-100 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Author / Footer Box (Dual Marketplace Access) -->
+        <div class="bg-gradient-to-r from-sky-50 via-white to-orange-50/40 border border-sky-100/80 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
             <div class="space-y-1 text-center sm:text-left">
-                <h4 class="font-bold text-slate-900 text-sm">Ingin Mencoba Produk Ryoki?</h4>
-                <p class="text-xs text-slate-500 font-light">Temukan rangkaian skincare resmi BPOM di Toko Resmi TikTok Shop.</p>
+                <h4 class="font-bold text-slate-900 text-sm">Ingin Mencoba Produk Ryoki Skincare?</h4>
+                <p class="text-xs text-slate-500 font-light">Temukan rangkaian skincare 100% original BPOM di Toko Resmi TikTok Shop &amp; Shopee Official.</p>
             </div>
-            <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" class="btn-ryoki btn-ryoki-primary text-xs shrink-0">
-                Kunjungi TikTok Shop
-            </a>
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3.5 text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white rounded-xl flex items-center gap-1.5 shadow-sm transition-all hover:scale-105">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                    TikTok Shop
+                </a>
+                <a href="{{ config('services.shopee.official_url', 'https://shopee.co.id/ryokiofficialstore') }}" target="_blank" rel="noopener noreferrer" onclick="trackShopeeClick('Article Detail', null, 'Skinpedia Footer Card')" class="py-2.5 px-3.5 text-xs font-bold bg-[#EE4D2D] hover:bg-[#d63f21] text-white rounded-xl flex items-center gap-1.5 shadow-sm transition-all hover:scale-105">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19.77 7.06h-3.41V5.44C16.36 2.44 13.92 0 10.92 0S5.48 2.44 5.48 5.44v1.62H1.71L.12 21.61C-.07 22.9 1 24 2.29 24h16.89c1.29 0 2.36-1.1 2.17-2.39l-1.58-14.55zM7.48 5.44c0-1.9 1.54-3.44 3.44-3.44s3.44 1.54 3.44 3.44v1.62H7.48V5.44zm11.75 16.56H2.25L3.6 8.56h1.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h6.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h1.88l1.35 13.44z"/></svg>
+                    Shopee Official
+                </a>
+            </div>
         </div>
 
     </article>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,8 +32,11 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'category' => 'required|string|max:255',
             'image' => 'nullable|image|max:2048',
+            'gallery.*' => 'nullable|image|max:2048',
             'in_stock' => 'boolean',
             'is_best_seller' => 'boolean',
+            'tiktok_shop_url' => 'nullable|url|max:500',
+            'shopee_url' => 'nullable|url|max:500',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
@@ -44,13 +48,28 @@ class ProductController extends Controller
         $validated['in_stock'] = $request->has('in_stock');
         $validated['is_best_seller'] = $request->has('is_best_seller');
 
-        Product::create($validated);
+        // Remove gallery from validated before creating product
+        unset($validated['gallery']);
+
+        $product = Product::create($validated);
+
+        // Process gallery images
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $index => $file) {
+                $path = $file->store('products', 'public');
+                $product->galleryImages()->create([
+                    'image_path' => $path,
+                    'sort_order' => $index,
+                ]);
+            }
+        }
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil ditambahkan.');
     }
 
     public function edit(Product $product)
     {
+        $product->load('galleryImages');
         return view('admin.products.edit', compact('product'));
     }
 
@@ -64,8 +83,11 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'category' => 'required|string|max:255',
             'image' => 'nullable|image|max:2048',
+            'gallery.*' => 'nullable|image|max:2048',
             'in_stock' => 'boolean',
             'is_best_seller' => 'boolean',
+            'tiktok_shop_url' => 'nullable|url|max:500',
+            'shopee_url' => 'nullable|url|max:500',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
@@ -80,16 +102,49 @@ class ProductController extends Controller
         $validated['in_stock'] = $request->has('in_stock');
         $validated['is_best_seller'] = $request->has('is_best_seller');
 
+        // Remove gallery from validated before updating product
+        unset($validated['gallery']);
+
         $product->update($validated);
+
+        // Append new gallery images
+        if ($request->hasFile('gallery')) {
+            $maxSort = $product->galleryImages()->max('sort_order') ?? -1;
+            foreach ($request->file('gallery') as $index => $file) {
+                $path = $file->store('products', 'public');
+                $product->galleryImages()->create([
+                    'image_path' => $path,
+                    'sort_order' => $maxSort + $index + 1,
+                ]);
+            }
+        }
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil diperbarui.');
     }
 
+    /**
+     * Delete a single gallery image.
+     */
+    public function destroyImage(ProductImage $productImage)
+    {
+        Storage::disk('public')->delete($productImage->image_path);
+        $productImage->delete();
+
+        return back()->with('success', 'Foto galeri berhasil dihapus.');
+    }
+
     public function destroy(Product $product)
     {
+        // Delete main image
         if ($product->image) {
             Storage::disk('public')->delete($product->image);
         }
+
+        // Delete all gallery images from storage
+        foreach ($product->galleryImages as $img) {
+            Storage::disk('public')->delete($img->image_path);
+        }
+
         $product->delete();
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil dihapus.');

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
@@ -24,6 +25,8 @@ class Product extends Model
         'in_stock',
         'is_best_seller',
         'is_featured',
+        'tiktok_shop_url',
+        'shopee_url',
     ];
 
     protected $casts = [
@@ -34,6 +37,26 @@ class Product extends Model
         'is_best_seller' => 'boolean',
         'is_featured'    => 'boolean',
     ];
+
+    /**
+     * Get the TikTok Shop URL with fallback to official account.
+     */
+    public function getTiktokUrlAttribute(): string
+    {
+        return !empty($this->tiktok_shop_url) 
+            ? $this->tiktok_shop_url 
+            : 'https://www.tiktok.com/@ryokijapanskin';
+    }
+
+    /**
+     * Get the Shopee URL with fallback to official store URL.
+     */
+    public function getShopeeUrlAttribute(): string
+    {
+        return !empty($this->attributes['shopee_url'] ?? null)
+            ? $this->attributes['shopee_url']
+            : config('services.shopee.official_url', 'https://shopee.co.id/ryokiofficialstore');
+    }
 
     /**
      * Scope: only featured products.
@@ -57,6 +80,14 @@ class Product extends Model
     public function scopeAvailable($query)
     {
         return $query->where('in_stock', true);
+    }
+
+    /**
+     * Get gallery images for this product.
+     */
+    public function galleryImages(): HasMany
+    {
+        return $this->hasMany(ProductImage::class)->orderBy('sort_order');
     }
 
     /**

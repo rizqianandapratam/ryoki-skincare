@@ -31,7 +31,14 @@ class ArticleController extends Controller
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
-        
+
+        // Sanitize HTML content — only allow safe tags produced by Trix Editor
+        $validated['content'] = strip_tags($validated['content'], [
+            'h1', 'h2', 'h3', 'p', 'br', 'strong', 'em', 'del', 'b', 'i', 'u',
+            'a', 'blockquote', 'ul', 'ol', 'li', 'pre', 'code',
+            'figure', 'figcaption', 'img', 'div', 'span',
+        ]);
+
         if ($request->hasFile('thumbnail')) {
             $validated['thumbnail'] = $request->file('thumbnail')->store('articles', 'public');
         }
@@ -58,7 +65,14 @@ class ArticleController extends Controller
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
-        
+
+        // Sanitize HTML content — only allow safe tags produced by Trix Editor
+        $validated['content'] = strip_tags($validated['content'], [
+            'h1', 'h2', 'h3', 'p', 'br', 'strong', 'em', 'del', 'b', 'i', 'u',
+            'a', 'blockquote', 'ul', 'ol', 'li', 'pre', 'code',
+            'figure', 'figcaption', 'img', 'div', 'span',
+        ]);
+
         if ($request->hasFile('thumbnail')) {
             if ($article->thumbnail) {
                 Storage::disk('public')->delete($article->thumbnail);

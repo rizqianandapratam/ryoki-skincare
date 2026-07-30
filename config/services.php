@@ -35,4 +35,15 @@ return [
         ],
     ],
 
+    'shopee_official_url' => env('SHOPEE_OFFICIAL_URL', 'https://shopee.co.id/ryokiofficialstore'),
+
+    'shopee' => [
+        'official_url' => env('SHOPEE_OFFICIAL_URL', 'https://shopee.co.id/ryokiofficialstore'),
+    ],
+
+    'whatsapp' => [
+        'number' => env('WHATSAPP_NUMBER', '6283133919434'),
+        'display' => env('WHATSAPP_DISPLAY', '+62 831-3391-9434'),
+    ],
+
 ];

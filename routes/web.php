@@ -10,18 +10,25 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
-use App\Http\Controllers\AdminAuthController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/api/products', [ProductController::class, 'apiIndex'])->name('api.products.index');
 Route::get('/products/{product:slug}', [ProductController::class, 'show'])->name('products.show');
+
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+// Dynamic robots.txt (uses APP_URL from config)
+Route::get('/robots.txt', function () {
+    $content = "User-agent: *\nAllow: /\nSitemap: " . config('app.url') . "/sitemap.xml";
+    return response($content, 200)->header('Content-Type', 'text/plain');
+});
 
 // Admin Authentication Routes
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -32,12 +39,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // Admin Routes (Protected)
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     
     // Products CRUD
     Route::resource('products', AdminProductController::class);
+    Route::delete('product-images/{productImage}', [AdminProductController::class, 'destroyImage'])->name('product-images.destroy');
     
     // Articles CRUD
     Route::resource('articles', AdminArticleController::class);
