@@ -25,22 +25,32 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'usage' => 'nullable|string',
-            'ingredients' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'category' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048',
-            'gallery.*' => 'nullable|image|max:2048',
-            'in_stock' => 'boolean',
-            'is_best_seller' => 'boolean',
-            'tiktok_shop_url' => 'nullable|url|max:500',
-            'shopee_url' => 'nullable|url|max:500',
+            'name'            => 'required|string|max:255',
+            'description'     => 'nullable|string',
+            'usage'           => 'nullable|string',
+            'ingredients'     => 'nullable|string',
+            'price'           => 'nullable|numeric|min:0',
+            'category'        => 'nullable|string|max:255',
+            'image'           => 'nullable|image|max:5120',
+            'gallery.*'       => 'nullable|image|max:5120',
+            'in_stock'        => 'nullable',
+            'is_best_seller'  => 'nullable',
+            'tiktok_shop_url' => 'nullable|string|max:500',
+            'shopee_url'      => 'nullable|string|max:500',
         ]);
 
-        $validated['slug'] = Str::slug($validated['name']);
-        
+        $validated['slug'] = Str::slug($validated['name']) ?: 'product-' . time();
+        $validated['category'] = !empty($validated['category']) ? $validated['category'] : 'Skincare';
+        $validated['price'] = isset($validated['price']) && $validated['price'] !== '' ? $validated['price'] : 0;
+
+        // Auto-add https:// if omitted
+        if (!empty($validated['tiktok_shop_url']) && !preg_match("~^(?:f|ht)tps?://~i", $validated['tiktok_shop_url'])) {
+            $validated['tiktok_shop_url'] = 'https://' . $validated['tiktok_shop_url'];
+        }
+        if (!empty($validated['shopee_url']) && !preg_match("~^(?:f|ht)tps?://~i", $validated['shopee_url'])) {
+            $validated['shopee_url'] = 'https://' . $validated['shopee_url'];
+        }
+
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('products', 'public');
         }
@@ -48,7 +58,7 @@ class ProductController extends Controller
         $validated['in_stock'] = $request->has('in_stock');
         $validated['is_best_seller'] = $request->has('is_best_seller');
 
-        // Remove gallery from validated before creating product
+        // Remove gallery from validated array
         unset($validated['gallery']);
 
         $product = Product::create($validated);
@@ -76,22 +86,32 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'usage' => 'nullable|string',
-            'ingredients' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'category' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048',
-            'gallery.*' => 'nullable|image|max:2048',
-            'in_stock' => 'boolean',
-            'is_best_seller' => 'boolean',
-            'tiktok_shop_url' => 'nullable|url|max:500',
-            'shopee_url' => 'nullable|url|max:500',
+            'name'            => 'required|string|max:255',
+            'description'     => 'nullable|string',
+            'usage'           => 'nullable|string',
+            'ingredients'     => 'nullable|string',
+            'price'           => 'nullable|numeric|min:0',
+            'category'        => 'nullable|string|max:255',
+            'image'           => 'nullable|image|max:5120',
+            'gallery.*'       => 'nullable|image|max:5120',
+            'in_stock'        => 'nullable',
+            'is_best_seller'  => 'nullable',
+            'tiktok_shop_url' => 'nullable|string|max:500',
+            'shopee_url'      => 'nullable|string|max:500',
         ]);
 
-        $validated['slug'] = Str::slug($validated['name']);
-        
+        $validated['slug'] = Str::slug($validated['name']) ?: 'product-' . time();
+        $validated['category'] = !empty($validated['category']) ? $validated['category'] : ($product->category ?: 'Skincare');
+        $validated['price'] = isset($validated['price']) && $validated['price'] !== '' ? $validated['price'] : 0;
+
+        // Auto-add https:// if omitted
+        if (!empty($validated['tiktok_shop_url']) && !preg_match("~^(?:f|ht)tps?://~i", $validated['tiktok_shop_url'])) {
+            $validated['tiktok_shop_url'] = 'https://' . $validated['tiktok_shop_url'];
+        }
+        if (!empty($validated['shopee_url']) && !preg_match("~^(?:f|ht)tps?://~i", $validated['shopee_url'])) {
+            $validated['shopee_url'] = 'https://' . $validated['shopee_url'];
+        }
+
         if ($request->hasFile('image')) {
             if ($product->image) {
                 Storage::disk('public')->delete($product->image);
@@ -102,7 +122,7 @@ class ProductController extends Controller
         $validated['in_stock'] = $request->has('in_stock');
         $validated['is_best_seller'] = $request->has('is_best_seller');
 
-        // Remove gallery from validated before updating product
+        // Remove gallery from validated array
         unset($validated['gallery']);
 
         $product->update($validated);

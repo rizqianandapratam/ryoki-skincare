@@ -47,10 +47,81 @@
     <meta name="twitter:description" content="{{ $currentDesc }}">
     <meta name="twitter:image" content="{{ $currentImage }}">
 
+    <!-- Schema.org JSON-LD Structured Data (Organization & WebSite) -->
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@graph": [
+        {
+          "@@type": "Organization",
+          "@@id": "{{ url('/') }}#organization",
+          "name": "Ryoki Skincare",
+          "legalName": "PT Golden Intan Berlian",
+          "url": "{{ url('/') }}",
+          "logo": "{{ asset('images/logo.png') }}",
+          "image": "{{ asset('images/hero-banner.png') }}",
+          "description": "Ryoki Skincare memadukan keahlian formulasi Jepang dengan lisensi resmi BPOM RI untuk merawat skin barrier, mencerahkan, dan memberikan kelembapan alami.",
+          "telephone": "+6283133919434",
+          "address": {
+            "@@type": "PostalAddress",
+            "addressLocality": "Bandar Lampung",
+            "addressCountry": "ID"
+          },
+          "sameAs": [
+            "https://shopee.co.id/ryokiofficialstore",
+            "https://www.tiktok.com/@ryokijapanskin"
+          ]
+        },
+        {
+          "@@type": "WebSite",
+          "@@id": "{{ url('/') }}#website",
+          "url": "{{ url('/') }}",
+          "name": "Ryoki Skincare Official",
+          "description": "Official Website Ryoki Skincare — Rahasia Kulit Sehat & Glowing Alami BPOM RI",
+          "publisher": {
+            "@@id": "{{ url('/') }}#organization"
+          },
+          "inLanguage": "id-ID"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Early Synchronous Analytics Click Tracker (Guarantees 0ms readiness on first click) -->
+    <script>
+        window.trackMarketplaceClick = function(platform, productName, productId, buttonLocation) {
+            try {
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+                const payload = JSON.stringify({
+                    platform: platform || 'other',
+                    product_id: productId || null,
+                    product_name: productName || 'General',
+                    button_location: buttonLocation || 'General'
+                });
+
+                if (navigator.sendBeacon) {
+                    const blob = new Blob([payload], { type: 'application/json' });
+                    navigator.sendBeacon('/analytics/click', blob);
+                } else {
+                    fetch('/analytics/click', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': csrfToken || '' },
+                        body: payload,
+                        keepalive: true
+                    }).catch(function() {});
+                }
+            } catch(e) {}
+            return true;
+        };
+        window.trackShopeeClick = function(pn, pi, bl) { return window.trackMarketplaceClick('shopee', pn, pi, bl); };
+        window.trackTikTokClick = function(pn, pi, bl) { return window.trackMarketplaceClick('tiktok', pn, pi, bl); };
+        window.trackWhatsAppClick = function(pn, pi, bl) { return window.trackMarketplaceClick('whatsapp', pn, pi, bl); };
+    </script>
+
     <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon.svg') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/logo.png') }}">
 
     <!-- Fonts & Performance Preconnects -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -62,6 +133,8 @@
     <!-- Custom CSS & Vite -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @stack('head')
 </head>
 <body class="font-sans antialiased bg-[#F6F9FC] text-[#334155] overflow-x-hidden">
 
@@ -69,7 +142,7 @@
     <div class="bg-gradient-to-r from-[#0284C7] via-[#0369A1] to-[#075985] text-white text-center py-2 px-4 text-xs font-medium tracking-wide relative z-50 flex items-center justify-center gap-2 flex-wrap">
         <span>✨ Toko Resmi Ryoki Skincare: Jaminan 100% Original BPOM &amp; Gratis Ongkir di</span>
         <div class="inline-flex items-center gap-2">
-            <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-semibold underline hover:text-sky-200">
+            <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" rel="noopener noreferrer" onclick="trackTikTokClick('Announcement Bar', null, 'Header Top Banner')" class="inline-flex items-center gap-1 font-semibold underline hover:text-sky-200">
                 <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
                 TikTok Shop
             </a>
@@ -86,35 +159,30 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
             <div class="flex justify-between items-center h-12">
 
-                <!-- Brand Logo (Enlarged without expanding navbar container) -->
-                <a href="{{ route('home') }}" onclick="window.location.href=this.href;" class="flex items-center gap-2 group shrink-0">
-                    <img src="{{ asset('images/logo.png') }}" alt="Ryoki Japan Skincare" class="h-14 sm:h-16 md:h-18 w-auto object-contain -my-2 sm:-my-3 group-hover:scale-105 transition-transform duration-200" />
+                <!-- Brand Logo -->
+                <a href="{{ route('home') }}" class="flex items-center gap-2 group shrink-0">
+                    <img src="{{ asset('images/logo.png') }}" alt="Ryoki Japan Skincare" class="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-200" />
                 </a>
 
                 <!-- Desktop Navigation Links -->
                 <div class="hidden md:flex items-center gap-1 bg-slate-100/90 p-1 rounded-full border border-slate-200/80">
                     <a href="{{ route('home') }}"
-                       onclick="event.preventDefault(); startPageTransition(this.href);"
                        class="px-5 py-2 rounded-full text-xs font-semibold transition-colors {{ request()->routeIs('home') ? 'bg-[#0284C7] text-white shadow-xs' : 'text-slate-600 hover:text-[#0284C7]' }}">
                         Beranda
                     </a>
                     <a href="{{ route('about') }}"
-                       onclick="event.preventDefault(); startPageTransition(this.href);"
                        class="px-5 py-2 rounded-full text-xs font-semibold transition-colors {{ request()->routeIs('about') ? 'bg-[#0284C7] text-white shadow-xs' : 'text-slate-600 hover:text-[#0284C7]' }}">
                         Tentang Kami
                     </a>
                     <a href="{{ route('products.index') }}"
-                       onclick="event.preventDefault(); startPageTransition(this.href);"
                        class="px-5 py-2 rounded-full text-xs font-semibold transition-colors {{ request()->routeIs('products.*') ? 'bg-[#0284C7] text-white shadow-xs' : 'text-slate-600 hover:text-[#0284C7]' }}">
                         Produk Skincare
                     </a>
                     <a href="{{ route('articles.index') }}"
-                       onclick="event.preventDefault(); startPageTransition(this.href);"
                        class="px-5 py-2 rounded-full text-xs font-semibold transition-colors {{ request()->routeIs('articles.*') ? 'bg-[#0284C7] text-white shadow-xs' : 'text-slate-600 hover:text-[#0284C7]' }}">
                         Skinpedia
                     </a>
                     <a href="{{ route('contact.index') }}"
-                       onclick="event.preventDefault(); startPageTransition(this.href);"
                        class="px-5 py-2 rounded-full text-xs font-semibold transition-colors {{ request()->routeIs('contact.*') ? 'bg-[#0284C7] text-white shadow-xs' : 'text-slate-600 hover:text-[#0284C7]' }}">
                         Kontak
                     </a>
@@ -124,6 +192,7 @@
                 <div class="hidden lg:flex items-center gap-2">
                     <a href="https://www.tiktok.com/@ryokijapanskin"
                        target="_blank" rel="noopener noreferrer"
+                       onclick="trackTikTokClick('Header Navbar', null, 'Desktop Navbar Header')"
                        class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all hover:scale-105">
                         <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
                         TikTok Shop
@@ -162,14 +231,14 @@
              x-transition:leave-end="opacity-0 -translate-y-2"
              class="md:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-3 shadow-xl"
              style="display: none;">
-            <a href="{{ route('home') }}" onclick="event.preventDefault(); startPageTransition(this.href);" class="block text-sm font-medium text-slate-700 hover:text-[#0284C7]">Beranda</a>
-            <a href="{{ route('about') }}" onclick="event.preventDefault(); startPageTransition(this.href);" class="block text-sm font-medium text-slate-700 hover:text-[#0284C7]">Tentang Kami</a>
-            <a href="{{ route('products.index') }}" onclick="event.preventDefault(); startPageTransition(this.href);" class="block text-sm font-medium text-slate-700 hover:text-[#0284C7]">Produk Skincare</a>
-            <a href="{{ route('articles.index') }}" onclick="event.preventDefault(); startPageTransition(this.href);" class="block text-sm font-medium text-slate-700 hover:text-[#0284C7]">Skinpedia</a>
-            <a href="{{ route('contact.index') }}" onclick="event.preventDefault(); startPageTransition(this.href);" class="block text-sm font-medium text-slate-700 hover:text-[#0284C7]">Kontak</a>
+            <a href="{{ route('home') }}" class="block text-sm font-medium text-slate-700 hover:text-[#0284C7]">Beranda</a>
+            <a href="{{ route('about') }}" class="block text-sm font-medium text-slate-700 hover:text-[#0284C7]">Tentang Kami</a>
+            <a href="{{ route('products.index') }}" class="block text-sm font-medium text-slate-700 hover:text-[#0284C7]">Produk Skincare</a>
+            <a href="{{ route('articles.index') }}" class="block text-sm font-medium text-slate-700 hover:text-[#0284C7]">Skinpedia</a>
+            <a href="{{ route('contact.index') }}" class="block text-sm font-medium text-slate-700 hover:text-[#0284C7]">Kontak</a>
             
             <div class="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2">
-                <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" class="py-2.5 px-3 text-xs justify-center font-bold bg-slate-900 hover:bg-slate-800 text-white rounded-xl flex items-center gap-1.5 shadow-sm">
+                <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" onclick="trackTikTokClick('Mobile Menu', null, 'Mobile Dropdown Menu')" class="py-2.5 px-3 text-xs justify-center font-bold bg-slate-900 hover:bg-slate-800 text-white rounded-xl flex items-center gap-1.5 shadow-sm">
                     <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
                     TikTok Shop
                 </a>
@@ -219,6 +288,7 @@
                     <ul class="space-y-3 text-xs sm:text-sm">
                         <li>
                             <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" rel="noopener noreferrer"
+                               onclick="trackTikTokClick('Footer Channel', null, 'Footer Link')"
                                class="flex items-center gap-2.5 text-slate-600 hover:text-[#0284C7] transition-colors group">
                                 <div class="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center group-hover:bg-sky-50 group-hover:text-[#0284C7] transition-colors">
                                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
@@ -255,7 +325,7 @@
                         Dapatkan jaminan produk 100% original bersertifikat BPOM dengan promo gratis ongkir di TikTok Shop &amp; Shopee Official.
                     </p>
                     <div class="grid grid-cols-2 gap-2">
-                        <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" rel="noopener noreferrer" class="py-2.5 px-2 text-xs justify-center font-bold bg-slate-900 hover:bg-slate-800 text-white rounded-xl flex items-center gap-1.5 shadow-sm transition-all hover:scale-105">
+                        <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" rel="noopener noreferrer" onclick="trackTikTokClick('Footer Card', null, 'Footer CTA')" class="py-2.5 px-2 text-xs justify-center font-bold bg-slate-900 hover:bg-slate-800 text-white rounded-xl flex items-center gap-1.5 shadow-sm transition-all hover:scale-105">
                             <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
                             TikTok Shop
                         </a>
@@ -292,6 +362,7 @@
             <a href="https://wa.me/6283133919434?text={{ urlencode('Halo Ryoki Skincare, saya ingin bertanya seputar produk-produk skincare di sini') }}"
                target="_blank"
                rel="noopener noreferrer"
+               onclick="trackWhatsAppClick('WhatsApp CS Floating FAB', null, 'Floating FAB Widget')"
                class="group flex items-center gap-2.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold py-2.5 px-4 rounded-full shadow-lg shadow-emerald-500/25 transition-all hover:scale-105">
                 <span class="opacity-95 group-hover:opacity-100">Konsultasi WhatsApp CS</span>
                 <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
@@ -304,7 +375,7 @@
         <!-- Main FAB Toggle Trigger (Enlarged for Easy Touch) -->
         <button @click="fabOpen = !fabOpen"
                 class="relative w-15 h-15 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-[#0284C7] to-[#38BDF8] text-white flex items-center justify-center shadow-2xl shadow-sky-500/35 hover:scale-105 active:scale-95 transition-all focus:outline-none ring-4 ring-white/70"
-                title="Bantuan & Toko Resmi">
+                title="Bantuan & CS Ryoki Skincare">
             <!-- Green active dot when closed -->
             <span x-show="!fabOpen" class="absolute top-0 right-0 w-4 h-4 bg-emerald-400 border-2 border-white rounded-full animate-ping"></span>
             <span x-show="!fabOpen" class="absolute top-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full"></span>
@@ -314,53 +385,41 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
             </svg>
 
-            <!-- Close X Icon when open -->
+                <!-- Close X Icon when open -->
             <svg x-show="fabOpen" class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display:none;">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
     </div>
 
-    <!-- TOP PROGRESS BAR FOR INSTANT FEEDBACK -->
-    <div id="page-progress-bar" class="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0284C7] via-[#38BDF8] to-sky-300 z-[100] transition-all duration-300 w-0 opacity-0 pointer-events-none"></div>
-
-    <!-- Instant Page Prefetch & Instant 1-Click Smooth Transition Script -->
+    <!-- Feather-Light Instant Page Preloader Engine (Zero-Blocking Pointer Prefetch) -->
     <script>
         (function() {
-            // Function to trigger instant progress bar & smooth navigation on 1-click
-            window.startPageTransition = function(url) {
-                const progressBar = document.getElementById('page-progress-bar');
-                if (progressBar) {
-                    progressBar.style.width = '45%';
-                    progressBar.style.opacity = '1';
-                    setTimeout(() => { progressBar.style.width = '85%'; }, 80);
+            const preloaded = new Set();
+            function prefetch(url) {
+                if (!url || preloaded.has(url) || url.includes('#')) return;
+                preloaded.add(url);
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = url;
+                link.as = 'document';
+                document.head.appendChild(link);
+            }
+            document.addEventListener('pointerdown', function(e) {
+                const a = e.target.closest('a');
+                if (a && a.href && a.origin === location.origin && a.target !== '_blank') {
+                    prefetch(a.href);
                 }
-                document.body.style.opacity = '0.92';
-                document.body.style.transition = 'opacity 0.12s ease-out';
-                window.location.href = url;
-            };
+            }, { passive: true });
+            document.addEventListener('mouseover', function(e) {
+                const a = e.target.closest('a');
+                if (a && a.href && a.origin === location.origin && a.target !== '_blank') {
+                    let timer = setTimeout(() => { if (a.matches(':hover')) prefetch(a.href); }, 65);
+                    a.addEventListener('mouseleave', () => clearTimeout(timer), { once: true });
+                }
+            }, { passive: true });
 
             document.addEventListener('DOMContentLoaded', function () {
-                // Instant prefetch internal links on hover / touchstart for 0ms latency
-                const preloaded = new Set();
-                document.querySelectorAll('a[href^="{{ url('/') }}"]').forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (!href || href.includes('#') || link.target === '_blank') return;
-
-                    const prefetch = () => {
-                        if (preloaded.has(href)) return;
-                        preloaded.add(href);
-                        const linkEl = document.createElement('link');
-                        linkEl.rel = 'prefetch';
-                        linkEl.href = href;
-                        document.head.appendChild(linkEl);
-                    };
-
-                    link.addEventListener('mouseenter', prefetch, { passive: true });
-                    link.addEventListener('touchstart', prefetch, { passive: true });
-                });
-
-                // Intersection observer for animations
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
@@ -370,19 +429,6 @@
                     });
                 }, { threshold: 0.08 });
                 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-            });
-
-            // Smooth restore on page load
-            window.addEventListener('pageshow', function() {
-                const progressBar = document.getElementById('page-progress-bar');
-                if (progressBar) {
-                    progressBar.style.width = '100%';
-                    setTimeout(() => {
-                        progressBar.style.opacity = '0';
-                        progressBar.style.width = '0';
-                    }, 180);
-                }
-                document.body.style.opacity = '1';
             });
         })();
     </script>

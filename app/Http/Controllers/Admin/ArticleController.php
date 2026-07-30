@@ -24,20 +24,23 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'thumbnail' => 'nullable|image|max:2048',
-            'is_published' => 'boolean',
+            'title'        => 'required|string|max:255',
+            'content'      => 'nullable|string',
+            'thumbnail'    => 'nullable|image|max:5120',
+            'is_published' => 'nullable',
         ]);
 
-        $validated['slug'] = Str::slug($validated['title']);
+        $validated['slug'] = Str::slug($validated['title']) ?: 'article-' . time();
+        $validated['content'] = $validated['content'] ?? '';
 
-        // Sanitize HTML content — only allow safe tags produced by Trix Editor
-        $validated['content'] = strip_tags($validated['content'], [
-            'h1', 'h2', 'h3', 'p', 'br', 'strong', 'em', 'del', 'b', 'i', 'u',
-            'a', 'blockquote', 'ul', 'ol', 'li', 'pre', 'code',
-            'figure', 'figcaption', 'img', 'div', 'span',
-        ]);
+        // Sanitize HTML content — allow standard Trix / rich text tags
+        if (!empty($validated['content'])) {
+            $validated['content'] = strip_tags($validated['content'], [
+                'h1', 'h2', 'h3', 'p', 'br', 'strong', 'em', 'del', 'b', 'i', 'u',
+                'a', 'blockquote', 'ul', 'ol', 'li', 'pre', 'code',
+                'figure', 'figcaption', 'img', 'div', 'span',
+            ]);
+        }
 
         if ($request->hasFile('thumbnail')) {
             $validated['thumbnail'] = $request->file('thumbnail')->store('articles', 'public');
@@ -58,20 +61,23 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'thumbnail' => 'nullable|image|max:2048',
-            'is_published' => 'boolean',
+            'title'        => 'required|string|max:255',
+            'content'      => 'nullable|string',
+            'thumbnail'    => 'nullable|image|max:5120',
+            'is_published' => 'nullable',
         ]);
 
-        $validated['slug'] = Str::slug($validated['title']);
+        $validated['slug'] = Str::slug($validated['title']) ?: 'article-' . time();
+        $validated['content'] = $validated['content'] ?? ($article->content ?: '');
 
-        // Sanitize HTML content — only allow safe tags produced by Trix Editor
-        $validated['content'] = strip_tags($validated['content'], [
-            'h1', 'h2', 'h3', 'p', 'br', 'strong', 'em', 'del', 'b', 'i', 'u',
-            'a', 'blockquote', 'ul', 'ol', 'li', 'pre', 'code',
-            'figure', 'figcaption', 'img', 'div', 'span',
-        ]);
+        // Sanitize HTML content — allow standard Trix / rich text tags
+        if (!empty($validated['content'])) {
+            $validated['content'] = strip_tags($validated['content'], [
+                'h1', 'h2', 'h3', 'p', 'br', 'strong', 'em', 'del', 'b', 'i', 'u',
+                'a', 'blockquote', 'ul', 'ol', 'li', 'pre', 'code',
+                'figure', 'figcaption', 'img', 'div', 'span',
+            ]);
+        }
 
         if ($request->hasFile('thumbnail')) {
             if ($article->thumbnail) {

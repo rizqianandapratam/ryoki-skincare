@@ -20,24 +20,35 @@
             <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf @method('PUT')
 
+                @if ($errors->any())
+                    <div class="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs space-y-1">
+                        <strong class="font-bold">Gagal memperbarui produk:</strong>
+                        <ul class="list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <!-- Basic Info Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nama Produk <span class="text-rose-500">*</span></label>
-                        <input type="text" name="name" value="{{ $product->name }}" required
+                        <input type="text" name="name" value="{{ old('name', $product->name) }}" required
                                class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0284C7] bg-slate-50/50">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Kategori <span class="text-rose-500">*</span></label>
-                        <input type="text" name="category" value="{{ $product->category }}" required
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Kategori (Opsional)</label>
+                        <input type="text" name="category" value="{{ old('category', $product->category) }}" placeholder="Skincare"
                                class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0284C7] bg-slate-50/50">
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Harga Produk (Rp) <span class="text-rose-500">*</span></label>
-                    <input type="number" name="price" value="{{ $product->price }}" required
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Harga Produk (Rp) (Opsional)</label>
+                    <input type="number" name="price" value="{{ old('price', $product->price) }}" placeholder="0"
                            class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0284C7] bg-slate-50/50">
                 </div>
 
@@ -132,16 +143,16 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <!-- TikTok Shop URL -->
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Link TikTok Shop Produk</label>
-                            <input type="url" name="tiktok_shop_url" value="{{ old('tiktok_shop_url', $product->tiktok_shop_url) }}" placeholder="https://vt.tiktok.com/..."
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Link TikTok Shop Produk (Opsional)</label>
+                            <input type="text" name="tiktok_shop_url" value="{{ old('tiktok_shop_url', $product->tiktok_shop_url) }}" placeholder="https://vt.tiktok.com/..."
                                    class="w-full px-4 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0284C7] bg-white">
                             <p class="text-[11px] text-slate-400 font-light mt-1">Jika dikosongkan, otomatis mengarah ke TikTok Shop Ryoki Official.</p>
                         </div>
 
                         <!-- Shopee URL -->
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Link Shopee Produk (Optional)</label>
-                            <input type="url" name="shopee_url" value="{{ old('shopee_url', $product->shopee_url) }}" placeholder="https://shopee.co.id/..."
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Link Shopee Produk (Opsional)</label>
+                            <input type="text" name="shopee_url" value="{{ old('shopee_url', $product->shopee_url) }}" placeholder="https://shopee.co.id/..."
                                    class="w-full px-4 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#EE4D2D] bg-white">
                             <p class="text-[11px] text-slate-400 font-light mt-1">Jika dikosongkan, tombol otomatis mengarah ke Link Utama Shopee Ryoki (https://shopee.co.id/ryokiofficialstore)</p>
                         </div>

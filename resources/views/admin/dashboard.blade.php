@@ -18,7 +18,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
 
         <!-- ─── STATS CARDS GRID ─── -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
             <!-- Card 1: Total Produk -->
             <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex items-center justify-between relative overflow-hidden group hover:border-sky-200 transition-all">
@@ -69,6 +69,22 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 </div>
             </div>
+
+            <!-- Card 4: Marketplace Clicks Analytics -->
+            <a href="{{ route('admin.analytics.index') }}" class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex items-center justify-between relative overflow-hidden group hover:border-sky-200 hover:shadow-md transition-all">
+                <div class="space-y-1 relative z-10">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Total Klik Marketplace</span>
+                    <h3 class="text-3xl font-extrabold text-slate-900 font-heading">
+                        {{ number_format($totalClicksCount ?? 0) }}
+                    </h3>
+                    <p class="text-xs text-[#0284C7] font-medium flex items-center gap-1">
+                        <span>Lihat Analytics →</span>
+                    </p>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                </div>
+            </a>
 
         </div>
 

@@ -8,7 +8,7 @@
         <title>{{ isset($title) ? $title . ' — Admin Ryoki Skincare' : 'Admin Panel — Ryoki Skincare' }}</title>
 
         <!-- Favicons -->
-        <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+        <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
         <!-- Fonts & Performance Preconnects -->

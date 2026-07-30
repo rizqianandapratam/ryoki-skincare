@@ -20,19 +20,27 @@
             <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
 
+                @if ($errors->any())
+                    <div class="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs space-y-1">
+                        <strong class="font-bold">Gagal menyimpan artikel:</strong>
+                        <ul class="list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Judul Artikel <span class="text-rose-500">*</span></label>
-                    <input type="text" name="title" required placeholder="Contoh: 5 Cara Memperbaiki Skin Barrier yang Rusak"
+                    <input type="text" name="title" value="{{ old('title') }}" required placeholder="Contoh: 5 Cara Memperbaiki Skin Barrier yang Rusak"
                            class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0284C7] bg-slate-50/50">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Isi Konten Artikel <span class="text-rose-500">*</span></label>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Isi Konten Artikel (Opsional)</label>
                     <input id="content" type="hidden" name="content" value="{{ old('content') }}">
                     <trix-editor input="content" class="trix-content bg-slate-50/50 border border-slate-200 rounded-xl min-h-[350px] prose max-w-none focus:outline-none focus:ring-2 focus:ring-[#0284C7] p-4"></trix-editor>
-                    @error('content')
-                        <p class="text-rose-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
                 </div>
 
                 <div class="p-4 rounded-2xl bg-sky-50/50 border border-sky-100 space-y-2">

@@ -58,19 +58,28 @@
             </div>
 
             <!-- Actions -->
-            <div class="pt-4 flex items-center justify-between">
+            <div class="pt-4 flex flex-wrap items-center justify-between gap-3">
                 <a href="{{ route('admin.contacts.index') }}"
                    class="px-5 py-2.5 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all">
                     ← Kembali
                 </a>
 
-                @if($contact->phone)
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact->phone) }}?text={{ urlencode('Halo ' . $contact->name . ', saya dari tim CS Ryoki Skincare ingin merespon pesan Anda.') }}"
-                       target="_blank"
-                       class="btn-ryoki flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-md shadow-emerald-500/20">
-                        💬 Balas via WhatsApp
-                    </a>
-                @endif
+                <div class="flex items-center gap-2.5">
+                    @if($contact->email)
+                        <a href="mailto:{{ $contact->email }}?subject={{ rawurlencode('Respon Pesan Ryoki Skincare') }}&body={{ rawurlencode("Halo " . $contact->name . ",\n\nTerima kasih telah menghubungi Ryoki Skincare.\n\n") }}"
+                           class="flex items-center gap-2 bg-[#0284C7] hover:bg-[#0369A1] text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-md shadow-sky-500/20 transition-all">
+                            ✉️ Balas via Email
+                        </a>
+                    @endif
+
+                    @if($contact->phone)
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact->phone) }}?text={{ urlencode('Halo ' . $contact->name . ', saya dari tim CS Ryoki Skincare ingin merespon pesan Anda.') }}"
+                           target="_blank"
+                           class="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-md shadow-emerald-500/20 transition-all">
+                            💬 Balas via WhatsApp
+                        </a>
+                    @endif
+                </div>
             </div>
 
         </div>

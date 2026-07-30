@@ -85,7 +85,7 @@
                     <!-- CTA Buttons (Dual Marketplace & Catalog Access - Unified Design) -->
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
                         <!-- Primary Catalog Button (Matching rounded-2xl & single-line text) -->
-                        <a href="{{ route('products.index') }}" onclick="event.preventDefault(); startPageTransition(this.href);"
+                        <a href="{{ route('products.index') }}"
                            class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-[#0284C7] to-[#0369A1] hover:from-[#0369A1] hover:to-[#075985] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-sky-500/25 transition-all hover:scale-[1.02] active:scale-98">
                             <span>Eksplorasi Katalog Produk</span>
                             <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
@@ -94,6 +94,7 @@
                         <!-- Dual Marketplace Fast Links (Full Width Fill) -->
                         <div class="flex-1 grid grid-cols-2 gap-1 p-1 bg-white border border-slate-200/90 rounded-2xl shadow-sm">
                             <a href="https://www.tiktok.com/@ryokijapanskin" target="_blank" rel="noopener noreferrer"
+                               onclick="trackTikTokClick('Hero Showcase', null, 'Hero Section')"
                                class="py-2.5 px-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-800 hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center gap-1.5 text-center">
                                 <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
                                 <span>TikTok Shop</span>
@@ -271,10 +272,10 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-            <!-- Left: Studio Product Banner Photo -->
+            <!-- Left: Studio Product Lineup Banner Photo -->
             <div class="lg:col-span-6">
-                <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-lg border border-slate-200">
-                    <img src="{{ asset('images/hero-banner.png') }}" alt="Ryoki Skincare Formulations" class="w-full h-full object-cover" loading="lazy">
+                <div class="relative w-full rounded-3xl overflow-hidden shadow-md border border-slate-200/90 bg-white p-2.5 sm:p-3 group">
+                    <img src="{{ asset('images/ryoki-lineup.png') }}" alt="Ryoki Skincare Lineup - Formulated in Japan 100% Safe and Halal Certified" class="w-full h-auto object-contain rounded-2xl transition-transform duration-300 group-hover:scale-[1.02]" loading="lazy">
                 </div>
             </div>
 

@@ -7,8 +7,9 @@
 
         <title>Ryoki Skincare — Admin Access</title>
 
-        <!-- Favicon -->
-        <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+        <!-- Favicons -->
+        <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
         <!-- Fonts & Performance Preconnects -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

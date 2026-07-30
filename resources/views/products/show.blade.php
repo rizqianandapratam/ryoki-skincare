@@ -22,6 +22,65 @@
 @section('og_image', $imgSrc)
 @section('og_type', 'product')
 
+@push('head')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org/",
+  "@@type": "Product",
+  "name": "{{ addslashes($product->name) }}",
+  "image": [
+    "{{ $imgSrc }}"
+  ],
+  "description": "{{ addslashes(strip_tags($product->description ?? $product->name)) }}",
+  "sku": "RYOKI-{{ $product->id }}",
+  "brand": {
+    "@@type": "Brand",
+    "name": "Ryoki Skincare"
+  },
+  "offers": {
+    "@@type": "Offer",
+    "url": "{{ url()->current() }}",
+    "priceCurrency": "IDR",
+    "price": "{{ (int) $product->price }}",
+    "priceValidUntil": "2026-12-31",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "{{ $product->in_stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' }}",
+    "seller": {
+      "@@type": "Organization",
+      "name": "PT Golden Intan Berlian — Ryoki Skincare Official"
+    }
+  },
+  "aggregateRating": {
+    "@@type": "AggregateRating",
+    "ratingValue": "{{ $displayRating }}",
+    "reviewCount": "128"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@@type": "ListItem",
+    "position": 1,
+    "name": "Beranda",
+    "item": "{{ route('home') }}"
+  },{
+    "@@type": "ListItem",
+    "position": 2,
+    "name": "Katalog Produk",
+    "item": "{{ route('products.index') }}"
+  },{
+    "@@type": "ListItem",
+    "position": 3,
+    "name": "{{ addslashes($product->name) }}",
+    "item": "{{ url()->current() }}"
+  }]
+}
+</script>
+@endpush
+
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-8 sm:space-y-12">
 
@@ -156,6 +215,7 @@
                             <a href="{{ $tiktokUrl }}"
                                target="_blank"
                                rel="noopener noreferrer"
+                               onclick="trackTikTokClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP Main CTA Desktop'); return true;"
                                class="flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-900 text-slate-800 hover:text-white border border-slate-200/90 hover:border-slate-900 py-3.5 px-4 text-sm font-bold rounded-2xl shadow-2xs hover:shadow-md transition-all duration-300"
                                id="btn-buy-tiktok-desktop">
                                 <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
@@ -165,7 +225,7 @@
                             <a href="{{ $shopeeUrl }}"
                                target="_blank"
                                rel="noopener noreferrer"
-                               onclick="trackShopeeClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP Main CTA Desktop')"
+                               onclick="trackShopeeClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP Main CTA Desktop'); return true;"
                                class="flex items-center justify-center gap-2 bg-orange-50 hover:bg-[#EE4D2D] text-[#EE4D2D] hover:text-white border border-orange-200/90 hover:border-[#EE4D2D] py-3.5 px-4 text-sm font-bold rounded-2xl shadow-2xs hover:shadow-md transition-all duration-300"
                                id="btn-buy-shopee-desktop">
                                 <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.77 7.06h-3.41V5.44C16.36 2.44 13.92 0 10.92 0S5.48 2.44 5.48 5.44v1.62H1.71L.12 21.61C-.07 22.9 1 24 2.29 24h16.89c1.29 0 2.36-1.1 2.17-2.39l-1.58-14.55zM7.48 5.44c0-1.9 1.54-3.44 3.44-3.44s3.44 1.54 3.44 3.44v1.62H7.48V5.44zm11.75 16.56H2.25L3.6 8.56h1.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h6.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h1.88l1.35 13.44z"/></svg>
@@ -176,6 +236,7 @@
                         <a href="https://wa.me/6283133919434?text={{ urlencode('Halo Ryoki Skincare, saya ingin berkonsultasi mengenai produk ' . $product->name) }}"
                            target="_blank"
                            rel="noopener noreferrer"
+                           onclick="trackWhatsAppClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP WhatsApp Desktop'); return true;"
                            class="btn-ryoki btn-ryoki-secondary w-full py-3 text-xs justify-center font-semibold rounded-xl">
                             💬 Konsultasi Produk via WhatsApp CS
                         </a>
@@ -376,12 +437,13 @@
             <div class="pt-1 space-y-2.5">
                 <div class="grid grid-cols-2 gap-2">
                     <a href="{{ $tiktokUrl }}" target="_blank" rel="noopener noreferrer"
+                       onclick="trackTikTokClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP Main CTA Mobile'); return true;"
                        class="py-3 px-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-xs text-center">
                         <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
                         <span>TikTok Shop</span>
                     </a>
                     <a href="{{ $shopeeUrl }}" target="_blank" rel="noopener noreferrer"
-                       onclick="trackShopeeClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP Main CTA Mobile')"
+                       onclick="trackShopeeClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP Main CTA Mobile'); return true;"
                        class="py-3 px-2.5 rounded-xl bg-[#EE4D2D] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-xs text-center">
                         <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M19.77 7.06h-3.41V5.44C16.36 2.44 13.92 0 10.92 0S5.48 2.44 5.48 5.44v1.62H1.71L.12 21.61C-.07 22.9 1 24 2.29 24h16.89c1.29 0 2.36-1.1 2.17-2.39l-1.58-14.55zM7.48 5.44c0-1.9 1.54-3.44 3.44-3.44s3.44 1.54 3.44 3.44v1.62H7.48V5.44zm11.75 16.56H2.25L3.6 8.56h1.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h6.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h1.88l1.35 13.44z"/></svg>
                         <span>Shopee Official</span>
@@ -389,6 +451,7 @@
                 </div>
                 <a href="https://wa.me/6283133919434?text={{ urlencode('Halo Ryoki Skincare, saya ingin berkonsultasi mengenai produk ' . $product->name) }}"
                    target="_blank" rel="noopener noreferrer"
+                   onclick="trackWhatsAppClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP WhatsApp Mobile'); return true;"
                    class="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-xl bg-sky-50/80 hover:bg-sky-100/90 border border-sky-200 text-[#0284C7] font-bold text-xs transition-all shadow-2xs text-center mt-1">
                     <span>💬</span> <span>Konsultasi via WhatsApp CS</span>
                 </a>

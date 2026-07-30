@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AnalyticsController;
+
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
@@ -23,10 +25,13 @@ Route::get('/articles', [ArticleController::class, 'index'])->name('articles.ind
 Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/analytics/click', [AnalyticsController::class, 'recordClick'])->name('analytics.click');
 
-// Dynamic robots.txt (uses APP_URL from config)
+// Dynamic XML Sitemap & robots.txt (Google & Search Engine Optimized)
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+
 Route::get('/robots.txt', function () {
-    $content = "User-agent: *\nAllow: /\nSitemap: " . config('app.url') . "/sitemap.xml";
+    $content = "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /analytics/\nSitemap: " . url('/sitemap.xml');
     return response($content, 200)->header('Content-Type', 'text/plain');
 });
 
@@ -41,6 +46,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     
+    // Analytics Dashboard
+    Route::get('analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
+
     // Products CRUD
     Route::resource('products', AdminProductController::class);
     Route::delete('product-images/{productImage}', [AdminProductController::class, 'destroyImage'])->name('product-images.destroy');
