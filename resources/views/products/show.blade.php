@@ -233,7 +233,7 @@
                             </a>
                         </div>
 
-                        <a href="https://wa.me/6283133919434?text={{ urlencode('Halo Ryoki Skincare, saya ingin berkonsultasi mengenai produk ' . $product->name) }}"
+                        <a href="https://wa.me/6282384991316?text={{ urlencode('Halo Ryoki Skincare, saya ingin berkonsultasi mengenai produk ' . $product->name) }}"
                            target="_blank"
                            rel="noopener noreferrer"
                            onclick="trackWhatsAppClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP WhatsApp Desktop'); return true;"
@@ -449,7 +449,7 @@
                         <span>Shopee Official</span>
                     </a>
                 </div>
-                <a href="https://wa.me/6283133919434?text={{ urlencode('Halo Ryoki Skincare, saya ingin berkonsultasi mengenai produk ' . $product->name) }}"
+                <a href="https://wa.me/6282384991316?text={{ urlencode('Halo Ryoki Skincare, saya ingin berkonsultasi mengenai produk ' . $product->name) }}"
                    target="_blank" rel="noopener noreferrer"
                    onclick="trackWhatsAppClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP WhatsApp Mobile'); return true;"
                    class="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-xl bg-sky-50/80 hover:bg-sky-100/90 border border-sky-200 text-[#0284C7] font-bold text-xs transition-all shadow-2xs text-center mt-1">

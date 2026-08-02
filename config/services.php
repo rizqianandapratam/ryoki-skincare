@@ -42,8 +42,8 @@ return [
     ],
 
     'whatsapp' => [
-        'number' => env('WHATSAPP_NUMBER', '6283133919434'),
-        'display' => env('WHATSAPP_DISPLAY', '+62 831-3391-9434'),
+        'number' => env('WHATSAPP_NUMBER', '6282384991316'),
+        'display' => env('WHATSAPP_DISPLAY', '+62 823-8499-1316'),
     ],
 
 ];

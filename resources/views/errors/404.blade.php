@@ -37,7 +37,7 @@
         </div>
 
         <div class="pt-6 border-t border-slate-100 text-[11px] text-slate-400 font-light">
-            Butuh bantuan? <a href="https://wa.me/6283133919434" target="_blank" class="text-[#0284C7] font-semibold hover:underline">Hubungi Tim Customer Service Ryoki</a>
+            Butuh bantuan? <a href="https://wa.me/6282384991316" target="_blank" class="text-[#0284C7] font-semibold hover:underline">Hubungi Tim Customer Service Ryoki</a>
         </div>
     </div>
 </div>

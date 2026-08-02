@@ -48,8 +48,8 @@
                 <div class="space-y-1">
                     <h3 class="font-bold text-slate-900 text-sm font-heading">WhatsApp Customer Service</h3>
                     <p class="text-xs text-slate-500 font-light leading-relaxed">
-                        <a href="https://wa.me/6283133919434" target="_blank" rel="noopener noreferrer" onclick="trackWhatsAppClick('Contact Page CS', null, 'Contact Page Info Card')" class="hover:text-[#0284C7] font-semibold transition-colors">
-                            +62 831-3391-9434
+                        <a href="https://wa.me/6282384991316" target="_blank" rel="noopener noreferrer" onclick="trackWhatsAppClick('Contact Page CS', null, 'Contact Page Info Card')" class="hover:text-[#0284C7] font-semibold transition-colors">
+                            +62 823-8499-1316
                         </a>
                     </p>
                     <p class="text-[11px] text-slate-400 font-light">Jam Operasional: Senin – Sabtu (09.00 – 17.00 WIB)</p>

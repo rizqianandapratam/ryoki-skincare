@@ -135,7 +135,7 @@
                 <div class="space-y-1.5">
                     <h3 class="text-lg font-bold font-heading text-slate-900">Cruelty-Free</h3>
                     <p class="text-xs text-slate-500 font-light leading-relaxed">
-                        Kami menjamin seluruh proses pengembangan produk tidak pernah diuji cobakan pada hewan (*no animal testing*).
+                        Seluruh proses pengembangan produk tidak pernah diujicobakan pada hewan (no animal testing).
                     </p>
                 </div>
             </div>
@@ -161,7 +161,7 @@
                 <div class="space-y-1.5">
                     <h3 class="text-lg font-bold font-heading text-slate-900">Natural Ingredients</h3>
                     <p class="text-xs text-slate-500 font-light leading-relaxed">
-                        Mengutamakan ekstrak herbal botanikal alami Jepang pilihan tanpa campuran bahan berbahaya seperti merkuri atau hidrokuinon.
+                        Mengutamakan ekstrak herbal botanikal alami pilihan tanpa campuran bahan berbahaya seperti merkuri atau hidrokuinon.
                     </p>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                 <h3 class="text-2xl font-bold font-playfair text-slate-900">Visi Brand</h3>
             </div>
             <p class="text-slate-600 font-light text-sm sm:text-base leading-relaxed">
-                Menjadi brand perawatan kulit terpercaya nomor satu pilihan masyarakat Indonesia yang diakui atas integritas kualitas, transparansi bahan, serta keunggulan formulasi aman bersertifikasi BPOM RI.
+                Menjadi pelopor dan standar utama dalam kategori Active-Lifestyle Skincare di Asia Tenggara, yang mengubah persepsi perawatan kulit dari sebuah rutinitas yang rumit menjadi essential gear yang praktis, tangguh, dan performa tinggi.
             </p>
         </div>
 
@@ -205,15 +205,15 @@
             <ul class="space-y-3 text-xs sm:text-sm text-slate-600 font-light">
                 <li class="flex items-start gap-3">
                     <span class="w-2 h-2 rounded-full bg-[#0284C7] mt-1.5 shrink-0"></span>
-                    <span>Menghadirkan inovasi skincare Jepang yang terjangkau namun berkualitas tinggi.</span>
+                    <span><strong>Mengeliminasi Inefisiensi:</strong> Memangkas tahapan skincare yang rumit menjadi formulasi praktis (Simple Steps) tanpa mengurangi efektivitas hasil (Maximum Glow).</span>
                 </li>
                 <li class="flex items-start gap-3">
                     <span class="w-2 h-2 rounded-full bg-[#0284C7] mt-1.5 shrink-0"></span>
-                    <span>Mengedukasi masyarakat tentang pentingnya merawat *skin barrier* secara berkelanjutan melalui modul **Skinpedia**.</span>
+                    <span><strong>Inovasi Formulasi Tahan Banting:</strong> Mengembangkan produk berstandar Jepang yang tahan keringat, ramah iklim tropis, dan melindungi kulit dari paparan ekstrem ruang terbuka.</span>
                 </li>
                 <li class="flex items-start gap-3">
                     <span class="w-2 h-2 rounded-full bg-[#0284C7] mt-1.5 shrink-0"></span>
-                    <span>Memberikan kemudahan akses dan jaminan keaslian 100% via TikTok Shop &amp; Shopee Official Store.</span>
+                    <span><strong>Edukasi Gaya Hidup Aktif:</strong> Mengikis stigma bahwa merawat kulit itu merepotkan bagi orang yang aktif, sekaligus mengintegrasikan perlindungan kulit ke dalam perlengkapan wajib harian (Skin Gear).</span>
                 </li>
             </ul>
         </div>
