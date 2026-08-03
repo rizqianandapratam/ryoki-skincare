@@ -1,14 +1,25 @@
 @extends('layouts.public')
 
 @php
-    // Image fallback logic
-    $imgSrc = asset('images/facial-wash.png');
-    if ($product->image) {
-        $imgSrc = Storage::url($product->image);
-    } elseif (str_contains(strtolower($product->name), 'peeling') || str_contains(strtolower($product->name), 'spray')) {
-        $imgSrc = asset('images/peeling-spray.png');
-    } elseif (str_contains(strtolower($product->name), 'cream') || str_contains(strtolower($product->name), 'moisturizer')) {
-        $imgSrc = asset('images/day-cream.png');
+    $productName = strtolower($product->name);
+
+    $categoryName = strtolower($product->category ?? '');
+
+    // Prefer an explicit product image (uploaded or DB-stored). Fall back to category defaults.
+    if (!empty($product->image_url)) {
+        $imgSrc = $product->image_url;
+    } else {
+        if (str_contains($productName, 'facial wash') || str_contains($categoryName, 'cleanser')) {
+            $imgSrc = asset('images/facial-wash.png');
+        } elseif (str_contains($productName, 'serum') || str_contains($categoryName, 'serum')) {
+            $imgSrc = asset('images/serum.png');
+        } elseif (str_contains($productName, 'peeling') || str_contains($productName, 'spray') || str_contains($categoryName, 'spray')) {
+            $imgSrc = asset('images/peeling-spray.png');
+        } elseif (str_contains($productName, 'cream') || str_contains($productName, 'moisturizer') || str_contains($categoryName, 'moisturizer')) {
+            $imgSrc = asset('images/day-cream.png');
+        } else {
+            $imgSrc = asset('images/facial-wash.png');
+        }
     }
 
     $displayRating = $product->rating ? number_format($product->rating, 1) : '4.9';
@@ -113,14 +124,14 @@
                 get activeImg() { return this.images[this.activeIndex]; }
             }">
                 <div class="sticky top-32 space-y-4">
-                    
+
                     <!-- Main Image Card -->
                     <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-5 overflow-hidden">
                         <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 to-sky-50/40 border border-slate-100 flex items-center justify-center">
-                            <img :src="activeImg"
-                                 alt="{{ $product->name }}"
-                                 class="w-full h-full object-cover transition-all duration-500 ease-out"
-                                 id="main-product-image-desktop">
+                               <img :src="activeImg"
+                                   alt="{{ $product->name }}"
+                                   class="relative z-10 w-full h-full object-contain p-4 transition-all duration-100 ease-out"
+                                   id="main-product-image-desktop">
 
                             @if($product->is_best_seller)
                                 <span class="absolute top-3.5 left-3.5 z-10 bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white text-[10px] font-bold tracking-wide px-3 py-1.5 rounded-full shadow-md shadow-sky-500/25">
@@ -157,7 +168,7 @@
 
                 <!-- Primary Header Card -->
                 <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-5">
-                    
+
                     <!-- Category Badge -->
                     @if($product->category)
                         <div class="flex items-center gap-2">
@@ -248,7 +259,7 @@
 
         <!-- ─── FULL-WIDTH HORIZONTAL TABS (DESKTOP) ─── -->
         <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden" x-data="{ activeTab: 1 }">
-            
+
             <!-- Clean Horizontal Tab Navigation -->
             <div class="flex border-b border-slate-200 bg-slate-50/40 px-6 pt-2 gap-8">
                 <button @click="activeTab = 1"
@@ -275,7 +286,7 @@
 
             <!-- Tab Content Body -->
             <div class="p-8 sm:p-10">
-                
+
                 <!-- Tab 1: Deskripsi Produk -->
                 <div x-show="activeTab === 1" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-8">
                     <div class="max-w-3xl space-y-3">
@@ -305,7 +316,7 @@
                 <!-- Tab 2: Cara Penggunaan -->
                 <div x-show="activeTab === 2" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" style="display: none;" class="space-y-6 max-w-3xl">
                     <h3 class="text-lg font-bold font-heading text-slate-900">Petunjuk Penggunaan Harian</h3>
-                    
+
                     <div class="space-y-4 pt-1">
                         <div class="flex items-start gap-4">
                             <span class="w-8 h-8 rounded-full bg-sky-50 text-[#0284C7] font-bold text-xs flex items-center justify-center border border-sky-100 shrink-0">01</span>
@@ -374,14 +385,14 @@
         activeIndex: 0,
         get activeImg() { return this.images[this.activeIndex]; }
     }">
-        
+
         <!-- Mobile Main Image Card (Compact height h-56) -->
         <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-3 overflow-hidden">
-            <div class="relative w-full h-56 rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 to-sky-50/20 border border-slate-100 flex items-center justify-center">
+             <div class="relative w-full h-56 rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 to-sky-50/20 border border-slate-100 flex items-center justify-center">
                 <img :src="activeImg"
-                     alt="{{ $product->name }}"
-                     class="w-full h-full object-contain p-2 transition-all duration-500"
-                     id="main-product-image-mobile">
+                    alt="{{ $product->name }}"
+                    class="relative z-10 w-full h-full object-contain p-4 transition-all duration-500"
+                    id="main-product-image-mobile">
 
                 @if($product->is_best_seller)
                     <span class="absolute top-2.5 left-2.5 z-10 bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full shadow-md">
@@ -406,7 +417,7 @@
 
         <!-- Mobile Clean Product Header Card -->
         <div class="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm space-y-4">
-            
+
             <div>
                 <span class="text-[11px] font-bold text-[#0284C7] tracking-widest uppercase font-heading">
                     RYOKI {{ strtoupper($product->category ?? 'SKINCARE') }}
@@ -414,7 +425,7 @@
                 <h1 class="text-2xl font-bold font-playfair text-slate-900 leading-snug mt-0.5">
                     {{ $product->name }}
                 </h1>
-                
+
                 <div class="flex items-center gap-2 text-xs text-slate-500 mt-1.5 font-medium">
                     <span class="text-amber-500 font-bold">★ {{ $displayRating }}</span>
                     <span class="text-slate-300">·</span>
@@ -460,7 +471,7 @@
 
         <!-- Mobile Clean Accordion Details -->
         <div class="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm" x-data="{ activeTab: 1 }">
-            
+
             <!-- Item 1: Deskripsi Produk -->
             <div class="border-b border-slate-100 pb-3.5">
                 <button @click="activeTab = activeTab === 1 ? null : 1" class="w-full flex justify-between items-center py-1.5 text-left font-bold text-xs text-slate-900">
@@ -522,7 +533,7 @@
                             Aqua, Niacinamide, Alpha Arbutin, Collagen, Aloe Barbadensis Leaf Extract, Glycerin, Phenoxyethanol.
                         </p>
                     @endif
-                    
+
                     <p class="text-[10px] text-slate-400 font-medium pt-1">✓ BPOM RI Certified · Dermatology Tested</p>
                 </div>
             </div>
