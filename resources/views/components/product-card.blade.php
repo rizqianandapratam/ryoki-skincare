@@ -1,4 +1,4 @@
-{{-- 
+{{--
     Reusable Product Card Component
     Usage: <x-product-card :product="$product" />
     Optional: <x-product-card :product="$product" :show-category="true" />
@@ -7,27 +7,18 @@
 @props(['product', 'showCategory' => true])
 
 @php
-    // Fallback image logic based on product name
-    $imgSrc = asset('images/facial-wash.png');
-    if ($product->image) {
-        $imgSrc = Storage::url($product->image);
-    } elseif (str_contains(strtolower($product->name), 'peeling') || str_contains(strtolower($product->name), 'spray')) {
-        $imgSrc = asset('images/peeling-spray.png');
-    } elseif (str_contains(strtolower($product->name), 'cream') || str_contains(strtolower($product->name), 'moisturizer')) {
-        $imgSrc = asset('images/day-cream.png');
-    }
-
+    $imgSrc = $product->image_url;
     $displayRating = $product->rating ? number_format($product->rating, 1) : '4.9';
 @endphp
 
-<div {{ $attributes->merge(['class' => 'skincare-card p-3 sm:p-5 flex flex-col justify-between group']) }}>
+<div {{ $attributes->merge(['class' => 'relative skincare-card p-3 sm:p-5 flex flex-col justify-between group']) }}>
     <div>
         {{-- Product Image --}}
         <a href="{{ route('products.show', $product->slug) }}"
-           class="relative block w-full aspect-square sm:aspect-[4/5] rounded-xl overflow-hidden bg-slate-50 mb-2.5 border border-slate-100">
-            <img src="{{ $imgSrc }}"
+                     class="relative block w-full aspect-square sm:aspect-[4/5] rounded-xl overflow-hidden bg-slate-50 mb-2.5 border border-slate-100">
+             <img src="{{ $imgSrc }}"
                  alt="{{ $product->name }}"
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 class="relative z-10 w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
                  loading="lazy">
 
             {{-- Best Seller Badge --}}
