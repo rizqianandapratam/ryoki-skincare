@@ -36,48 +36,21 @@
                         </p>
                     </div>
 
-                    <!-- Mobile Product Showcase (Immediately Visible on Mobile Screens) -->
-                    <div class="block lg:hidden relative my-2 py-1">
-                        <div class="relative flex items-center justify-center min-h-[200px] sm:min-h-[280px]">
-                            <!-- Background glow behind products -->
+                    <!-- Mobile Highlighted Hero Product Showcase -->
+                    <div class="block lg:hidden relative my-4 py-2">
+                        <div class="relative flex items-center justify-center">
+                            <!-- Radiant Spotlight Glow -->
                             <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                <div class="w-52 h-52 sm:w-72 sm:h-72 rounded-full bg-gradient-to-br from-[#BAE6FD]/50 via-[#E0F2FE]/40 to-[#A5F3FC]/30 blur-xl"></div>
+                                <div class="w-64 h-64 rounded-full bg-gradient-to-tr from-[#0284C7]/40 via-[#38BDF8]/35 to-[#2DD4BF]/30 blur-2xl"></div>
                             </div>
 
-                            <!-- Product 1: Facial Wash (Left) -->
-                            <div class="absolute left-2 sm:left-10 z-10 w-28 sm:w-36 -rotate-6 transition-transform hover:rotate-0">
-                                <div class="relative group">
-                                    <div class="absolute inset-0 rounded-xl bg-white/70 backdrop-blur-sm shadow-md border border-white/80"></div>
-                                    <img src="{{ asset('images/facial-wash.png') }}" alt="Ryoki Facial Wash" class="relative z-10 w-full h-auto rounded-xl p-1.5 drop-shadow-md">
-                                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 bg-white/95 rounded-full px-2 py-0.5 shadow-xs border border-sky-100 whitespace-nowrap">
-                                        <span class="text-[9px] font-bold text-[#0284C7]">Facial Wash</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Product 2: Day Cream (Center-front Best Seller) -->
-                            <div class="relative z-30 w-36 sm:w-44 -mt-1 transition-transform hover:scale-105">
-                                <div class="relative group">
-                                    <div class="absolute inset-0 rounded-xl bg-white/80 backdrop-blur-sm shadow-xl border border-white/90"></div>
-                                    <img src="{{ asset('images/day-cream.png') }}" alt="Ryoki Day Cream" class="relative z-10 w-full h-auto rounded-xl p-1.5 drop-shadow-lg">
-                                    <div class="absolute -top-2.5 -right-1 z-20 bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white rounded-full px-2 py-0.5 shadow-md">
-                                        <span class="text-[9px] font-bold">★ BEST SELLER</span>
-                                    </div>
-                                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 bg-white/95 rounded-full px-2 py-0.5 shadow-xs border border-sky-100 whitespace-nowrap">
-                                        <span class="text-[9px] font-bold text-[#0284C7]">Day Cream</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Product 3: Peeling Spray (Right) -->
-                            <div class="absolute right-2 sm:right-10 z-20 w-28 sm:w-36 rotate-6 transition-transform hover:rotate-0">
-                                <div class="relative group">
-                                    <div class="absolute inset-0 rounded-xl bg-white/70 backdrop-blur-sm shadow-md border border-white/80"></div>
-                                    <img src="{{ asset('images/peeling-spray.png') }}" alt="Ryoki Peeling Spray" class="relative z-10 w-full h-auto rounded-xl p-1.5 drop-shadow-md">
-                                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 bg-white/95 rounded-full px-2 py-0.5 shadow-xs border border-sky-100 whitespace-nowrap">
-                                        <span class="text-[9px] font-bold text-[#0284C7]">Peeling Spray</span>
-                                    </div>
-                                </div>
+                            <!-- Highlighting Soft Glass Card -->
+                            <div class="relative z-10 w-full max-w-[320px] mx-auto rounded-[2.5rem] bg-gradient-to-br from-white/90 via-[#E0F2FE]/70 via-[#CCFBF1]/40 to-[#38BDF8]/20 backdrop-blur-xl p-5 shadow-[0_15px_40px_rgba(2,132,199,0.12)] group transition-all duration-500 hover:scale-[1.02]">
+                                <img src="{{ asset('images/ryoki-japan.png') }}"
+                                     alt="Ryoki Japan Skincare"
+                                     class="w-full h-auto max-h-[260px] object-contain drop-shadow-[0_15px_25px_rgba(2,132,199,0.25)] transition-transform duration-500 group-hover:scale-105">
+                                <!-- Base Glowing Pedestal -->
+                                <div class="w-40 h-4 mx-auto bg-gradient-to-r from-transparent via-[#38BDF8]/40 to-transparent blur-sm rounded-full -mt-3"></div>
                             </div>
                         </div>
                     </div>
@@ -125,78 +98,30 @@
                     </div>
                 </div>
 
-                <!-- Right: Overlapping Product Images Showcase (Desktop Only) -->
-                <div class="hidden lg:flex relative items-center justify-end min-h-[500px]">
+                <!-- Right: Highlighted Luxury Hero Showcase (Desktop Only) -->
+                <div class="hidden lg:flex relative items-center justify-end min-h-[460px]">
 
-                    <!-- Background glow behind products -->
+                    <!-- Radiant Studio Spotlight Halo Glow (Vibrant Sky Blue + Mint + Cyan) -->
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <div class="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-[#BAE6FD]/40 via-[#E0F2FE]/30 to-[#A5F3FC]/20 blur-2xl"></div>
+                        <div class="w-80 h-80 xl:w-[420px] xl:h-[420px] rounded-full bg-gradient-to-tr from-[#0284C7]/40 via-[#38BDF8]/35 to-[#2DD4BF]/30 blur-3xl"></div>
                     </div>
 
-                    <!-- Product 1: Facial Wash (Back-left, rotated) -->
-                    <div class="absolute left-4 sm:left-8 lg:left-4 xl:left-8 bottom-8 sm:bottom-10 lg:bottom-12
-                                z-10 w-36 sm:w-44 lg:w-48 xl:w-52
-                                -rotate-6 transition-transform duration-500 hover:rotate-0 hover:scale-105">
-                        <div class="relative group">
-                            <div class="absolute inset-0 rounded-2xl bg-white/50 backdrop-blur-sm shadow-lg shadow-sky-900/10 border border-white/60"></div>
-                            <img src="{{ asset('images/facial-wash.png') }}"
-                                 alt="Ryoki α Niacin Facial Wash"
-                                 class="relative z-10 w-full h-auto rounded-2xl p-2 drop-shadow-lg">
-                            <!-- Product label -->
-                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-md border border-sky-100 whitespace-nowrap">
-                                <span class="text-[10px] font-bold text-[#0284C7]">Facial Wash</span>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Highlighted Studio Glass Showcase Card -->
+                    <div class="relative z-20 w-full max-w-[380px] xl:max-w-[420px] rounded-[3rem] bg-gradient-to-br from-white/90 via-[#E0F2FE]/70 via-[#CCFBF1]/40 to-[#38BDF8]/20 p-6 sm:p-8 backdrop-blur-2xl shadow-[0_20px_50px_rgba(2,132,199,0.15)] group transition-all duration-700 ease-out hover:scale-[1.03] hover:shadow-[0_25px_60px_rgba(2,132,199,0.25)]">
+                        
+                        <!-- Studio Light Beam Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent pointer-events-none rounded-[3rem]"></div>
 
-                    <!-- Product 2: Day Cream (Center-front, largest, hero focus) -->
-                    <div class="relative z-30 w-44 sm:w-52 lg:w-56 xl:w-64
-                                -mt-4 sm:-mt-6
-                                transition-transform duration-500 hover:scale-105 hover:-translate-y-2">
-                        <div class="relative group">
-                            <div class="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-sm shadow-xl shadow-sky-900/15 border border-white/70"></div>
-                            <img src="{{ asset('images/day-cream.png') }}"
-                                 alt="Ryoki Luminous Whitening Day Cream"
-                                 class="relative z-10 w-full h-auto rounded-2xl p-2 drop-shadow-xl">
-                            <!-- Best seller badge -->
-                            <div class="absolute -top-3 -right-2 z-20 bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white rounded-full px-3 py-1 shadow-lg shadow-sky-500/30">
-                                <span class="text-[10px] font-bold tracking-wide">★ BEST SELLER</span>
-                            </div>
-                            <!-- Product label -->
-                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-md border border-sky-100 whitespace-nowrap">
-                                <span class="text-[10px] font-bold text-[#0284C7]">Day Cream</span>
-                            </div>
+                        <!-- Highlighted Bottle Showcase Image -->
+                        <div class="relative z-10">
+                            <img src="{{ asset('images/ryoki-japan.png') }}"
+                                 alt="Ryoki Japan Skincare Lineup"
+                                 class="w-full h-auto max-h-[320px] xl:max-h-[350px] object-contain drop-shadow-[0_20px_35px_rgba(2,132,199,0.3)] transition-all duration-700 ease-out group-hover:scale-105 group-hover:-translate-y-2 group-hover:drop-shadow-[0_25px_45px_rgba(2,132,199,0.4)]">
                         </div>
-                    </div>
 
-                    <!-- Product 3: Peeling Spray (Back-right, rotated opposite) -->
-                    <div class="absolute right-4 sm:right-8 lg:right-0 xl:right-4 bottom-8 sm:bottom-10 lg:bottom-12
-                                z-20 w-36 sm:w-44 lg:w-48 xl:w-52
-                                rotate-6 transition-transform duration-500 hover:rotate-0 hover:scale-105">
-                        <div class="relative group">
-                            <div class="absolute inset-0 rounded-2xl bg-white/50 backdrop-blur-sm shadow-lg shadow-sky-900/10 border border-white/60"></div>
-                            <img src="{{ asset('images/peeling-spray.png') }}"
-                                 alt="Ryoki Brightening Peeling Spray"
-                                 class="relative z-10 w-full h-auto rounded-2xl p-2 drop-shadow-lg">
-                            <!-- Product label -->
-                            <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-md border border-sky-100 whitespace-nowrap">
-                                <span class="text-[10px] font-bold text-[#0284C7]">Peeling Spray</span>
-                            </div>
-                        </div>
-                    </div>
+                        <!-- Base Glowing Pedestal Effect -->
+                        <div class="w-48 xl:w-56 h-5 mx-auto bg-gradient-to-r from-transparent via-[#38BDF8]/50 to-transparent blur-md rounded-full -mt-4 relative z-0"></div>
 
-                    <!-- Floating Rating Card (overlapping bottom-center) -->
-                    <div class="absolute bottom-0 sm:-bottom-2 left-1/2 -translate-x-1/2 z-40
-                                bg-white/95 backdrop-blur-md rounded-2xl px-5 py-3 shadow-lg shadow-sky-900/10 border border-sky-100/80
-                                flex items-center gap-4 min-w-[240px]">
-                        <div class="flex flex-col">
-                            <span class="text-xs font-bold text-[#0F172A]">Ryoki α Niacin Series</span>
-                            <span class="text-[11px] text-slate-500 font-medium">Formulasi Jepang Original</span>
-                        </div>
-                        <div class="flex flex-col items-end border-l border-slate-100 pl-4">
-                            <span class="text-sm font-bold text-amber-500">★ 4.9</span>
-                            <span class="text-[10px] text-slate-400 font-medium">1.2k+ Reviews</span>
-                        </div>
                     </div>
 
                 </div>
