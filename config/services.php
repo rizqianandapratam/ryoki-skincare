@@ -46,4 +46,8 @@ return [
         'display' => env('WHATSAPP_DISPLAY', '+62 823-8499-1316'),
     ],
 
+    'google' => [
+        'verification' => env('GOOGLE_SITE_VERIFICATION', null),
+    ],
+
 ];

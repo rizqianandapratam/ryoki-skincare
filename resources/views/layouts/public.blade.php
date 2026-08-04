@@ -24,8 +24,17 @@
     <meta name="description" content="{{ $currentDesc }}">
     <meta name="keywords" content="{{ $currentKeywords }}">
     <meta name="author" content="PT Golden Intan Berlian — Ryoki Skincare">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="bingbot" content="index, follow">
     <link rel="canonical" href="{{ $currentUrl }}">
+    <link rel="alternate" hreflang="id" href="{{ $currentUrl }}">
+    <link rel="alternate" hreflang="x-default" href="{{ $currentUrl }}">
+
+    <!-- Google Search Console Verification (replace content with your actual verification code) -->
+    @if(config('services.google.verification'))
+    <meta name="google-site-verification" content="{{ config('services.google.verification') }}">
+    @endif
 
     <!-- Open Graph / Facebook / WhatsApp Social Preview -->
     <meta property="og:type" content="@yield('og_type', 'website')">
@@ -47,41 +56,77 @@
     <meta name="twitter:description" content="{{ $currentDesc }}">
     <meta name="twitter:image" content="{{ $currentImage }}">
 
-    <!-- Schema.org JSON-LD Structured Data (Organization & WebSite) -->
+    <!-- Schema.org JSON-LD Structured Data (Organization, WebSite, LocalBusiness) -->
     <script type="application/ld+json">
     {
       "@@context": "https://schema.org",
       "@@graph": [
         {
-          "@@type": "Organization",
+          "@@type": ["Organization", "LocalBusiness"],
           "@@id": "{{ url('/') }}#organization",
           "name": "Ryoki Skincare",
           "legalName": "PT Golden Intan Berlian",
           "url": "{{ url('/') }}",
-          "logo": "{{ asset('images/logo.png') }}",
+          "logo": {
+            "@@type": "ImageObject",
+            "url": "{{ asset('images/logo.png') }}",
+            "width": 512,
+            "height": 512
+          },
           "image": "{{ asset('images/hero-banner.png') }}",
-          "description": "Ryoki Skincare memadukan keahlian formulasi Jepang dengan lisensi resmi BPOM RI untuk merawat skin barrier, mencerahkan, dan memberikan kelembapan alami.",
+          "description": "Ryoki Skincare — Brand skincare Indonesia dengan formulasi Jepang bersertifikasi BPOM RI. Rangkaian lengkap Facial Wash, Serum, Day & Night Cream, Toner, dan Peeling Spray untuk kulit cerah, sehat, dan glowing alami.",
           "telephone": "+6282384991316",
+          "email": "ryokijapanskincaree@gmail.com",
+          "foundingDate": "2024",
+          "numberOfEmployees": {
+            "@@type": "QuantitativeValue",
+            "minValue": 10,
+            "maxValue": 50
+          },
           "address": {
             "@@type": "PostalAddress",
             "addressLocality": "Bandar Lampung",
+            "addressRegion": "Lampung",
             "addressCountry": "ID"
           },
+          "geo": {
+            "@@type": "GeoCoordinates",
+            "latitude": -5.3971,
+            "longitude": 105.2668
+          },
+          "priceRange": "Rp50.000 - Rp200.000",
           "sameAs": [
             "https://shopee.co.id/ryokiofficialstore",
-            "https://www.tiktok.com/@ryokijapanskin"
-          ]
+            "https://www.tiktok.com/@ryokijapanskin",
+            "https://instagram.com/ryokiofficial.id"
+          ],
+          "contactPoint": {
+            "@@type": "ContactPoint",
+            "telephone": "+6282384991316",
+            "contactType": "customer service",
+            "areaServed": "ID",
+            "availableLanguage": "Indonesian"
+          }
         },
         {
           "@@type": "WebSite",
           "@@id": "{{ url('/') }}#website",
           "url": "{{ url('/') }}",
           "name": "Ryoki Skincare Official",
-          "description": "Official Website Ryoki Skincare — Rahasia Kulit Sehat & Glowing Alami BPOM RI",
+          "alternateName": "Ryoki Japan Skincare",
+          "description": "Official Website Ryoki Skincare — Rahasia Kulit Sehat & Glowing Alami. Skincare Jepang BPOM RI oleh PT Golden Intan Berlian.",
           "publisher": {
             "@@id": "{{ url('/') }}#organization"
           },
-          "inLanguage": "id-ID"
+          "inLanguage": "id-ID",
+          "potentialAction": {
+            "@@type": "SearchAction",
+            "target": {
+              "@@type": "EntryPoint",
+              "urlTemplate": "{{ url('/products') }}?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
         }
       ]
     }

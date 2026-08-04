@@ -1,7 +1,34 @@
 @extends('layouts.public')
 
-@section('title', 'Katalog Skincare Ryoki — Produk BPOM & Formula Jepang')
-@section('meta_description', 'Beli produk Skincare Ryoki resmi. Facial Wash, Peeling Spray, Day Cream, dan Body Serum bersertifikat BPOM untuk perawatan kulit sehat.')
+@section('title', 'Katalog Skincare Ryoki — Produk BPOM & Formula Jepang | Harga Terbaru 2025')
+@section('meta_description', 'Katalog lengkap produk Ryoki Skincare resmi BPOM RI. Facial Wash, Gold Serum, Day & Night Cream, Toner, Peeling Spray, Hand Body, Deodorant. Formulasi Jepang untuk kulit cerah & glowing. Beli di TikTok Shop & Shopee Official.')
+@section('meta_keywords', 'katalog ryoki skincare, produk ryoki, harga ryoki skincare, facial wash ryoki, serum ryoki gold, day cream ryoki, night cream ryoki, toner ryoki, peeling spray ryoki, hand body ryoki, skincare bpom murah, skincare jepang terbaik')
+
+@push('head')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "CollectionPage",
+  "name": "Katalog Produk Ryoki Skincare",
+  "description": "Katalog lengkap rangkaian produk skincare Ryoki Skincare dengan formulasi Jepang bersertifikasi BPOM RI.",
+  "url": "{{ route('products.index') }}",
+  "breadcrumb": {
+    "@@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@@type": "ListItem",
+      "position": 1,
+      "name": "Beranda",
+      "item": "{{ route('home') }}"
+    },{
+      "@@type": "ListItem",
+      "position": 2,
+      "name": "Katalog Produk Skincare",
+      "item": "{{ route('products.index') }}"
+    }]
+  }
+}
+</script>
+@endpush
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10"

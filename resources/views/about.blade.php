@@ -1,7 +1,28 @@
 @extends('layouts.public')
 
-@section('title', 'Tentang Kami — Ryoki Skincare (PT Golden Intan Berlian)')
-@section('meta_description', 'Kenali filosofi kecantikan Jepang, keunggulan bahan alami, dan standar kualitas BPOM di balik Ryoki Skincare oleh PT Golden Intan Berlian.')
+@section('title', 'Tentang Ryoki Skincare — PT Golden Intan Berlian | Skincare Jepang BPOM RI')
+@section('meta_description', 'Kenali Ryoki Skincare oleh PT Golden Intan Berlian — brand skincare Indonesia dengan formulasi standar Jepang bersertifikasi BPOM RI. Filosofi kecantikan alami, bahan aktif premium, dan komitmen keamanan kulit.')
+@section('meta_keywords', 'tentang ryoki skincare, pt golden intan berlian, skincare jepang indonesia, skincare bpom ri, filosofi skincare ryoki, brand skincare lokal berkualitas, skincare aman bpom')
+
+@push('head')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@@type": "ListItem",
+    "position": 1,
+    "name": "Beranda",
+    "item": "{{ route('home') }}"
+  },{
+    "@@type": "ListItem",
+    "position": 2,
+    "name": "Tentang Kami",
+    "item": "{{ route('about') }}"
+  }]
+}
+</script>
+@endpush
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-20">

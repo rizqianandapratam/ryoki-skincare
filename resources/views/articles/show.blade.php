@@ -1,13 +1,20 @@
 @extends('layouts.public')
 
-@section('title', 'Ryoki Skinpedia — ' . $article->title)
+@section('title', $article->title . ' — Skinpedia Ryoki Skincare')
 @section('meta_description', Str::limit(strip_tags($article->content), 155))
+@section('meta_keywords', strtolower($article->title) . ', skinpedia ryoki, tips skincare, edukasi kulit, ryoki skincare, skincare bpom')
+@section('og_type', 'article')
+@section('og_image', $article->thumbnail_url)
 
 @push('head')
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
   "@@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@@type": "WebPage",
+    "@@id": "{{ url()->current() }}"
+  },
   "headline": "{{ addslashes($article->title) }}",
   "image": [
     "{{ $article->thumbnail ? asset('storage/' . $article->thumbnail) : asset('images/hero-banner.png') }}"
@@ -16,7 +23,8 @@
   "dateModified": "{{ $article->updated_at->toAtomString() }}",
   "author": {
     "@@type": "Organization",
-    "name": "Tim Pakar Skincare — Ryoki Skincare"
+    "name": "Tim Pakar Skincare — Ryoki Skincare",
+    "url": "{{ url('/') }}"
   },
   "publisher": {
     "@@type": "Organization",
@@ -26,7 +34,36 @@
       "url": "{{ asset('images/logo.png') }}"
     }
   },
-  "description": "{{ addslashes(Str::limit(strip_tags($article->content), 155)) }}"
+  "description": "{{ addslashes(Str::limit(strip_tags($article->content), 155)) }}",
+  "wordCount": {{ str_word_count(strip_tags($article->content)) }},
+  "inLanguage": "id-ID",
+  "isPartOf": {
+    "@@type": "Blog",
+    "name": "Skinpedia Ryoki Skincare",
+    "url": "{{ route('articles.index') }}"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@@type": "ListItem",
+    "position": 1,
+    "name": "Beranda",
+    "item": "{{ route('home') }}"
+  },{
+    "@@type": "ListItem",
+    "position": 2,
+    "name": "Skinpedia",
+    "item": "{{ route('articles.index') }}"
+  },{
+    "@@type": "ListItem",
+    "position": 3,
+    "name": "{{ addslashes($article->title) }}",
+    "item": "{{ url()->current() }}"
+  }]
 }
 </script>
 @endpush

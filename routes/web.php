@@ -31,7 +31,44 @@ Route::post('/analytics/click', [AnalyticsController::class, 'recordClick'])->na
 Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
 
 Route::get('/robots.txt', function () {
-    $content = "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /analytics/\nSitemap: " . url('/sitemap.xml');
+    $sitemap = url('/sitemap.xml');
+    $content = <<<ROBOTS
+# Ryoki Skincare — robots.txt (SEO Optimized)
+# Website: {$sitemap}
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /analytics/
+Disallow: /api/
+Disallow: /login
+Disallow: /register
+Disallow: /sanctum/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /analytics/
+Disallow: /api/
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /analytics/
+Disallow: /api/
+Disallow: /login
+Disallow: /register
+Disallow: /sanctum/
+Disallow: /_debugbar/
+Disallow: /telescope/
+Disallow: /horizon/
+
+# Sitemap
+Sitemap: {$sitemap}
+
+# Host
+Host: {$sitemap}
+ROBOTS;
     return response($content, 200)->header('Content-Type', 'text/plain');
 });
 

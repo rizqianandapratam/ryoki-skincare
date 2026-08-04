@@ -1,7 +1,28 @@
 @extends('layouts.public')
 
-@section('title', 'Hubungi Tim Ryoki Skincare — Customer Support')
-@section('meta_description', 'Hubungi customer care Ryoki Skincare untuk konsultasi produk, layanan pelanggan, atau pemesanan grosir.')
+@section('title', 'Hubungi Ryoki Skincare — Customer Support & Konsultasi Produk')
+@section('meta_description', 'Hubungi customer service Ryoki Skincare untuk konsultasi skincare, info pemesanan, kolaborasi bisnis, atau reseller. WhatsApp: +6282384991316. Email: ryokijapanskincaree@gmail.com.')
+@section('meta_keywords', 'kontak ryoki skincare, customer service ryoki, whatsapp ryoki, konsultasi skincare, reseller ryoki skincare, pemesanan ryoki')
+
+@push('head')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@@type": "ListItem",
+    "position": 1,
+    "name": "Beranda",
+    "item": "{{ route('home') }}"
+  },{
+    "@@type": "ListItem",
+    "position": 2,
+    "name": "Hubungi Kami",
+    "item": "{{ route('contact.index') }}"
+  }]
+}
+</script>
+@endpush
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">

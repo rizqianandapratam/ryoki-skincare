@@ -1,7 +1,34 @@
 @extends('layouts.public')
 
-@section('title', 'Skinpedia by Ryoki — Edukasi & Tips Perawatan Kulit')
-@section('meta_description', 'Kumpulan artikel dan panduan skincare Ryoki tentang kesehatan skin barrier, bahan aktif, dan rutinitas kecantikan harian.')
+@section('title', 'Skinpedia Ryoki — Tips & Panduan Skincare Lengkap | Edukasi Perawatan Kulit')
+@section('meta_description', 'Skinpedia by Ryoki Skincare — Kumpulan artikel edukasi skincare lengkap: panduan urutan skincare, bahan aktif terbaik (Niacinamide, Retinol, Alpha Arbutin), cara mengatasi kulit kusam, tips kulit glowing, dan perawatan skin barrier.')
+@section('meta_keywords', 'skinpedia ryoki, artikel skincare, tips perawatan kulit, panduan skincare pemula, bahan aktif skincare, cara kulit glowing, skin barrier, niacinamide, retinol, alpha arbutin, edukasi kecantikan')
+
+@push('head')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "CollectionPage",
+  "name": "Skinpedia Ryoki Skincare",
+  "description": "Kumpulan artikel edukasi skincare dan panduan perawatan kulit oleh Tim Ryoki Skincare.",
+  "url": "{{ route('articles.index') }}",
+  "breadcrumb": {
+    "@@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@@type": "ListItem",
+      "position": 1,
+      "name": "Beranda",
+      "item": "{{ route('home') }}"
+    },{
+      "@@type": "ListItem",
+      "position": 2,
+      "name": "Skinpedia",
+      "item": "{{ route('articles.index') }}"
+    }]
+  }
+}
+</script>
+@endpush
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">

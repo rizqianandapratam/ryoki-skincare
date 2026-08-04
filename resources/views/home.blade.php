@@ -1,7 +1,59 @@
 @extends('layouts.public')
 
-@section('title', 'Ryoki Skincare — Rahasia Kulit Sehat & Glowing Alami')
-@section('meta_description', 'Skincare Jepang BPOM berkualitas tinggi. Diformulasikan untuk mencerahkan, melembabkan, dan merawat kesehatan skin barrier Anda.')
+@section('title', 'Ryoki Skincare — Rahasia Kulit Sehat & Glowing Alami | Skincare Jepang BPOM')
+@section('meta_description', 'Ryoki Skincare Official — Rangkaian skincare Jepang bersertifikasi BPOM RI. Facial Wash, Serum, Day & Night Cream, Toner, Peeling Spray untuk kulit cerah, glowing & sehat alami. Beli di TikTok Shop & Shopee Official.')
+@section('meta_keywords', 'ryoki skincare, skincare jepang, skincare bpom, facial wash niacinamide, serum pencerah wajah, day cream spf, night cream retinol, toner wajah, peeling spray, skincare glowing, skincare pemula, kulit cerah alami, ryoki japan, pt golden intan berlian, tiktok shop ryoki, shopee ryoki official')
+
+@push('head')
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@@type": "Question",
+      "name": "Apakah produk Ryoki Skincare sudah terdaftar BPOM?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "Ya, seluruh rangkaian produk Ryoki Skincare sudah terdaftar dan tersertifikasi resmi oleh BPOM RI (Badan Pengawas Obat dan Makanan Republik Indonesia). Produk kami juga teruji secara dermatologis dan aman untuk semua jenis kulit."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "Di mana bisa membeli produk Ryoki Skincare yang original?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "Produk Ryoki Skincare 100% original hanya tersedia di toko resmi kami: TikTok Shop (@ryokijapanskin) dan Shopee Official Store (Ryoki Skincare Official). Hati-hati terhadap produk palsu dari penjual tidak resmi."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "Apa keunggulan Ryoki Skincare dibanding skincare lain?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "Ryoki Skincare menggunakan formulasi standar Jepang dengan bahan aktif premium seperti Niacinamide, Alpha Arbutin, Glutathione, 24K Gold Extract, Retinol, dan Collagen. Semua produk diproduksi oleh PT Golden Intan Berlian dengan sertifikasi BPOM RI dan telah teruji dermatologis."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "Berapa lama hasil skincare Ryoki terlihat?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "Dengan penggunaan rutin, hasil awal biasanya terlihat dalam 2-4 minggu. Untuk hasil optimal seperti kulit cerah, glowing, dan merata, dibutuhkan penggunaan konsisten selama 2-3 bulan sesuai dengan siklus regenerasi kulit."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "Apakah Ryoki Skincare cocok untuk kulit sensitif?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "Ya, Ryoki Skincare diformulasikan dengan bahan-bahan yang lembut dan telah teruji dermatologis sehingga aman untuk semua jenis kulit termasuk kulit sensitif. Namun kami tetap menyarankan untuk melakukan patch test terlebih dahulu."
+      }
+    }
+  ]
+}
+</script>
+@endpush
 
 @section('content')
 <div class="space-y-28 pb-24">
