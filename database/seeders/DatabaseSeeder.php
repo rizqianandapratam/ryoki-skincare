@@ -16,12 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Remove previous admin users if any
+        User::where('email', '!=', 'ryokijapanskincaree@gmail.com')->delete();
+
         // Admin User
         User::updateOrCreate(
-            ['email' => 'admin@ryokiskincare.co.id'],
+            ['email' => 'ryokijapanskincaree@gmail.com'],
             [
                 'name' => 'Administrator Ryoki',
-                'password' => Hash::make('passwordadmin123'),
+                'password' => Hash::make('skincareryoki_10'),
             ]
         );
 

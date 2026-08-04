@@ -92,13 +92,13 @@
         <div class="lg:col-span-6 relative">
             <div class="relative max-w-md mx-auto">
                 <!-- Main Image Card -->
-                <div class="rounded-3xl overflow-hidden shadow-xl border border-slate-200 aspect-[4/3] bg-slate-100">
-                    <img src="{{ asset('images/facial-wash.png') }}" alt="Filosofi Ryoki Skincare" class="w-full h-full object-cover" loading="lazy">
+                <div class="rounded-3xl overflow-hidden shadow-xl border border-slate-100 aspect-[4/3] bg-white p-3 flex items-center justify-center">
+                    <img src="{{ asset('images/facial-wash.png') }}" alt="Filosofi Ryoki Skincare" class="w-full h-full object-contain mix-blend-multiply" loading="lazy">
                 </div>
 
                 <!-- Floating Overlapping Image Card 1 -->
-                <div class="absolute -bottom-8 -left-6 w-44 sm:w-52 rounded-2xl overflow-hidden shadow-2xl border-4 border-white aspect-square hidden sm:block">
-                    <img src="{{ asset('images/day-cream.png') }}" alt="Ryoki Cream" class="w-full h-full object-cover" loading="lazy">
+                <div class="absolute -bottom-8 -left-6 w-44 sm:w-52 rounded-2xl overflow-hidden shadow-2xl border-4 border-white aspect-square bg-white p-2 hidden sm:flex items-center justify-center">
+                    <img src="{{ asset('images/Hand-Body.png') }}" alt="Ryoki Hand & Body Serum" class="w-full h-full object-contain mix-blend-multiply" loading="lazy">
                 </div>
 
                 <!-- Floating Badge Card 2 -->

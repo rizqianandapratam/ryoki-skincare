@@ -1,1 +1,2 @@
-*.sqlite*
+# Allow tracking database.sqlite so admin edits are pushed to GitHub
+!database.sqlite
