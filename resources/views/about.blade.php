@@ -18,11 +18,11 @@
             <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-sky-200 text-[#0284C7] text-xs font-semibold tracking-wider uppercase shadow-xs">
                 ✨ Japanese Beauty Philosophy
             </span>
-            
+
             <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-playfair text-slate-900 leading-tight">
                 Seni Merawat Kulit Sehat & Glowing Alami
             </h1>
-            
+
             <p class="text-slate-600 font-light text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
                 Ryoki Skincare memadukan keahlian formulasi Jepang dengan bahan botanikal murni untuk memperkuat <strong class="text-slate-800 font-medium">skin barrier</strong> Anda setiap hari.
             </p>
@@ -57,7 +57,7 @@
          2. BRAND STORY & PHILOSOPHY (OVERLAPPING IMAGE COMPOSITION)
          ═══════════════════════════════════════════════════════════ -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
+
         <!-- Text Column -->
         <div class="lg:col-span-6 space-y-6">
             <div class="space-y-2">
@@ -93,7 +93,7 @@
             <div class="relative max-w-md mx-auto">
                 <!-- Main Image Card -->
                 <div class="rounded-3xl overflow-hidden shadow-xl border border-slate-200 aspect-[4/3] bg-slate-100">
-                    <img src="{{ asset('images/hero-banner.png') }}" alt="Filosofi Ryoki Skincare" class="w-full h-full object-cover" loading="lazy">
+                    <img src="{{ asset('images/facial-wash.png') }}" alt="Filosofi Ryoki Skincare" class="w-full h-full object-cover" loading="lazy">
                 </div>
 
                 <!-- Floating Overlapping Image Card 1 -->
