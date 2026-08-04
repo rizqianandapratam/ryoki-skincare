@@ -7,9 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+use Illuminate\Support\Facades\Storage;
+
 class Product extends Model
 {
     use HasFactory;
+
+    protected $appends = [
+        'image_url',
+        'tiktok_url',
+        'shopee_url',
+    ];
 
     protected $fillable = [
         'name',
@@ -37,6 +45,40 @@ class Product extends Model
         'is_best_seller' => 'boolean',
         'is_featured'    => 'boolean',
     ];
+
+    /**
+     * Get the full product image URL with intelligent fallback.
+     */
+    public function getImageUrlAttribute(): string
+    {
+        if (!empty($this->image)) {
+            if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://')) {
+                return $this->image;
+            }
+
+            if (str_starts_with($this->image, 'images/')) {
+                return asset($this->image);
+            }
+
+            return Storage::url($this->image);
+        }
+
+        // Fallback image based on product name or category
+        $nameLower = strtolower($this->name ?? '');
+        $catLower  = strtolower($this->category ?? '');
+
+        if (str_contains($nameLower, 'serum') || str_contains($catLower, 'serum')) {
+            return asset('images/serum.png');
+        } elseif (str_contains($nameLower, 'peeling') || str_contains($nameLower, 'spray') || str_contains($catLower, 'spray')) {
+            return asset('images/peeling-spray.png');
+        } elseif (str_contains($nameLower, 'cream') || str_contains($nameLower, 'moisturizer') || str_contains($catLower, 'moisturizer')) {
+            return asset('images/day-cream.png');
+        } elseif (str_contains($nameLower, 'toner') || str_contains($catLower, 'toner')) {
+            return asset('images/face-toner.png');
+        }
+
+        return asset('images/facial-wash.png');
+    }
 
     /**
      * Get the TikTok Shop URL with fallback to official account.

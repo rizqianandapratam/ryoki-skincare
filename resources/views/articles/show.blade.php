@@ -59,11 +59,7 @@
 
         <!-- Featured Image -->
         <div class="aspect-video w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
-            @if($article->thumbnail)
-                <img src="{{ Storage::url($article->thumbnail) }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
-            @else
-                <img src="{{ asset('images/hero-banner.png') }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
-            @endif
+            <img src="{{ $article->thumbnail_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
         </div>
 
         <!-- Body Content -->

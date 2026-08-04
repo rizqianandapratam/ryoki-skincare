@@ -49,8 +49,8 @@
                             <tr class="hover:bg-slate-50/80 transition-colors">
                                 <td class="py-3 px-4">
                                     <div class="w-12 h-12 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/60 shrink-0">
-                                        @if($product->image)
-                                            <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                                        @if($product->image_url)
+                                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-contain p-1">
                                         @else
                                             <div class="w-full h-full flex items-center justify-center text-slate-400 text-[10px]">No Img</div>
                                         @endif

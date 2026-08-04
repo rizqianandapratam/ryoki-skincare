@@ -124,7 +124,7 @@
                        class="relative block w-full aspect-square sm:aspect-[4/5] rounded-xl overflow-hidden bg-slate-50 mb-2.5 border border-slate-100">
                         <img :src="product.image_url"
                              :alt="product.name"
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             class="relative z-10 w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
                              loading="lazy">
 
                         <!-- Best Seller Badge -->

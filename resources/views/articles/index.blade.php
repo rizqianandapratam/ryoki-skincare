@@ -22,11 +22,7 @@
         <article class="skincare-card p-5 flex flex-col justify-between group">
             <div>
                 <a href="{{ route('articles.show', $article->slug) }}" class="block aspect-video rounded-xl overflow-hidden bg-slate-100 mb-4 border border-slate-100 relative">
-                    @if($article->thumbnail)
-                        <img src="{{ Storage::url($article->thumbnail) }}" alt="{{ $article->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    @else
-                        <img src="{{ asset('images/hero-banner.png') }}" alt="{{ $article->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    @endif
+                    <img src="{{ $article->thumbnail_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </a>
 
                 <h2 class="text-lg font-bold text-slate-900 group-hover:text-[#0284C7] transition-colors mb-2 line-clamp-2 leading-snug">

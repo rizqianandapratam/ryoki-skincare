@@ -47,16 +47,6 @@ class ProductController extends Controller
         }
 
         $products = $query->latest()->get()->map(function ($product) {
-            // Build image URL using the same fallback logic as the Blade component
-            $imgSrc = asset('images/facial-wash.png');
-            if ($product->image) {
-                $imgSrc = Storage::url($product->image);
-            } elseif (str_contains(strtolower($product->name), 'peeling') || str_contains(strtolower($product->name), 'spray')) {
-                $imgSrc = asset('images/peeling-spray.png');
-            } elseif (str_contains(strtolower($product->name), 'cream') || str_contains(strtolower($product->name), 'moisturizer')) {
-                $imgSrc = asset('images/day-cream.png');
-            }
-
             return [
                 'id'             => $product->id,
                 'name'           => $product->name,
@@ -67,9 +57,10 @@ class ProductController extends Controller
                 'price_formatted'=> 'Rp ' . number_format($product->price, 0, ',', '.'),
                 'rating'         => $product->rating ? number_format($product->rating, 1) : '4.9',
                 'is_best_seller' => (bool) $product->is_best_seller,
-                'image_url'      => $imgSrc,
+                'image_url'      => $product->image_url,
                 'url'            => route('products.show', $product->slug),
                 'tiktok_url'     => $product->tiktok_url,
+                'shopee_url'     => $product->shopee_url,
             ];
         });
 

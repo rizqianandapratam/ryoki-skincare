@@ -75,9 +75,9 @@
                 <!-- Main Image Upload -->
                 <div class="p-4 rounded-2xl bg-sky-50/50 border border-sky-100 space-y-3">
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Gambar Utama Produk</label>
-                    @if($product->image)
+                    @if($product->image_url)
                         <div class="flex items-center gap-3 mb-2">
-                            <img src="{{ Storage::url($product->image) }}" class="w-16 h-16 object-cover rounded-xl border border-slate-200 shadow-xs">
+                            <img src="{{ $product->image_url }}" class="w-16 h-16 object-cover rounded-xl border border-slate-200 shadow-xs">
                             <span class="text-xs text-slate-400 font-light">Gambar utama saat ini</span>
                         </div>
                     @endif

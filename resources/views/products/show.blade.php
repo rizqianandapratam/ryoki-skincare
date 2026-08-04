@@ -154,7 +154,7 @@
                                         ? 'border-2 border-[#0284C7] shadow-sm scale-[1.02]'
                                         : 'border border-slate-200 hover:border-sky-300 opacity-70 hover:opacity-100'"
                                     class="w-20 h-20 rounded-2xl overflow-hidden bg-white p-1 transition-all duration-200 flex-shrink-0">
-                                <img :src="src" :alt="'Foto produk ' + (i + 1)" class="w-full h-full object-cover rounded-xl">
+                                <img :src="src" :alt="'Foto produk ' + (i + 1)" class="w-full h-full object-contain p-1 rounded-xl">
                             </button>
                         </template>
                     </div>
@@ -408,7 +408,7 @@
                     <button @click="activeIndex = i"
                             :class="activeIndex === i ? 'border-2 border-[#0284C7]' : 'border border-slate-200 opacity-70'"
                             class="w-12 h-12 rounded-xl overflow-hidden bg-white p-0.5 flex-shrink-0">
-                        <img :src="src" :alt="'Foto produk ' + (i + 1)" class="w-full h-full object-cover rounded-lg">
+                        <img :src="src" :alt="'Foto produk ' + (i + 1)" class="w-full h-full object-contain p-0.5 rounded-lg">
                     </button>
                 </template>
             </div>
