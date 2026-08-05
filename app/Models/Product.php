@@ -28,6 +28,8 @@ class Product extends Model
         'is_featured',
         'tiktok_shop_url',
         'shopee_url',
+        'sold_count',
+        'review_count',
     ];
 
     protected $casts = [
@@ -37,6 +39,8 @@ class Product extends Model
         'in_stock'       => 'boolean',
         'is_best_seller' => 'boolean',
         'is_featured'    => 'boolean',
+        'sold_count'     => 'integer',
+        'review_count'   => 'integer',
     ];
 
     /**

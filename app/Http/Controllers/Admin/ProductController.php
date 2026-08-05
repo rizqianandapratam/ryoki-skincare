@@ -37,6 +37,9 @@ class ProductController extends Controller
             'is_best_seller'  => 'nullable',
             'tiktok_shop_url' => 'nullable|string|max:500',
             'shopee_url'      => 'nullable|string|max:500',
+            'rating'          => 'nullable|numeric|between:0,5',
+            'sold_count'      => 'nullable|integer|min:0',
+            'review_count'    => 'nullable|integer|min:0',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']) ?: 'product-' . time();
@@ -98,6 +101,9 @@ class ProductController extends Controller
             'is_best_seller'  => 'nullable',
             'tiktok_shop_url' => 'nullable|string|max:500',
             'shopee_url'      => 'nullable|string|max:500',
+            'rating'          => 'nullable|numeric|between:0,5',
+            'sold_count'      => 'nullable|integer|min:0',
+            'review_count'    => 'nullable|integer|min:0',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']) ?: 'product-' . time();

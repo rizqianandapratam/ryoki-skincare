@@ -64,7 +64,8 @@
   "aggregateRating": {
     "@@type": "AggregateRating",
     "ratingValue": "{{ $displayRating }}",
-    "reviewCount": "128"
+    "reviewCount": "{{ $product->review_count ?: 60 }}",
+    "bestRating": "5"
   }
 }
 </script>
@@ -201,7 +202,9 @@
                             <span class="font-bold text-slate-800 ml-1 text-xs">{{ $displayRating }} / 5.0</span>
                         </div>
                         <span class="text-slate-300">·</span>
-                        <span class="text-xs text-slate-500 font-medium">Terjual 1.200+ pcs di TikTok &amp; Shopee Official</span>
+                        <span class="text-xs text-slate-500 font-medium">Terjual {{ number_format($product->sold_count) }}+ pcs di Shopee Official</span>
+                        <span class="text-slate-300">·</span>
+                        <span class="text-xs text-slate-400 font-medium">{{ number_format($product->review_count) }} Penilaian</span>
                     </div>
 
                     <!-- Price Section -->
@@ -429,7 +432,7 @@
                 <div class="flex items-center gap-2 text-xs text-slate-500 mt-1.5 font-medium">
                     <span class="text-amber-500 font-bold">★ {{ $displayRating }}</span>
                     <span class="text-slate-300">·</span>
-                    <span>1.2k+ Terjual</span>
+                    <span>{{ $product->sold_count >= 1000 ? number_format($product->sold_count / 1000, 1) . 'k' : number_format($product->sold_count) }}+ Terjual</span>
                     @if($product->in_stock)
                         <span class="text-slate-300">·</span>
                         <span class="text-emerald-600 font-semibold">Stok Ready</span>

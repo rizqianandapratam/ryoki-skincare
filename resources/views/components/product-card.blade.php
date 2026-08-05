@@ -36,11 +36,13 @@
             @endif
         </a>
 
-        {{-- Rating --}}
-        <div class="flex items-center gap-1 text-[11px] sm:text-xs mb-1">
-            <span class="text-amber-400 font-bold">★ {{ $displayRating }}</span>
+        {{-- Rating & Sold Count --}}
+        <div class="flex items-center gap-1.5 text-[11px] sm:text-xs mb-1">
+            <span class="text-amber-500 font-bold">★ {{ $displayRating }}</span>
             <span class="text-slate-300">·</span>
-            <span class="text-slate-400 text-[10px] sm:text-[11px] font-medium">BPOM RI</span>
+            <span class="text-slate-500 text-[10px] sm:text-[11px] font-medium">
+                {{ $product->sold_count >= 1000 ? number_format($product->sold_count / 1000, 1) . 'k' : number_format($product->sold_count) }}+ Terjual
+            </span>
         </div>
 
         {{-- Product Name --}}
