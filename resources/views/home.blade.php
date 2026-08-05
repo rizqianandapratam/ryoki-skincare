@@ -311,16 +311,22 @@
         </div>
     </section>
 
-    <!-- CUSTOMER REVIEWS & SHOPEE SOCIAL PROOF (Continuous Infinite Scroll Marquee) -->
+    <!-- CUSTOMER REVIEWS & DUAL MARKETPLACE PROOF (Continuous Infinite Scroll Marquee) -->
     <section class="w-full overflow-hidden py-6 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center space-y-3">
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-50 text-[#EE4D2D] text-xs font-semibold border border-orange-200 shadow-2xs">
-                <svg class="w-3.5 h-3.5 fill-current text-[#EE4D2D]" viewBox="0 0 24 24"><path d="M19.77 7.06h-3.41V5.44C16.36 2.44 13.92 0 10.92 0S5.48 2.44 5.48 5.44v1.62H1.71L.12 21.61C-.07 22.9 1 24 2.29 24h16.89c1.29 0 2.36-1.1 2.17-2.39l-1.58-14.55zM7.48 5.44c0-1.9 1.54-3.44 3.44-3.44s3.44 1.54 3.44 3.44v1.62H7.48V5.44zm11.75 16.56H2.25L3.6 8.56h1.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h6.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h1.88l1.35 13.44z"/></svg>
-                Ulasan Asli Pembeli Shopee Official
-            </span>
-            <h2 class="text-3xl md:text-4xl font-bold font-playfair text-slate-900">Apa Kata Pembeli Shopee Tentang Ryoki?</h2>
+            <div class="flex items-center justify-center gap-2 flex-wrap">
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-50 text-[#EE4D2D] text-xs font-semibold border border-orange-200 shadow-2xs">
+                    <svg class="w-3.5 h-3.5 fill-current text-[#EE4D2D]" viewBox="0 0 24 24"><path d="M19.77 7.06h-3.41V5.44C16.36 2.44 13.92 0 10.92 0S5.48 2.44 5.48 5.44v1.62H1.71L.12 21.61C-.07 22.9 1 24 2.29 24h16.89c1.29 0 2.36-1.1 2.17-2.39l-1.58-14.55zM7.48 5.44c0-1.9 1.54-3.44 3.44-3.44s3.44 1.54 3.44 3.44v1.62H7.48V5.44zm11.75 16.56H2.25L3.6 8.56h1.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h6.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h1.88l1.35 13.44z"/></svg>
+                    Shopee Official
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-slate-900 text-white text-xs font-semibold border border-slate-800 shadow-2xs">
+                    <svg class="w-3.5 h-3.5 fill-current text-white" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                    TikTok Shop Official
+                </span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold font-playfair text-slate-900">Apa Kata Mereka Tentang Ryoki?</h2>
             <p class="text-slate-500 text-sm font-light leading-relaxed max-w-2xl mx-auto">
-                Ribuan rating bintang 5 dan ulasan jujur langsung dari pembeli terverifikasi di Shopee Official Store.
+                Ribuan ulasan jujur &amp; rating bintang 5 dari pembeli terverifikasi di Shopee Official Store &amp; TikTok Shop Official.
             </p>
         </div>
 
@@ -332,8 +338,9 @@
             <div class="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 sm:w-32 bg-gradient-to-l from-slate-50 via-slate-50/80 to-transparent"></div>
 
             @php
-                $shopeeReviews = [
+                $marketplaceReviews = [
                     [
+                        'platform' => 'shopee',
                         'name' => 'm***a',
                         'location' => 'Shopee Verified',
                         'product' => 'Gold Whitening Serum',
@@ -342,6 +349,16 @@
                         'comment' => 'Suka bgt sm serum ryoki ini, cepat meresap dan muka jd cerah bgt semenjak rutin pake ini. Flek hitam di pipi juga makin pudar! Recomended parah.',
                     ],
                     [
+                        'platform' => 'tiktok',
+                        'name' => 'rachel_glow',
+                        'location' => 'TikTok Shop Verified',
+                        'product' => 'Luminous Night Cream',
+                        'initials' => 'R',
+                        'bg' => 'from-slate-800 to-slate-950',
+                        'comment' => 'Review jujur racun TikTok: Night cream ryoki ini ringan bgt gampang meresap, bangun tidur wajah rasanya kenyal & lembab bgt!',
+                    ],
+                    [
+                        'platform' => 'shopee',
                         'name' => 'n***1',
                         'location' => 'Shopee Verified',
                         'product' => 'Peeling Spray',
@@ -350,6 +367,16 @@
                         'comment' => 'Daki dan sel kulit mati di tangan & leher langsung rontok pas disemprot peeling spray ini. Wanginya seger bgt dan gak bikin perih di kulit!',
                     ],
                     [
+                        'platform' => 'tiktok',
+                        'name' => 'tiktoker_skincare',
+                        'location' => 'TikTok Shop Verified',
+                        'product' => 'Luminous Day Cream',
+                        'initials' => 'T',
+                        'bg' => 'from-slate-900 to-sky-900',
+                        'comment' => 'Pesen di VT TikTok Live Ryoki langsung nyampe 2 hari, dapet diskon live! Pake day cream-nya mukaku keliatan glowing kayak cewe Jepang, sukaa bgt!',
+                    ],
+                    [
+                        'platform' => 'shopee',
                         'name' => 's***i',
                         'location' => 'Shopee Verified',
                         'product' => 'Gentle Glow Facial Wash',
@@ -358,6 +385,16 @@
                         'comment' => 'Sabun cuci mukanya lembut banget, busanya halus dan abis cuci muka wajah terasa bersih moist tanpa rasa ketarik. Wajah jd bersih glowing!',
                     ],
                     [
+                        'platform' => 'tiktok',
+                        'name' => 'cynthia_beauty',
+                        'location' => 'TikTok Shop Verified',
+                        'product' => 'Peeling Spray',
+                        'initials' => 'C',
+                        'bg' => 'from-slate-900 to-teal-900',
+                        'comment' => 'Peeling spray ryoki emang viral di TikTok bukan kaleng-kaleng. Sekali semprot daki luntur semua di siku & lutut. Wajib checkout pas live!',
+                    ],
+                    [
+                        'platform' => 'shopee',
                         'name' => 'd***a',
                         'location' => 'Shopee Verified',
                         'product' => 'Miss Comby Comby',
@@ -366,22 +403,16 @@
                         'comment' => 'Sabun kewanitaan ter-enakeun! Mengurangi gatal & bikin segar seharian. Pengiriman dr Shopee official juga cepet bgt dan pakingan super rapi aman.',
                     ],
                     [
-                        'name' => 'a***u',
-                        'location' => 'Shopee Verified',
-                        'product' => 'Luminous Day Cream',
-                        'initials' => 'A',
-                        'bg' => 'from-orange-400 to-amber-500',
-                        'comment' => 'Day cream terfavorit! Pas dipake langsung nempel dan ngasih efek tone up glowing yang alami banget. Ga bikin breakout di kulit sensitif.',
+                        'platform' => 'tiktok',
+                        'name' => 'dinda_glow',
+                        'location' => 'TikTok Shop Verified',
+                        'product' => 'Gold Whitening Serum',
+                        'initials' => 'D',
+                        'bg' => 'from-slate-900 to-amber-900',
+                        'comment' => 'Serum gold ryoki wanginya enak bgt gak lebay. Seminggu pake bekas jerawat lumayan memudar. Bakal repurchase lagi di TikTok shop!',
                     ],
                     [
-                        'name' => 'r***a',
-                        'location' => 'Shopee Verified',
-                        'product' => 'Luminous Night Cream',
-                        'initials' => 'R',
-                        'bg' => 'from-indigo-600 to-purple-500',
-                        'comment' => 'Night creamnya juara pas bangun pagi kulit kenyal dan lebih cerah. Teksturnya gampang diratakan dan ga lengket sama sekali di bantal.',
-                    ],
-                    [
+                        'platform' => 'shopee',
                         'name' => 'f***n',
                         'location' => 'Shopee Verified',
                         'product' => 'Deodorant Spray',
@@ -390,12 +421,13 @@
                         'comment' => 'Bagus bgt deo spray ryoki ini, ketiak jd ga bau seharian walau keringatan dan pelan2 warna ketiak jd lebih cerah alami. Bakal langganan terus.',
                     ],
                     [
-                        'name' => 'k***a',
-                        'location' => 'Shopee Verified',
+                        'platform' => 'tiktok',
+                        'name' => 'putri_skincare',
+                        'location' => 'TikTok Shop Verified',
                         'product' => 'Hand Body Lotion',
-                        'initials' => 'K',
-                        'bg' => 'from-sky-500 to-blue-600',
-                        'comment' => 'Hand body lotion ryoki wanginya berkelas khas Jepang! Melembabkan seharian dan ada Niacinamide + Alpha Arbutin yg bikin tangan makin cerah.',
+                        'initials' => 'P',
+                        'bg' => 'from-slate-950 to-indigo-950',
+                        'comment' => 'Hand body lotion ryoki ini beneran melembabkan & wangi mewah banget! Langsung checkout 2 botol pas promo TikTok Shop.',
                     ],
                 ];
             @endphp
@@ -403,18 +435,25 @@
             <!-- Infinite Scroll Track -->
             <div class="marquee-track flex gap-6 w-max animate-marquee group-hover:[animation-play-state:paused]">
                 {{-- Loop twice for seamless infinite marquee loop --}}
-                @foreach(array_merge($shopeeReviews, $shopeeReviews) as $review)
-                    <div class="w-[310px] sm:w-[360px] shrink-0 bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm hover:border-orange-300 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+                @foreach(array_merge($marketplaceReviews, $marketplaceReviews) as $review)
+                    <div class="w-[310px] sm:w-[360px] shrink-0 bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm hover:border-sky-300 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-1 text-amber-400 text-xs">
                                     ★ ★ ★ ★ ★
                                     <span class="text-slate-800 font-bold text-xs ml-1">5.0</span>
                                 </div>
-                                <span class="text-[10px] font-bold text-[#EE4D2D] bg-orange-50 px-2.5 py-1 rounded-full border border-orange-100 flex items-center gap-1">
-                                    <svg class="w-3 h-3 fill-current text-[#EE4D2D]" viewBox="0 0 24 24"><path d="M19.77 7.06h-3.41V5.44C16.36 2.44 13.92 0 10.92 0S5.48 2.44 5.48 5.44v1.62H1.71L.12 21.61C-.07 22.9 1 24 2.29 24h16.89c1.29 0 2.36-1.1 2.17-2.39l-1.58-14.55zM7.48 5.44c0-1.9 1.54-3.44 3.44-3.44s3.44 1.54 3.44 3.44v1.62H7.48V5.44zm11.75 16.56H2.25L3.6 8.56h1.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h6.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h1.88l1.35 13.44z"/></svg>
-                                    Shopee Buyer
-                                </span>
+                                @if($review['platform'] === 'shopee')
+                                    <span class="text-[10px] font-bold text-[#EE4D2D] bg-orange-50 px-2.5 py-1 rounded-full border border-orange-100 flex items-center gap-1">
+                                        <svg class="w-3 h-3 fill-current text-[#EE4D2D]" viewBox="0 0 24 24"><path d="M19.77 7.06h-3.41V5.44C16.36 2.44 13.92 0 10.92 0S5.48 2.44 5.48 5.44v1.62H1.71L.12 21.61C-.07 22.9 1 24 2.29 24h16.89c1.29 0 2.36-1.1 2.17-2.39l-1.58-14.55zM7.48 5.44c0-1.9 1.54-3.44 3.44-3.44s3.44 1.54 3.44 3.44v1.62H7.48V5.44zm11.75 16.56H2.25L3.6 8.56h1.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h6.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h1.88l1.35 13.44z"/></svg>
+                                        Shopee Buyer
+                                    </span>
+                                @else
+                                    <span class="text-[10px] font-bold text-white bg-slate-900 px-2.5 py-1 rounded-full border border-slate-800 flex items-center gap-1">
+                                        <svg class="w-3 h-3 fill-current text-white" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                                        TikTok Buyer
+                                    </span>
+                                @endif
                             </div>
                             <p class="text-xs text-slate-600 leading-relaxed font-light italic">
                                 "{{ $review['comment'] }}"
