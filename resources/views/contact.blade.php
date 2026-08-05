@@ -86,7 +86,7 @@
                 <div class="space-y-1">
                     <h3 class="font-bold text-slate-900 text-sm font-heading">Email Layanan Pelanggan</h3>
                     <p class="text-xs text-slate-500 font-light">
-                        hello@ryokiskincare.com
+                        <a href="mailto:ryokijapanskincaree@gmail.com" class="hover:text-[#0284C7] transition-colors">ryokijapanskincaree@gmail.com</a>
                     </p>
                 </div>
             </div>
