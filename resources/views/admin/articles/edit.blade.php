@@ -47,7 +47,7 @@
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Gambar Thumbnail Artikel</label>
                     @if($article->thumbnail_url)
                         <div class="flex items-center gap-3 mb-2">
-                            <img src="{{ $article->thumbnail_url }}" class="w-20 h-14 object-cover rounded-xl border border-slate-200 shadow-xs">
+                            <img src="{{ $article->thumbnail_url }}" class="w-20 h-14 object-contain p-1 bg-white rounded-xl border border-sky-100 shadow-xs">
                             <span class="text-xs text-slate-400 font-light">Thumbnail saat ini</span>
                         </div>
                     @endif

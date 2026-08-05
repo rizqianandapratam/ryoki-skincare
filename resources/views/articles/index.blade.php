@@ -48,8 +48,11 @@
         @forelse($articles as $article)
         <article class="skincare-card p-5 flex flex-col justify-between group">
             <div>
-                <a href="{{ route('articles.show', $article->slug) }}" class="block aspect-video rounded-xl overflow-hidden bg-slate-100 mb-4 border border-slate-100 relative">
-                    <img src="{{ $article->thumbnail_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <a href="{{ route('articles.show', $article->slug) }}" class="block aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-sky-50/80 via-slate-50 to-sky-100/50 mb-4 border border-sky-100/80 relative group-hover:shadow-md transition-all">
+                    <!-- Soft Blurred Ambient Backdrop -->
+                    <img src="{{ $article->thumbnail_url }}" alt="" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-30 scale-110 pointer-events-none">
+                    <!-- Uncut Complete Image -->
+                    <img src="{{ $article->thumbnail_url }}" alt="{{ $article->title }}" class="relative z-10 w-full h-full object-contain p-2.5 group-hover:scale-105 transition-transform duration-500 drop-shadow-sm">
                 </a>
 
                 <h2 class="text-lg font-bold text-slate-900 group-hover:text-[#0284C7] transition-colors mb-2 line-clamp-2 leading-snug">

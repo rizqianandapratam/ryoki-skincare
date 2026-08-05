@@ -7,6 +7,25 @@
 @section('og_image', $article->thumbnail_url)
 
 @push('head')
+<style>
+    /* Global Auto-Fit Styling for all images inside article content */
+    .prose img {
+        max-height: 520px !important;
+        width: auto !important;
+        max-width: 100% !important;
+        object-fit: contain !important;
+        margin-top: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        border-radius: 1.25rem !important;
+        box-shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.12) !important;
+        border: 1px solid rgba(224, 242, 254, 0.8) !important;
+        background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #f0f9ff 100%) !important;
+        padding: 0.75rem !important;
+        display: block !important;
+    }
+</style>
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
@@ -94,9 +113,12 @@
             </p>
         </div>
 
-        <!-- Featured Image -->
-        <div class="aspect-video w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
-            <img src="{{ $article->thumbnail_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
+        <!-- Featured Image (Auto-Fitted Uncropped Display) -->
+        <div class="relative w-full min-h-[260px] sm:min-h-[380px] max-h-[520px] rounded-3xl overflow-hidden bg-gradient-to-br from-sky-50/90 via-slate-50 to-sky-100/60 border border-sky-100/80 p-3 sm:p-6 flex items-center justify-center shadow-xs my-4">
+            <!-- Soft Ambient Blur Backdrop -->
+            <img src="{{ $article->thumbnail_url }}" alt="" class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-35 scale-110 pointer-events-none">
+            <!-- 100% Complete Uncut Featured Image -->
+            <img src="{{ $article->thumbnail_url }}" alt="{{ $article->title }}" class="relative z-10 max-h-[460px] w-auto h-auto max-w-full object-contain rounded-2xl drop-shadow-md">
         </div>
 
         <!-- Body Content -->

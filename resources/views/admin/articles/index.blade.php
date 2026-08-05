@@ -47,9 +47,9 @@
                         @forelse($articles as $article)
                             <tr class="hover:bg-slate-50/80 transition-colors">
                                 <td class="py-3 px-4">
-                                    <div class="w-14 h-10 rounded-lg overflow-hidden bg-slate-100 border border-slate-200/60 shrink-0">
+                                    <div class="w-14 h-10 rounded-lg overflow-hidden bg-slate-50 border border-slate-200/80 shrink-0 p-0.5 flex items-center justify-center">
                                         @if($article->thumbnail_url)
-                                            <img src="{{ $article->thumbnail_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
+                                            <img src="{{ $article->thumbnail_url }}" alt="{{ $article->title }}" class="w-full h-full object-contain">
                                         @else
                                             <div class="w-full h-full flex items-center justify-center text-slate-400 text-[9px]">No Img</div>
                                         @endif
