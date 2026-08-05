@@ -75,61 +75,73 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════
-         2. BRAND STORY & PHILOSOPHY (OVERLAPPING IMAGE COMPOSITION)
+         2. BRAND STORY & PHILOSOPHY (RESPONSIVE MOBILE & DESKTOP SHOWCASE)
          ═══════════════════════════════════════════════════════════ -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
         <!-- Text Column -->
-        <div class="lg:col-span-6 space-y-6">
+        <div class="lg:col-span-6 space-y-5 sm:space-y-6">
             <div class="space-y-2">
-                <span class="text-xs font-bold text-[#0284C7] uppercase tracking-widest">Filosofi & Komitmen Ryoki</span>
-                <h2 class="text-3xl sm:text-4xl font-bold font-playfair text-slate-900 leading-tight">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 text-[#0284C7] text-xs font-bold uppercase tracking-wider border border-sky-100">
+                    🌿 Filosofi &amp; Komitmen Ryoki
+                </span>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold font-playfair text-slate-900 leading-tight">
                     Lahir Dari Kepedulian Terhadap Kesehatan Skin Barrier
                 </h2>
             </div>
 
-            <div class="space-y-4 text-slate-600 font-light text-sm sm:text-base leading-relaxed">
-                <p>
-                    Ryoki Skincare dipasarkan secara resmi bekerja sama dengan <strong class="text-slate-800 font-medium">PT Golden Intan Berlian</strong> sebagai mitra pemasaran resmi di Bandar Lampung. Perjalanan kami dimulai dari keprihatinan mendalam terhadap maraknya produk perawatan kulit di pasar yang menawarkan hasil putih instan, namun berisiko mengikis kelembaban alami dan merusak lapisan pertahanan (*skin barrier*) dalam jangka panjang.
+            <div class="space-y-3.5 sm:space-y-4 text-slate-600 font-light text-sm sm:text-base leading-relaxed">
+                <p class="bg-white/80 sm:bg-transparent p-4 sm:p-0 rounded-2xl border border-slate-100 sm:border-0 shadow-2xs sm:shadow-none">
+                    Ryoki Skincare dipasarkan secara resmi bekerja sama dengan <strong class="text-slate-800 font-semibold">PT Golden Intan Berlian</strong> sebagai mitra pemasaran resmi di Bandar Lampung. Perjalanan kami dimulai dari keprihatinan mendalam terhadap maraknya produk perawatan kulit di pasar yang menawarkan hasil putih instan, namun berisiko mengikis kelembaban alami dan merusak lapisan pertahanan (*skin barrier*) dalam jangka panjang.
                 </p>
-                <p>
-                    Kami percaya pada prinsip filosofi perawatan kulit Jepang: <em class="text-slate-800 font-normal">"Kulit cantik adalah hasil langsung dari kulit yang sehat dan terhidrasi dengan seimbang."</em>
+
+                <p class="bg-gradient-to-r from-sky-50/80 via-blue-50/40 to-sky-50/60 p-4 sm:p-5 rounded-2xl border border-sky-100/90 italic text-slate-700 text-xs sm:text-sm shadow-2xs leading-relaxed">
+                    "Kami percaya pada prinsip filosofi perawatan kulit Jepang: <strong class="not-italic font-semibold text-slate-900">Kulit cantik adalah hasil langsung dari kulit yang sehat dan terhidrasi dengan seimbang.</strong>"
                 </p>
+
                 <p>
                     Oleh sebab itu, setiap tetes produk Ryoki diracik secara teliti menggunakan kombinasi nutrisi botanikal terbaik seperti <strong class="text-slate-800 font-medium">Niacinamide murni, Alpha Arbutin, Collagen, Centella Asiatica</strong>, dan <strong class="text-slate-800 font-medium">5 jenis Ceramide</strong> untuk menutrisi kulit hingga ke lapisan terdalam.
                 </p>
             </div>
 
-            <div class="pt-2 flex flex-wrap gap-4 items-center">
-                <a href="{{ route('products.index') }}" class="btn-ryoki btn-ryoki-primary text-xs px-6 py-3 shadow-md">
+            <div class="pt-2 flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
+                <a href="{{ route('products.index') }}" class="btn-ryoki btn-ryoki-primary text-xs px-6 py-3.5 shadow-md justify-center">
                     Lihat Koleksi Skincare
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
-                <span class="text-xs text-slate-400 font-medium">Toko Resmi: TikTok Shop &amp; Shopee Official</span>
+                <span class="text-[11px] sm:text-xs text-slate-400 font-medium text-center sm:text-left">Toko Resmi: TikTok Shop &amp; Shopee Official</span>
             </div>
         </div>
 
-        <!-- Overlapping Aesthetic Photo Showcase -->
-        <div class="lg:col-span-6 relative">
-            <div class="relative max-w-md mx-auto">
-                <!-- Main Image Card -->
-                <div class="rounded-3xl overflow-hidden shadow-xl border border-slate-100 aspect-[4/3] bg-white p-3 flex items-center justify-center">
-                    <img src="{{ asset('images/facial-wash.png') }}" alt="Filosofi Ryoki Skincare" class="w-full h-full object-contain mix-blend-multiply" loading="lazy">
+        <!-- Photo Showcase Composition (Optimized for Mobile & Desktop) -->
+        <div class="lg:col-span-6 relative pt-4 sm:pt-0">
+            <div class="relative max-w-sm sm:max-w-md mx-auto">
+
+                <!-- Main Image Card Container -->
+                <div class="rounded-3xl overflow-hidden shadow-lg border border-slate-100 aspect-[4/3] bg-gradient-to-br from-white via-sky-50/30 to-blue-50/20 p-3 sm:p-4 flex items-center justify-center relative">
+                    <img src="{{ asset('images/facial-wash.png') }}" alt="Filosofi Ryoki Skincare Facial Wash" class="w-full h-full object-contain mix-blend-multiply drop-shadow-sm" loading="lazy">
+
+                    <!-- Mobile-friendly Rating Tag on Image -->
+                    <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full border border-amber-200/80 shadow-2xs flex items-center gap-1 text-[10px] font-bold text-slate-800">
+                        <span class="text-amber-400">★ 4.9</span>
+                        <span class="text-slate-400 font-normal">/ 5.0</span>
+                    </div>
                 </div>
 
-                <!-- Floating Overlapping Image Card 1 -->
-                <div class="absolute -bottom-8 -left-6 w-44 sm:w-52 rounded-2xl overflow-hidden shadow-2xl border-4 border-white aspect-square bg-white p-2 hidden sm:flex items-center justify-center">
+                <!-- Secondary Floating Image Card (Visible on Mobile & Desktop) -->
+                <div class="absolute -bottom-6 -left-2 sm:-left-6 w-32 sm:w-48 rounded-2xl overflow-hidden shadow-xl border-3 sm:border-4 border-white aspect-square bg-white p-1.5 sm:p-2.5 flex items-center justify-center">
                     <img src="{{ asset('images/Hand-Body.png') }}" alt="Ryoki Hand & Body Serum" class="w-full h-full object-contain mix-blend-multiply" loading="lazy">
                 </div>
 
-                <!-- Floating Badge Card 2 -->
-                <div class="absolute -top-6 -right-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-sky-100 max-w-[200px] space-y-1.5 hidden sm:block">
-                    <div class="flex items-center gap-1.5 text-amber-400 text-xs font-bold">
+                <!-- Floating Social Proof Badge (Visible on Mobile & Desktop) -->
+                <div class="absolute -top-4 -right-2 sm:-top-6 sm:-right-6 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-lg border border-sky-100 max-w-[150px] sm:max-w-[200px] space-y-1">
+                    <div class="flex items-center gap-1 text-amber-400 text-[10px] sm:text-xs font-bold">
                         ★ ★ ★ ★ ★
                     </div>
-                    <p class="text-[11px] font-bold text-slate-800">4.9 / 5.0 Rating</p>
-                    <p class="text-[10px] text-slate-400 leading-tight">Dipercaya oleh ribuan pengguna di seluruh Indonesia</p>
+                    <p class="text-[10px] sm:text-xs font-bold text-slate-800 leading-tight">100% BPOM RI</p>
+                    <p class="text-[9px] sm:text-[10px] text-slate-400 leading-tight">Formula Aman &amp; Teruji Klinis</p>
                 </div>
+
             </div>
         </div>
 
