@@ -311,119 +311,155 @@
         </div>
     </section>
 
-    <!-- CUSTOMER REVIEWS & SOCIAL PROOF -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-sky-50 text-[#0284C7] text-xs font-semibold border border-sky-200">
-                💬 Ulasan Jujur Pelanggan
+    <!-- CUSTOMER REVIEWS & SHOPEE SOCIAL PROOF (Continuous Infinite Scroll Marquee) -->
+    <section class="w-full overflow-hidden py-6 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center space-y-3">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-50 text-[#EE4D2D] text-xs font-semibold border border-orange-200 shadow-2xs">
+                <svg class="w-3.5 h-3.5 fill-current text-[#EE4D2D]" viewBox="0 0 24 24"><path d="M19.77 7.06h-3.41V5.44C16.36 2.44 13.92 0 10.92 0S5.48 2.44 5.48 5.44v1.62H1.71L.12 21.61C-.07 22.9 1 24 2.29 24h16.89c1.29 0 2.36-1.1 2.17-2.39l-1.58-14.55zM7.48 5.44c0-1.9 1.54-3.44 3.44-3.44s3.44 1.54 3.44 3.44v1.62H7.48V5.44zm11.75 16.56H2.25L3.6 8.56h1.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h6.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h1.88l1.35 13.44z"/></svg>
+                Ulasan Asli Pembeli Shopee Official
             </span>
-            <h2 class="text-3xl md:text-4xl font-bold font-playfair text-slate-900">Apa Kata Mereka Tentang Ryoki?</h2>
-            <p class="text-slate-500 text-sm font-light leading-relaxed">
-                Ribuan wanita Indonesia telah membuktikan kelembutan dan manfaat nyata Ryoki Skincare dalam merawat kesehatan skin barrier.
+            <h2 class="text-3xl md:text-4xl font-bold font-playfair text-slate-900">Apa Kata Pembeli Shopee Tentang Ryoki?</h2>
+            <p class="text-slate-500 text-sm font-light leading-relaxed max-w-2xl mx-auto">
+                Ribuan rating bintang 5 dan ulasan jujur langsung dari pembeli terverifikasi di Shopee Official Store.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            <!-- Review 1 -->
-            <div class="skincare-card p-6 flex flex-col justify-between hover:border-sky-300 transition-all space-y-4">
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-1 text-amber-400 text-xs">
-                            ★ ★ ★ ★ ★
-                            <span class="text-slate-800 font-bold text-xs ml-1">5.0</span>
-                        </div>
-                        <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100 flex items-center gap-1">
-                            <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Verified Buyer
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-600 leading-relaxed font-light italic">
-                        "Facial wash-nya beneran lembut banget di muka! Abis cuci muka berasa bersih segar tapi nggak ketarik sama sekali. Niacinamide-nya bantu bekas jerawat di pipi memudar setelah 2 minggu rutin."
-                    </p>
-                </div>
-                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-[#0284C7] to-sky-300 text-white font-bold text-xs flex items-center justify-center font-heading shadow-xs">
-                            DN
-                        </div>
-                        <div>
-                            <p class="text-xs font-bold text-slate-900">Dina Nuraeni</p>
-                            <p class="text-[10px] text-slate-400 font-medium">Jakarta Selatan</p>
-                        </div>
-                    </div>
-                    <span class="text-[10px] font-semibold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-md">
-                        α Niacin Facial Wash
-                    </span>
-                </div>
-            </div>
+        <!-- Marquee Container with Left & Right Gradient Fade Masks -->
+        <div class="relative w-full overflow-hidden group">
+            <!-- Left Gradient Fade Mask -->
+            <div class="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 sm:w-32 bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent"></div>
+            <!-- Right Gradient Fade Mask -->
+            <div class="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 sm:w-32 bg-gradient-to-l from-slate-50 via-slate-50/80 to-transparent"></div>
 
-            <!-- Review 2 -->
-            <div class="skincare-card p-6 flex flex-col justify-between hover:border-sky-300 transition-all space-y-4">
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-1 text-amber-400 text-xs">
-                            ★ ★ ★ ★ ★
-                            <span class="text-slate-800 font-bold text-xs ml-1">5.0</span>
-                        </div>
-                        <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100 flex items-center gap-1">
-                            <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Verified Buyer
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-600 leading-relaxed font-light italic">
-                        "Peeling spray-nya ajaib sih, semprot bentar lalu gosok halus sel kulit mati langsung rontok. Dipakai di leher dan siku jadi makin halus dan cerah. Wajib punya!"
-                    </p>
-                </div>
-                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-teal-500 to-[#0284C7] text-white font-bold text-xs flex items-center justify-center font-heading shadow-xs">
-                            RM
-                        </div>
-                        <div>
-                            <p class="text-xs font-bold text-slate-900">Rina Maharani</p>
-                            <p class="text-[10px] text-slate-400 font-medium">Bandung</p>
-                        </div>
-                    </div>
-                    <span class="text-[10px] font-semibold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-md">
-                        Peeling Spray
-                    </span>
-                </div>
-            </div>
+            @php
+                $shopeeReviews = [
+                    [
+                        'name' => 'm***a',
+                        'location' => 'Shopee Verified',
+                        'product' => 'Gold Whitening Serum',
+                        'initials' => 'M',
+                        'bg' => 'from-amber-400 to-orange-500',
+                        'comment' => 'Suka bgt sm serum ryoki ini, cepat meresap dan muka jd cerah bgt semenjak rutin pake ini. Flek hitam di pipi juga makin pudar! Recomended parah.',
+                    ],
+                    [
+                        'name' => 'n***1',
+                        'location' => 'Shopee Verified',
+                        'product' => 'Peeling Spray',
+                        'initials' => 'N',
+                        'bg' => 'from-[#0284C7] to-teal-400',
+                        'comment' => 'Daki dan sel kulit mati di tangan & leher langsung rontok pas disemprot peeling spray ini. Wanginya seger bgt dan gak bikin perih di kulit!',
+                    ],
+                    [
+                        'name' => 's***i',
+                        'location' => 'Shopee Verified',
+                        'product' => 'Gentle Glow Facial Wash',
+                        'initials' => 'S',
+                        'bg' => 'from-sky-400 to-indigo-500',
+                        'comment' => 'Sabun cuci mukanya lembut banget, busanya halus dan abis cuci muka wajah terasa bersih moist tanpa rasa ketarik. Wajah jd bersih glowing!',
+                    ],
+                    [
+                        'name' => 'd***a',
+                        'location' => 'Shopee Verified',
+                        'product' => 'Miss Comby Comby',
+                        'initials' => 'D',
+                        'bg' => 'from-pink-500 to-rose-400',
+                        'comment' => 'Sabun kewanitaan ter-enakeun! Mengurangi gatal & bikin segar seharian. Pengiriman dr Shopee official juga cepet bgt dan pakingan super rapi aman.',
+                    ],
+                    [
+                        'name' => 'a***u',
+                        'location' => 'Shopee Verified',
+                        'product' => 'Luminous Day Cream',
+                        'initials' => 'A',
+                        'bg' => 'from-orange-400 to-amber-500',
+                        'comment' => 'Day cream terfavorit! Pas dipake langsung nempel dan ngasih efek tone up glowing yang alami banget. Ga bikin breakout di kulit sensitif.',
+                    ],
+                    [
+                        'name' => 'r***a',
+                        'location' => 'Shopee Verified',
+                        'product' => 'Luminous Night Cream',
+                        'initials' => 'R',
+                        'bg' => 'from-indigo-600 to-purple-500',
+                        'comment' => 'Night creamnya juara pas bangun pagi kulit kenyal dan lebih cerah. Teksturnya gampang diratakan dan ga lengket sama sekali di bantal.',
+                    ],
+                    [
+                        'name' => 'f***n',
+                        'location' => 'Shopee Verified',
+                        'product' => 'Deodorant Spray',
+                        'initials' => 'F',
+                        'bg' => 'from-emerald-500 to-teal-600',
+                        'comment' => 'Bagus bgt deo spray ryoki ini, ketiak jd ga bau seharian walau keringatan dan pelan2 warna ketiak jd lebih cerah alami. Bakal langganan terus.',
+                    ],
+                    [
+                        'name' => 'k***a',
+                        'location' => 'Shopee Verified',
+                        'product' => 'Hand Body Lotion',
+                        'initials' => 'K',
+                        'bg' => 'from-sky-500 to-blue-600',
+                        'comment' => 'Hand body lotion ryoki wanginya berkelas khas Jepang! Melembabkan seharian dan ada Niacinamide + Alpha Arbutin yg bikin tangan makin cerah.',
+                    ],
+                ];
+            @endphp
 
-            <!-- Review 3 -->
-            <div class="skincare-card p-6 flex flex-col justify-between hover:border-sky-300 transition-all space-y-4">
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-1 text-amber-400 text-xs">
-                            ★ ★ ★ ★ ★
-                            <span class="text-slate-800 font-bold text-xs ml-1">5.0</span>
+            <!-- Infinite Scroll Track -->
+            <div class="marquee-track flex gap-6 w-max animate-marquee group-hover:[animation-play-state:paused]">
+                {{-- Loop twice for seamless infinite marquee loop --}}
+                @foreach(array_merge($shopeeReviews, $shopeeReviews) as $review)
+                    <div class="w-[310px] sm:w-[360px] shrink-0 bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm hover:border-orange-300 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-1 text-amber-400 text-xs">
+                                    ★ ★ ★ ★ ★
+                                    <span class="text-slate-800 font-bold text-xs ml-1">5.0</span>
+                                </div>
+                                <span class="text-[10px] font-bold text-[#EE4D2D] bg-orange-50 px-2.5 py-1 rounded-full border border-orange-100 flex items-center gap-1">
+                                    <svg class="w-3 h-3 fill-current text-[#EE4D2D]" viewBox="0 0 24 24"><path d="M19.77 7.06h-3.41V5.44C16.36 2.44 13.92 0 10.92 0S5.48 2.44 5.48 5.44v1.62H1.71L.12 21.61C-.07 22.9 1 24 2.29 24h16.89c1.29 0 2.36-1.1 2.17-2.39l-1.58-14.55zM7.48 5.44c0-1.9 1.54-3.44 3.44-3.44s3.44 1.54 3.44 3.44v1.62H7.48V5.44zm11.75 16.56H2.25L3.6 8.56h1.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h6.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h1.88l1.35 13.44z"/></svg>
+                                    Shopee Buyer
+                                </span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed font-light italic">
+                                "{{ $review['comment'] }}"
+                            </p>
                         </div>
-                        <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100 flex items-center gap-1">
-                            <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                            Verified Buyer
-                        </span>
+
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-full bg-gradient-to-tr {{ $review['bg'] }} text-white font-bold text-xs flex items-center justify-center font-heading shadow-xs">
+                                    {{ $review['initials'] }}
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-slate-900">{{ $review['name'] }}</p>
+                                    <p class="text-[10px] text-slate-400 font-medium">{{ $review['location'] }}</p>
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-semibold text-[#0284C7] bg-sky-50 px-2 py-0.5 rounded-md">
+                                {{ $review['product'] }}
+                            </span>
+                        </div>
                     </div>
-                    <p class="text-xs text-slate-600 leading-relaxed font-light italic">
-                        "Day cream-nya pas dioleskan langsung bikin wajah glowing sehat seketika! Teksturnya ringan, nggak lengket, dan ada perlindungan UV yang nyaman dipake kerja seharian."
-                    </p>
-                </div>
-                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-500 text-white font-bold text-xs flex items-center justify-center font-heading shadow-xs">
-                            AS
-                        </div>
-                        <div>
-                            <p class="text-xs font-bold text-slate-900">Anisa Syafitri</p>
-                            <p class="text-[10px] text-slate-400 font-medium">Surabaya</p>
-                        </div>
-                    </div>
-                    <span class="text-[10px] font-semibold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-md">
-                        Luminous Day Cream
-                    </span>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
+
+    <!-- CSS Keyframe Animation for Marquee -->
+    @push('head')
+    <style>
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        .animate-marquee {
+            animation: marquee 35s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
+    @endpush
 
 </div>
 @endsection
