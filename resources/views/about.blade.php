@@ -113,33 +113,28 @@
             </div>
         </div>
 
-        <!-- Photo Showcase Composition (Optimized for Mobile & Desktop) -->
-        <div class="lg:col-span-6 relative pt-4 sm:pt-0">
-            <div class="relative max-w-sm sm:max-w-md mx-auto">
+        <!-- Photo Showcase Composition (Seamless Blended Cards & Ambient Glow) -->
+        <div class="lg:col-span-6 relative pt-6 sm:pt-0">
+            <div class="relative max-w-sm sm:max-w-md mx-auto group">
 
-                <!-- Main Image Card Container -->
-                <div class="rounded-3xl overflow-hidden shadow-lg border border-slate-100 aspect-[4/3] bg-gradient-to-br from-white via-sky-50/30 to-blue-50/20 p-3 sm:p-4 flex items-center justify-center relative">
-                    <img src="{{ asset('images/facial-wash.png') }}" alt="Filosofi Ryoki Skincare Facial Wash" class="w-full h-full object-contain mix-blend-multiply drop-shadow-sm" loading="lazy">
+                <!-- Ambient Soft Radial Glow Backdrop -->
+                <div class="absolute -inset-4 bg-gradient-to-r from-sky-300/40 via-[#38BDF8]/30 to-blue-400/30 blur-3xl rounded-full opacity-80 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
 
-                    <!-- Mobile-friendly Rating Tag on Image -->
-                    <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full border border-amber-200/80 shadow-2xs flex items-center gap-1 text-[10px] font-bold text-slate-800">
-                        <span class="text-amber-400">★ 4.9</span>
-                        <span class="text-slate-400 font-normal">/ 5.0</span>
-                    </div>
+                <!-- Main Image Card Container (Pure White Interior for Seamless Image Blending) -->
+                <div class="rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(2,132,199,0.12)] border border-sky-100 aspect-[4/3] bg-white p-4 sm:p-6 flex items-center justify-center relative">
+
+                    <!-- Main Product Photo (Seamless Merged Background) -->
+                    <img src="{{ asset('images/facial-wash.png') }}" alt="Filosofi Ryoki Skincare Facial Wash" class="relative z-10 w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" loading="lazy">
+
+                    <!-- Top Glassmorphic Badge -->
+                    <span class="absolute top-3.5 right-3.5 z-20 bg-sky-50/90 backdrop-blur-md border border-sky-200/80 text-[#0284C7] text-[10px] font-bold tracking-wider uppercase px-3 py-1 rounded-full shadow-2xs">
+                        ✨ Japanese Formulated
+                    </span>
                 </div>
 
-                <!-- Secondary Floating Image Card (Visible on Mobile & Desktop) -->
-                <div class="absolute -bottom-6 -left-2 sm:-left-6 w-32 sm:w-48 rounded-2xl overflow-hidden shadow-xl border-3 sm:border-4 border-white aspect-square bg-white p-1.5 sm:p-2.5 flex items-center justify-center">
+                <!-- Secondary Floating Image Card (Seamless Blended Container) -->
+                <div class="absolute -bottom-6 -left-3 sm:-left-8 w-36 sm:w-52 rounded-2xl overflow-hidden shadow-[0_15px_35px_rgba(2,132,199,0.18)] border-3 sm:border-4 border-white aspect-square bg-white p-2 sm:p-3 flex items-center justify-center z-20 hover:scale-105 transition-transform duration-300">
                     <img src="{{ asset('images/Hand-Body.png') }}" alt="Ryoki Hand & Body Serum" class="w-full h-full object-contain mix-blend-multiply" loading="lazy">
-                </div>
-
-                <!-- Floating Social Proof Badge (Visible on Mobile & Desktop) -->
-                <div class="absolute -top-4 -right-2 sm:-top-6 sm:-right-6 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-lg border border-sky-100 max-w-[150px] sm:max-w-[200px] space-y-1">
-                    <div class="flex items-center gap-1 text-amber-400 text-[10px] sm:text-xs font-bold">
-                        ★ ★ ★ ★ ★
-                    </div>
-                    <p class="text-[10px] sm:text-xs font-bold text-slate-800 leading-tight">100% BPOM RI</p>
-                    <p class="text-[9px] sm:text-[10px] text-slate-400 leading-tight">Formula Aman &amp; Teruji Klinis</p>
                 </div>
 
             </div>
