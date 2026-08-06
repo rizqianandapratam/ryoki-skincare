@@ -15,7 +15,8 @@ foreach ($storageDirs as $dir) {
 }
 
 // Copy pre-seeded SQLite database to /tmp if using SQLite driver
-if (env('DB_CONNECTION', 'sqlite') === 'sqlite') {
+$dbConn = $_ENV['DB_CONNECTION'] ?? getenv('DB_CONNECTION') ?: 'sqlite';
+if ($dbConn === 'sqlite') {
     $dbPath = __DIR__ . '/../database/database.sqlite';
     $tmpDbPath = '/tmp/database.sqlite';
 
