@@ -3,11 +3,11 @@
 // Define env() fallback helper in case it is called before Laravel helpers load
 if (!function_exists('env')) {
     function env($key, $default = null) {
-        $val = $_ENV[$key] ?? getenv($key);
+        $val = $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key);
         if ($val === false || $val === null) {
             return $default;
         }
-        switch (strtolower($val)) {
+        switch (strtolower((string)$val)) {
             case 'true':
             case '(true)':
                 return true;
@@ -40,23 +40,29 @@ foreach ($storageDirs as $dir) {
 }
 
 // Override storage paths for Vercel read-only filesystem
-putenv('VIEW_COMPILED_PATH=/tmp/storage/framework/views');
 $_ENV['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
+$_SERVER['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
+putenv('VIEW_COMPILED_PATH=/tmp/storage/framework/views');
 
-putenv('APP_SERVICES_CACHE=/tmp/storage/framework/cache/services.php');
 $_ENV['APP_SERVICES_CACHE'] = '/tmp/storage/framework/cache/services.php';
+$_SERVER['APP_SERVICES_CACHE'] = '/tmp/storage/framework/cache/services.php';
+putenv('APP_SERVICES_CACHE=/tmp/storage/framework/cache/services.php');
 
-putenv('APP_PACKAGES_CACHE=/tmp/storage/framework/cache/packages.php');
 $_ENV['APP_PACKAGES_CACHE'] = '/tmp/storage/framework/cache/packages.php';
+$_SERVER['APP_PACKAGES_CACHE'] = '/tmp/storage/framework/cache/packages.php';
+putenv('APP_PACKAGES_CACHE=/tmp/storage/framework/cache/packages.php');
 
-putenv('APP_CONFIG_CACHE=/tmp/storage/framework/cache/config.php');
 $_ENV['APP_CONFIG_CACHE'] = '/tmp/storage/framework/cache/config.php';
+$_SERVER['APP_CONFIG_CACHE'] = '/tmp/storage/framework/cache/config.php';
+putenv('APP_CONFIG_CACHE=/tmp/storage/framework/cache/config.php');
 
-putenv('APP_ROUTES_CACHE=/tmp/storage/framework/cache/routes.php');
 $_ENV['APP_ROUTES_CACHE'] = '/tmp/storage/framework/cache/routes.php';
+$_SERVER['APP_ROUTES_CACHE'] = '/tmp/storage/framework/cache/routes.php';
+putenv('APP_ROUTES_CACHE=/tmp/storage/framework/cache/routes.php');
 
-putenv('APP_EVENTS_CACHE=/tmp/storage/framework/cache/events.php');
 $_ENV['APP_EVENTS_CACHE'] = '/tmp/storage/framework/cache/events.php';
+$_SERVER['APP_EVENTS_CACHE'] = '/tmp/storage/framework/cache/events.php';
+putenv('APP_EVENTS_CACHE=/tmp/storage/framework/cache/events.php');
 
 // Handle database connection and fallback for Vercel Serverless
 $dbConn = env('DB_CONNECTION', 'sqlite');
@@ -67,10 +73,9 @@ if (file_exists($dbPath) && !file_exists($tmpDbPath)) {
     @copy($dbPath, $tmpDbPath);
 }
 
-if ($dbConn === 'sqlite') {
-    putenv('DB_DATABASE=/tmp/database.sqlite');
-    $_ENV['DB_DATABASE'] = '/tmp/database.sqlite';
-} else {
+$useSqlite = ($dbConn === 'sqlite');
+
+if (!$useSqlite) {
     // Test PostgreSQL connectivity; if IPv6 fails, fallback to local /tmp SQLite
     try {
         $host = env('DB_HOST');
@@ -82,12 +87,18 @@ if ($dbConn === 'sqlite') {
         $dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
         $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_TIMEOUT => 2]);
     } catch (\Throwable $e) {
-        // If Postgres fails (e.g. IPv6 block on Vercel), fallback to SQLite seamlessly
-        putenv('DB_CONNECTION=sqlite');
-        $_ENV['DB_CONNECTION'] = 'sqlite';
-        putenv('DB_DATABASE=/tmp/database.sqlite');
-        $_ENV['DB_DATABASE'] = '/tmp/database.sqlite';
+        $useSqlite = true;
     }
+}
+
+if ($useSqlite) {
+    $_ENV['DB_CONNECTION'] = 'sqlite';
+    $_SERVER['DB_CONNECTION'] = 'sqlite';
+    putenv('DB_CONNECTION=sqlite');
+
+    $_ENV['DB_DATABASE'] = '/tmp/database.sqlite';
+    $_SERVER['DB_DATABASE'] = '/tmp/database.sqlite';
+    putenv('DB_DATABASE=/tmp/database.sqlite');
 }
 
 // Forward Vercel requests to public/index.php
