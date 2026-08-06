@@ -14,12 +14,14 @@ foreach ($storageDirs as $dir) {
     }
 }
 
-// Copy pre-seeded SQLite database to /tmp for writeable serverless access
-$dbPath = __DIR__ . '/../database/database.sqlite';
-$tmpDbPath = '/tmp/database.sqlite';
+// Copy pre-seeded SQLite database to /tmp if using SQLite driver
+if (env('DB_CONNECTION', 'sqlite') === 'sqlite') {
+    $dbPath = __DIR__ . '/../database/database.sqlite';
+    $tmpDbPath = '/tmp/database.sqlite';
 
-if (file_exists($dbPath) && !file_exists($tmpDbPath)) {
-    @copy($dbPath, $tmpDbPath);
+    if (file_exists($dbPath) && !file_exists($tmpDbPath)) {
+        @copy($dbPath, $tmpDbPath);
+    }
 }
 
 // Forward Vercel requests to public/index.php
