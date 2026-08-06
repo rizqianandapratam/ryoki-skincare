@@ -31,12 +31,12 @@ if (file_exists($hotFile)) {
     @unlink($hotFile);
 }
 
-// Dynamically set APP_URL to current Vercel production domain
+// Dynamically set APP_URL and HTTPS to current Vercel domain
 if (isset($_SERVER['HTTP_HOST'])) {
-    $proto = ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https' ? 'https' : 'https';
-    $appUrl = "{$proto}://{$_SERVER['HTTP_HOST']}";
+    $appUrl = "https://{$_SERVER['HTTP_HOST']}";
     $_ENV['APP_URL'] = $appUrl;
     $_SERVER['APP_URL'] = $appUrl;
+    $_SERVER['HTTPS'] = 'on';
     putenv("APP_URL={$appUrl}");
 }
 
