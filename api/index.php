@@ -1,5 +1,30 @@
 <?php
 
+// Define env() fallback helper in case it is called before Laravel helpers load
+if (!function_exists('env')) {
+    function env($key, $default = null) {
+        $val = $_ENV[$key] ?? getenv($key);
+        if ($val === false || $val === null) {
+            return $default;
+        }
+        switch (strtolower($val)) {
+            case 'true':
+            case '(true)':
+                return true;
+            case 'false':
+            case '(false)':
+                return false;
+            case 'empty':
+            case '(empty)':
+                return '';
+            case 'null':
+            case '(null)':
+                return null;
+        }
+        return $val;
+    }
+}
+
 // Prepare writeable storage & cache directories in /tmp for Vercel Serverless
 $storageDirs = [
     '/tmp/storage/framework/views',
@@ -15,7 +40,7 @@ foreach ($storageDirs as $dir) {
 }
 
 // Copy pre-seeded SQLite database to /tmp if using SQLite driver
-$dbConn = $_ENV['DB_CONNECTION'] ?? getenv('DB_CONNECTION') ?: 'sqlite';
+$dbConn = env('DB_CONNECTION', 'sqlite');
 if ($dbConn === 'sqlite') {
     $dbPath = __DIR__ . '/../database/database.sqlite';
     $tmpDbPath = '/tmp/database.sqlite';
