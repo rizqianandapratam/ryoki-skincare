@@ -87,8 +87,6 @@ if ($dbConn === 'sqlite') {
         $_ENV['DB_CONNECTION'] = 'sqlite';
         putenv('DB_DATABASE=/tmp/database.sqlite');
         $_ENV['DB_DATABASE'] = '/tmp/database.sqlite';
-        config(['database.default' => 'sqlite']);
-        config(['database.connections.sqlite.database' => '/tmp/database.sqlite']);
     }
 }
 
