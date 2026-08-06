@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
             // ─── ARTICLE 1: Panduan Lengkap Urutan Skincare ─────────────
             [
                 'title' => 'Panduan Lengkap Urutan Skincare Pagi & Malam untuk Kulit Glowing, Cerah, dan Sehat Alami',
-                'slug' => 'panduan-lengkap-urutan-skincare-pemula-glowing',
+                'slug' => 'panduan-lengkap-urutan-skincare-pagi-malam-untuk-kulit-glowing-cerah-dan-sehat-alami',
                 'content' => '<h2>Mengapa Urutan Skincare Sangat Penting untuk Kesehatan Kulit?</h2>
 <p>Memiliki kulit wajah yang bersih, cerah, dan <strong>glowing alami</strong> adalah impian setiap orang — baik pria maupun wanita. Namun, seringkali pemula merasa bingung dengan banyaknya produk skincare yang beredar di pasaran. Kunci utama keberhasilan perawatan kulit bukanlah pada seberapa mahal produk yang digunakan, melainkan pada <strong>konsistensi dan urutan pemakaian skincare yang benar</strong>.</p>
 <p>Menggunakan skincare dengan urutan yang salah tidak hanya mengurangi efektivitas produk, tetapi juga dapat menyebabkan <em>breakout</em>, iritasi, dan bahkan memperburuk kondisi kulit. Artikel ini akan membahas secara lengkap urutan skincare yang benar untuk pagi dan malam hari, beserta rekomendasi produk terbaik dari <strong>Ryoki Japan Skincare</strong>.</p>
@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
             // ─── ARTICLE 2: Bahan Aktif Skincare Terbaik ────────────────
             [
                 'title' => '7 Bahan Aktif Skincare Terbaik untuk Mencerahkan Kulit, Menghilangkan Flek Hitam & Bekas Jerawat',
-                'slug' => '7-bahan-aktif-skincare-terbaik-mencerahkan-kulit',
+                'slug' => '7-bahan-aktif-skincare-terbaik-untuk-mencerahkan-kulit-menghilangkan-flek-hitam-bekas-jerawat',
                 'content' => '<h2>Kenapa Penting Memahami Kandungan Aktif dalam Skincare?</h2>
 <p>Di era informasi seperti sekarang, membeli skincare tidak bisa lagi asal pilih berdasarkan kemasan cantik atau iklan yang menarik. <strong>Memahami kandungan aktif (active ingredients)</strong> dalam produk skincare adalah langkah cerdas untuk mendapatkan hasil maksimal tanpa merusak skin barrier.</p>
 <p>Setiap bahan aktif memiliki fungsi spesifik — ada yang fokus mencerahkan, melembapkan, anti-aging, atau mengontrol minyak. Dengan memahami bahan-bahan ini, Anda bisa memilih produk yang tepat sesuai kebutuhan kulit Anda.</p>
@@ -173,7 +173,7 @@ class DatabaseSeeder extends Seeder
             // ─── ARTICLE 3: Penyebab & Solusi Kulit Kusam ──────────────
             [
                 'title' => 'Penyebab Kulit Kusam, Berminyak & Berjerawat: Cara Mengatasinya dengan Skincare yang Tepat',
-                'slug' => 'penyebab-kulit-kusam-berminyak-berjerawat-dan-cara-mengatasinya',
+                'slug' => 'penyebab-kulit-kusam-berminyak-berjerawat-cara-mengatasinya-dengan-skincare-yang-tepat',
                 'content' => '<h2>Mengapa Kulit Tampak Kusam, Berminyak, dan Mudah Berjerawat?</h2>
 <p>Pernahkah Anda merasa sudah menggunakan berbagai macam skincare tapi kulit tetap saja <strong>kusam, berminyak, dan mudah breakout</strong>? Anda tidak sendirian. Menurut data dari <em>Indonesian Dermatology Association</em>, lebih dari 60% wanita Indonesia usia 18-35 tahun mengalami masalah kulit berminyak dan berjerawat.</p>
 <p>Sebelum mencari solusinya, penting untuk memahami akar penyebabnya terlebih dahulu.</p>
