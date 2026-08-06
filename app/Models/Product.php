@@ -158,16 +158,21 @@ class Product extends Model
                 return asset($given);
             }
 
-            return Storage::url($this->image);
+            $path = $this->image;
+            if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, 'images/') || str_starts_with($path, 'storage/')) {
+                return asset($path);
+            }
+            return asset('storage/' . ltrim($path, '/'));
         }
 
         if ($this->relationLoaded('galleryImages') && $this->galleryImages->isNotEmpty()) {
-            return Storage::url($this->galleryImages->first()->image_path);
+            $path = $this->galleryImages->first()->image_path;
+            return str_starts_with($path, 'storage/') || str_starts_with($path, 'images/') ? asset($path) : asset('storage/' . ltrim($path, '/'));
         }
 
         $galleryImagePath = $this->galleryImages()->orderBy('sort_order')->value('image_path');
         if (!empty($galleryImagePath)) {
-            return Storage::url($galleryImagePath);
+            return str_starts_with($galleryImagePath, 'storage/') || str_starts_with($galleryImagePath, 'images/') ? asset($galleryImagePath) : asset('storage/' . ltrim($galleryImagePath, '/'));
         }
 
         if (str_contains($productName, 'facial wash') || str_contains($categoryName, 'cleanser')) {

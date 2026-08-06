@@ -25,11 +25,6 @@ if (!function_exists('env')) {
     }
 }
 
-// Enable APP_DEBUG to trace /articles exception
-$_ENV['APP_DEBUG'] = 'true';
-$_SERVER['APP_DEBUG'] = 'true';
-putenv('APP_DEBUG=true');
-
 // Prepare writeable storage & cache directories in /tmp for Vercel Serverless
 $storageDirs = [
     '/tmp/storage/framework/views',

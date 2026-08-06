@@ -25,7 +25,10 @@ class Article extends Model
             if (str_starts_with($this->thumbnail, 'images/')) {
                 return asset($this->thumbnail);
             }
-            return Storage::url($this->thumbnail);
+            if (str_starts_with($this->thumbnail, 'storage/')) {
+                return asset($this->thumbnail);
+            }
+            return asset('storage/' . ltrim($this->thumbnail, '/'));
         }
         return asset('images/hero-banner.png');
     }
