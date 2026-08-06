@@ -25,6 +25,21 @@ if (!function_exists('env')) {
     }
 }
 
+// Remove public/hot on Vercel so @vite always loads production compiled assets from manifest.json
+$hotFile = __DIR__ . '/../public/hot';
+if (file_exists($hotFile)) {
+    @unlink($hotFile);
+}
+
+// Dynamically set APP_URL to current Vercel production domain
+if (isset($_SERVER['HTTP_HOST'])) {
+    $proto = ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https' ? 'https' : 'https';
+    $appUrl = "{$proto}://{$_SERVER['HTTP_HOST']}";
+    $_ENV['APP_URL'] = $appUrl;
+    $_SERVER['APP_URL'] = $appUrl;
+    putenv("APP_URL={$appUrl}");
+}
+
 // Prepare writeable storage & cache directories in /tmp for Vercel Serverless
 $storageDirs = [
     '/tmp/storage/framework/views',
