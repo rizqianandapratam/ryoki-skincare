@@ -25,10 +25,6 @@ if (!function_exists('env')) {
     }
 }
 
-// Enable APP_DEBUG to trace Vercel exceptions
-putenv('APP_DEBUG=true');
-$_ENV['APP_DEBUG'] = 'true';
-
 // Prepare writeable storage & cache directories in /tmp for Vercel Serverless
 $storageDirs = [
     '/tmp/storage/framework/views',
@@ -62,14 +58,37 @@ $_ENV['APP_ROUTES_CACHE'] = '/tmp/storage/framework/cache/routes.php';
 putenv('APP_EVENTS_CACHE=/tmp/storage/framework/cache/events.php');
 $_ENV['APP_EVENTS_CACHE'] = '/tmp/storage/framework/cache/events.php';
 
-// Copy pre-seeded SQLite database to /tmp if using SQLite driver
+// Handle database connection and fallback for Vercel Serverless
 $dbConn = env('DB_CONNECTION', 'sqlite');
-if ($dbConn === 'sqlite') {
-    $dbPath = __DIR__ . '/../database/database.sqlite';
-    $tmpDbPath = '/tmp/database.sqlite';
+$dbPath = __DIR__ . '/../database/database.sqlite';
+$tmpDbPath = '/tmp/database.sqlite';
 
-    if (file_exists($dbPath) && !file_exists($tmpDbPath)) {
-        @copy($dbPath, $tmpDbPath);
+if (file_exists($dbPath) && !file_exists($tmpDbPath)) {
+    @copy($dbPath, $tmpDbPath);
+}
+
+if ($dbConn === 'sqlite') {
+    putenv('DB_DATABASE=/tmp/database.sqlite');
+    $_ENV['DB_DATABASE'] = '/tmp/database.sqlite';
+} else {
+    // Test PostgreSQL connectivity; if IPv6 fails, fallback to local /tmp SQLite
+    try {
+        $host = env('DB_HOST');
+        $port = env('DB_PORT', 5432);
+        $dbname = env('DB_DATABASE');
+        $user = env('DB_USERNAME');
+        $pass = env('DB_PASSWORD');
+        
+        $dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
+        $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_TIMEOUT => 2]);
+    } catch (\Throwable $e) {
+        // If Postgres fails (e.g. IPv6 block on Vercel), fallback to SQLite seamlessly
+        putenv('DB_CONNECTION=sqlite');
+        $_ENV['DB_CONNECTION'] = 'sqlite';
+        putenv('DB_DATABASE=/tmp/database.sqlite');
+        $_ENV['DB_DATABASE'] = '/tmp/database.sqlite';
+        config(['database.default' => 'sqlite']);
+        config(['database.connections.sqlite.database' => '/tmp/database.sqlite']);
     }
 }
 
