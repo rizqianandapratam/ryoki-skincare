@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    /* Ryoki Primary Vibrant Blue Buttons */
+    .btn-ryoki,
+    .btn-ryoki-primary,
+    button[type="submit"],
+    a.btn-ryoki-primary {
+        background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35) !important;
+        transition: all 0.25s ease !important;
+        border: none !important;
+        text-decoration: none !important;
+    }
+
+    .btn-ryoki:hover,
+    .btn-ryoki-primary:hover,
+    button[type="submit"]:hover,
+    a.btn-ryoki-primary:hover {
+        background: linear-gradient(135deg, #0369A1 0%, #075985 100%) !important;
+        color: #FFFFFF !important;
+        box-shadow: 0 6px 20px rgba(2, 132, 199, 0.5) !important;
+        transform: translateY(-1px) !important;
+    }
+
+    .btn-ryoki-secondary {
+        background-color: #E0F2FE !important;
+        color: #0284C7 !important;
+        font-weight: 700 !important;
+        border: 1px solid #BAE6FD !important;
+        border-radius: 12px !important;
+    }
+}

@@ -8,9 +8,9 @@
                 </h2>
             </div>
             <a href="{{ route('admin.articles.create') }}"
-               class="btn-ryoki btn-ryoki-primary text-xs py-2.5 px-4 font-bold shadow-md shadow-sky-500/20 rounded-xl flex items-center justify-center gap-2 self-start sm:self-auto">
+               class="bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white font-bold text-xs py-2.5 px-4 shadow-md shadow-sky-500/25 rounded-xl flex items-center justify-center gap-2 self-start sm:self-auto hover:from-[#0369A1] hover:to-[#075985] transition-all cursor-pointer">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-                Tambah Artikel Baru
+                Tulis Artikel Baru
             </a>
         </div>
     </x-slot>

@@ -86,7 +86,7 @@
 
                 <div class="pt-2">
                     <button type="submit"
-                            class="btn-ryoki btn-ryoki-primary w-full py-3.5 text-sm font-bold shadow-lg shadow-sky-500/20 justify-center rounded-xl hover:scale-[1.01] transition-transform">
+                            class="w-full bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-sky-500/25 hover:from-[#0369A1] hover:to-[#075985] transition-all cursor-pointer text-center text-sm">
                         Masuk ke Dashboard
                     </button>
                 </div>

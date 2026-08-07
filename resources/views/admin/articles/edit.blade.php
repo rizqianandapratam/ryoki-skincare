@@ -73,7 +73,7 @@
 
                 <div class="pt-4 flex items-center gap-3">
                     <button type="submit"
-                            class="btn-ryoki btn-ryoki-primary py-3 px-6 text-sm font-bold rounded-xl shadow-lg shadow-sky-500/20">
+                            class="bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white font-bold py-3 px-6 text-sm rounded-xl shadow-lg shadow-sky-500/25 hover:from-[#0369A1] hover:to-[#075985] transition-all cursor-pointer">
                         Perbarui Artikel
                     </button>
                     <a href="{{ route('admin.articles.index') }}" class="px-4 py-3 text-xs font-semibold text-slate-500 hover:text-slate-700">

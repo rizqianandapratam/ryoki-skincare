@@ -250,7 +250,7 @@
                         Shopee Official
                     </a>
                     @auth
-                        <a href="{{ route('admin.dashboard') }}" class="btn-ryoki btn-ryoki-secondary text-xs ml-1">
+                        <a href="{{ route('admin.dashboard') }}" class="px-3.5 py-2 rounded-xl bg-sky-50 hover:bg-sky-100 text-[#0284C7] border border-sky-200 text-xs font-bold transition-all shadow-2xs ml-1">
                             Admin Panel
                         </a>
                     @endauth
