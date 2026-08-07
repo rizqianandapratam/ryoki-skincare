@@ -91,6 +91,7 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::delete('product-images/{productImage}', [AdminProductController::class, 'destroyImage'])->name('product-images.destroy');
     
     // Articles CRUD
+    Route::post('articles/upload-image', [AdminArticleController::class, 'uploadImage'])->name('articles.upload-image');
     Route::resource('articles', AdminArticleController::class);
     
     // Contacts (Inbox)

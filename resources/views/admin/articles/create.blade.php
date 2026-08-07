@@ -43,9 +43,13 @@
                     <trix-editor input="content" class="trix-content bg-slate-50/50 border border-slate-200 rounded-xl min-h-[350px] prose max-w-none focus:outline-none focus:ring-2 focus:ring-[#0284C7] p-4"></trix-editor>
                 </div>
 
-                <div class="p-4 rounded-2xl bg-sky-50/50 border border-sky-100 space-y-2">
+                <div class="p-4 rounded-2xl bg-sky-50/50 border border-sky-100 space-y-3">
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Gambar Thumbnail Artikel</label>
-                    <input type="file" name="thumbnail" accept="image/*" class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#0284C7] file:text-white hover:file:bg-[#0369A1]">
+                    <div id="preview-container" class="hidden flex items-center gap-3 mb-2">
+                        <img id="thumbnail-preview" class="w-24 h-16 object-contain p-1 bg-white rounded-xl border border-sky-100 shadow-xs">
+                        <span class="text-xs text-slate-500 font-medium">Pratinjau Thumbnail Baru</span>
+                    </div>
+                    <input type="file" name="thumbnail" id="thumbnail-input" accept="image/*" class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#0284C7] file:text-white hover:file:bg-[#0369A1]">
                 </div>
 
                 <div class="flex items-center gap-2 pt-2">
@@ -73,5 +77,54 @@
 
     @push('scripts')
     <script src="https://unpkg.com/trix@2.1.12/dist/trix.umd.min.js"></script>
+    <script>
+        // Live Thumbnail Preview
+        document.getElementById('thumbnail-input')?.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const container = document.getElementById('preview-container');
+            const preview = document.getElementById('thumbnail-preview');
+            if (file && preview && container) {
+                preview.src = URL.createObjectURL(file);
+                container.classList.remove('hidden');
+            }
+        });
+
+        // Trix Editor Image Attachment AJAX Upload
+        document.addEventListener('trix-attachment-add', function(event) {
+            const attachment = event.attachment;
+            if (attachment.file) {
+                uploadTrixAttachment(attachment);
+            }
+        });
+
+        function uploadTrixAttachment(attachment) {
+            const formData = new FormData();
+            formData.append('file', attachment.file);
+
+            fetch('{{ route('admin.articles.upload-image') }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Upload gagal');
+                return response.json();
+            })
+            .then(data => {
+                if (data.url) {
+                    attachment.setAttributes({
+                        url: data.url,
+                        href: data.url
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error uploading image to Trix:', error);
+                alert('Gagal mengunggah foto ke artikel.');
+            });
+        }
+    </script>
     @endpush
 </x-app-layout>

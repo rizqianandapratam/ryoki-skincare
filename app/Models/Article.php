@@ -19,16 +19,19 @@ class Article extends Model
     public function getThumbnailUrlAttribute(): string
     {
         if (!empty($this->thumbnail)) {
+            if (str_starts_with($this->thumbnail, 'data:image/')) {
+                return $this->thumbnail;
+            }
             if (str_starts_with($this->thumbnail, 'http://') || str_starts_with($this->thumbnail, 'https://')) {
                 return $this->thumbnail;
             }
             if (str_starts_with($this->thumbnail, 'images/')) {
-                return asset($this->thumbnail);
+                return '/' . ltrim($this->thumbnail, '/');
             }
             if (str_starts_with($this->thumbnail, 'storage/')) {
-                return asset($this->thumbnail);
+                return '/' . ltrim($this->thumbnail, '/');
             }
-            return asset('storage/' . ltrim($this->thumbnail, '/'));
+            return '/storage/' . ltrim($this->thumbnail, '/');
         }
         return asset('images/hero-banner.png');
     }

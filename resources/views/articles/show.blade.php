@@ -36,7 +36,7 @@
   },
   "headline": "{{ addslashes($article->title) }}",
   "image": [
-    "{{ $article->thumbnail ? asset('storage/' . $article->thumbnail) : asset('images/hero-banner.png') }}"
+    "{{ url($article->thumbnail_url) }}"
   ],
   "datePublished": "{{ $article->created_at->toAtomString() }}",
   "dateModified": "{{ $article->updated_at->toAtomString() }}",

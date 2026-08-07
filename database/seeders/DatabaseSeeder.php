@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
 <li><strong>Tidur cukup 7-8 jam</strong> — Kurang tidur memicu produksi kortisol yang menyebabkan jerawat dan penuaan dini.</li>
 <li><strong>Ganti sarung bantal 1x seminggu</strong> — Bakteri dan minyak di sarung bantal bisa menyebabkan breakout.</li>
 </ul>',
-                'thumbnail' => null,
+                'thumbnail' => 'images/ryoki-japan.png',
                 'is_published' => true,
             ],
 
@@ -166,7 +166,7 @@ class DatabaseSeeder extends Seeder
 <h2>Cara Mengombinasikan Bahan Aktif dengan Benar</h2>
 <p><strong>Aturan emas:</strong> Gunakan produk berbasis air terlebih dahulu (toner, serum), baru kemudian produk berbasis krim/minyak (moisturizer, night cream). Urutan dari tekstur paling encer ke paling kental memastikan setiap lapisan terserap sempurna.</p>
 <p>Dengan rangkaian lengkap dari <strong>Ryoki Japan Skincare</strong>, Anda sudah mendapatkan kombinasi bahan aktif terbaik yang saling melengkapi — dari <a href="/products/ryoki-gentle-glow-facial-wash">Facial Wash</a> → <a href="/products/ryoki-face-toner">Toner</a> → <a href="/products/ryoki-gold-whitening-serum">Serum</a> → <a href="/products/ryoki-day-cream">Day Cream</a>/<a href="/products/ryoki-night-cream">Night Cream</a>.</p>',
-                'thumbnail' => null,
+                'thumbnail' => 'images/serum.png',
                 'is_published' => true,
             ],
 
@@ -218,7 +218,7 @@ class DatabaseSeeder extends Seeder
 <li><strong>Minggu 8-12:</strong> Kulit glowing alami, skin barrier kuat, jarang breakout</li>
 </ul>
 <p><strong>Ingat:</strong> Tidak ada skincare yang memberikan hasil instan dalam semalam. Kulit butuh waktu minimal 1 siklus regenerasi (28 hari) untuk menunjukkan perubahan yang signifikan. Yang terpenting adalah <em>konsistensi</em> dan menggunakan produk yang tepat dari brand terpercaya seperti <strong>Ryoki Japan Skincare</strong>.</p>',
-                'thumbnail' => null,
+                'thumbnail' => 'images/peeling-spray.png',
                 'is_published' => true,
             ],
         ];

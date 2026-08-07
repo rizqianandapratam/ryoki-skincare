@@ -43,7 +43,7 @@ class ArticleController extends Controller
         }
 
         if ($request->hasFile('thumbnail')) {
-            $validated['thumbnail'] = $request->file('thumbnail')->store('articles', 'public');
+            $validated['thumbnail'] = $this->fileToBase64DataUri($request->file('thumbnail'), 1200, 85);
         }
 
         $validated['is_published'] = $request->has('is_published');
@@ -80,10 +80,7 @@ class ArticleController extends Controller
         }
 
         if ($request->hasFile('thumbnail')) {
-            if ($article->thumbnail) {
-                Storage::disk('public')->delete($article->thumbnail);
-            }
-            $validated['thumbnail'] = $request->file('thumbnail')->store('articles', 'public');
+            $validated['thumbnail'] = $this->fileToBase64DataUri($request->file('thumbnail'), 1200, 85);
         }
 
         $validated['is_published'] = $request->has('is_published');
@@ -95,11 +92,77 @@ class ArticleController extends Controller
 
     public function destroy(Article $article)
     {
-        if ($article->thumbnail) {
+        if ($article->thumbnail && !str_starts_with($article->thumbnail, 'data:')) {
             Storage::disk('public')->delete($article->thumbnail);
         }
         $article->delete();
 
         return redirect()->route('admin.articles.index')->with('success', 'Artikel berhasil dihapus.');
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|max:5120',
+        ]);
+
+        $dataUri = $this->fileToBase64DataUri($request->file('file'), 1200, 82);
+
+        return response()->json([
+            'url' => $dataUri,
+        ]);
+    }
+
+    /**
+     * Convert an uploaded image file to a compressed Base64 Data URI string.
+     * This allows images to be stored in the database and rendered on Vercel Serverless without a read-only filesystem limit.
+     */
+    private function fileToBase64DataUri($file, int $maxWidth = 1200, int $quality = 82): string
+    {
+        $mime = $file->getMimeType() ?: 'image/jpeg';
+        $realPath = $file->getRealPath();
+
+        if (extension_loaded('gd') && str_starts_with($mime, 'image/')) {
+            $image = @imagecreatefromstring(file_get_contents($realPath));
+            if ($image !== false) {
+                $width = imagesx($image);
+                $height = imagesy($image);
+
+                if ($width > $maxWidth) {
+                    $newWidth = $maxWidth;
+                    $newHeight = (int) ($height * ($maxWidth / $width));
+                    $resized = imagecreatetruecolor($newWidth, $newHeight);
+
+                    if ($mime === 'image/png' || $mime === 'image/webp') {
+                        imagealphablending($resized, false);
+                        imagesavealpha($resized, true);
+                        $transparent = imagecolorallocatealpha($resized, 255, 255, 255, 127);
+                        imagefilledrectangle($resized, 0, 0, $newWidth, $newHeight, $transparent);
+                    }
+
+                    imagecopyresampled($resized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+                    imagedestroy($image);
+                    $image = $resized;
+                }
+
+                ob_start();
+                if ($mime === 'image/jpeg' || $mime === 'image/jpg') {
+                    imagejpeg($image, null, $quality);
+                } elseif ($mime === 'image/png') {
+                    imagepng($image, null, 6);
+                } elseif ($mime === 'image/webp') {
+                    imagewebp($image, null, $quality);
+                } else {
+                    imagejpeg($image, null, $quality);
+                    $mime = 'image/jpeg';
+                }
+                $binary = ob_get_clean();
+                imagedestroy($image);
+
+                return 'data:' . $mime . ';base64,' . base64_encode($binary);
+            }
+        }
+
+        return 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($realPath));
     }
 }
