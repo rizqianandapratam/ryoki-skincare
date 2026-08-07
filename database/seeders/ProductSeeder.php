@@ -175,6 +175,24 @@ class ProductSeeder extends Seeder
                 'is_best_seller' => false,
                 'is_featured'    => false,
             ],
+            [
+                'name'           => 'Ryoki Hair Tonic',
+                'slug'           => 'ryoki-hair-tonic',
+                'description'    => 'Ryoki Hair Tonic diformulasikan dengan ekstrak Panax Ginseng, Biotin, dan Hydrolyzed Keratin untuk menutrisi akar rambut, mengurangi kerontokan, merangsang pertumbuhan rambut baru, serta memberikan sensasi dingin yang menyegarkan pada kulit kepala.',
+                'usage'          => 'Semprotkan Ryoki Hair Tonic secukupnya secara merata pada kulit kepala yang bersih setelah keramas. Pijat lembut kulit kepala selama 2-3 menit dengan ujung jari agar nutrisi meresap sempurna. Gunakan rutin setiap hari tanpa perlu dibilas.',
+                'ingredients'    => 'Aqua, Panax Ginseng Root Extract, Aloe Barbadensis Leaf Extract, Biotin, Panthenol, Hydrolyzed Keratin, Menthol, Fragrance, Phenoxyethanol.',
+                'price'          => 85000,
+                'category'       => 'Hair Care',
+                'image'          => 'images/Hair Tonic.png',
+                'rating'         => 5.0,
+                'sold_count'     => 850,
+                'review_count'   => 175,
+                'shopee_url'     => 'https://shopee.co.id/ryokiofficialstore',
+                'stock'          => 100,
+                'in_stock'       => true,
+                'is_best_seller' => false,
+                'is_featured'    => true,
+            ],
         ];
 
         foreach ($products as $data) {

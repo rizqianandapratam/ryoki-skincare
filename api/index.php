@@ -116,9 +116,9 @@ if ($useSqlite) {
     putenv('DB_DATABASE=/tmp/database.sqlite');
 }
 
-// Auto-run pending database migrations on Vercel (e.g. Supabase Cloud PostgreSQL)
+// Auto-run pending database migrations & seeders on Vercel (e.g. Supabase Cloud PostgreSQL)
 try {
-    $flagFile = '/tmp/migrated_v2.flag';
+    $flagFile = '/tmp/migrated_v3.flag';
     if (!file_exists($flagFile)) {
         @file_put_contents($flagFile, time());
         // Bootstrap Laravel application to run artisan command safely
@@ -126,6 +126,7 @@ try {
         $kernel = $app->make(\Illuminate\Contracts\Console\Kernel::class);
         $kernel->bootstrap();
         \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'ProductSeeder', '--force' => true]);
     }
 } catch (\Throwable $e) {
     // Suppress migration errors if already up to date
