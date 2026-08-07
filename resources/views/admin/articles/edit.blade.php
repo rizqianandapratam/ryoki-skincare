@@ -73,10 +73,10 @@
 
                 <div class="pt-4 flex items-center gap-3">
                     <button type="submit"
-                            class="bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white font-bold py-3 px-6 text-sm rounded-xl shadow-lg shadow-sky-500/25 hover:from-[#0369A1] hover:to-[#075985] transition-all cursor-pointer">
+                            class="bg-[#0284C7] hover:bg-[#0369A1] text-white font-semibold text-xs sm:text-sm px-4.5 py-2.5 rounded-xl shadow-xs hover:shadow transition-all cursor-pointer">
                         Perbarui Artikel
                     </button>
-                    <a href="{{ route('admin.articles.index') }}" class="px-4 py-3 text-xs font-semibold text-slate-500 hover:text-slate-700">
+                    <a href="{{ route('admin.articles.index') }}" class="px-3.5 py-2.5 text-xs font-semibold text-slate-500 hover:text-slate-700">
                         Batal
                     </a>
                 </div>

@@ -68,9 +68,9 @@
                 </div>
                 <div class="space-y-1">
                     <h3 class="font-bold text-slate-900 text-sm font-heading">WhatsApp Customer Service</h3>
-                    <p class="text-xs text-slate-500 font-light leading-relaxed pt-1">
-                        <a href="https://wa.me/6282384991316" target="_blank" rel="noopener noreferrer" onclick="trackWhatsAppClick('Contact Page CS', null, 'Contact Page Info Card')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white font-bold transition-all border border-emerald-200 shadow-2xs">
-                            💬 Konsultasi via WhatsApp (+62 823-8499-1316)
+                    <p class="text-xs text-slate-500 font-light">
+                        <a href="https://wa.me/6282384991316" target="_blank" rel="noopener noreferrer" onclick="trackWhatsAppClick('Contact Page CS', null, 'Contact Page Info Card')" class="hover:text-[#0284C7] transition-colors">
+                            +62 823-8499-1316
                         </a>
                     </p>
                     <p class="text-[11px] text-slate-400 font-light">Jam Operasional: Senin – Sabtu (09.00 – 17.00 WIB)</p>
@@ -134,7 +134,7 @@
                         @error('message') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
-                    <button type="submit" class="w-full bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-sky-500/25 hover:from-[#0369A1] hover:to-[#075985] transition-all cursor-pointer text-center text-sm">
+                    <button type="submit" class="w-full bg-[#0284C7] hover:bg-[#0369A1] text-white font-semibold py-3 px-6 rounded-xl shadow-sm hover:shadow transition-all cursor-pointer text-center text-sm">
                         Kirim Pesan
                     </button>
                 </form>
