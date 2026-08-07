@@ -11,6 +11,14 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
+        try {
+            if (Product::count() < 10) {
+                (new \Database\Seeders\ProductSeeder())->run();
+            }
+        } catch (\Throwable $e) {
+            // Suppress error if initial setup
+        }
+
         $query = Product::query();
         
         if ($request->has('category') && $request->category != '') {
@@ -21,10 +29,29 @@ class ProductController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
         
-        $products = $query->paginate(12);
+        $rawProducts = $query->latest()->get();
+        $initialProducts = $rawProducts->map(function ($product) {
+            return [
+                'id'             => $product->id,
+                'name'           => $product->name,
+                'slug'           => $product->slug,
+                'description'    => $product->description,
+                'category'       => $product->category,
+                'price'          => $product->price,
+                'price_formatted'=> 'Rp ' . number_format($product->price, 0, ',', '.'),
+                'rating'         => $product->rating ? number_format($product->rating, 1) : '4.9',
+                'is_best_seller' => (bool) $product->is_best_seller,
+                'image_url'      => $product->image_url,
+                'url'            => route('products.show', $product->slug),
+                'tiktok_url'     => $product->tiktok_url,
+                'shopee_url'     => $product->shopee_url,
+            ];
+        });
+
         $categories = Product::select('category')->distinct()->pluck('category');
+        $products = Product::paginate(12);
         
-        return view('products.index', compact('products', 'categories'));
+        return view('products.index', compact('products', 'initialProducts', 'categories'));
     }
 
     /**
@@ -32,6 +59,14 @@ class ProductController extends Controller
      */
     public function apiIndex(Request $request)
     {
+        try {
+            if (Product::count() < 10) {
+                (new \Database\Seeders\ProductSeeder())->run();
+            }
+        } catch (\Throwable $e) {
+            // Suppress error if initial setup
+        }
+
         $query = Product::query();
 
         if ($request->filled('category')) {

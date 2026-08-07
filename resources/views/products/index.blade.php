@@ -32,8 +32,7 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10"
-     x-data="productCatalog()"
-     x-init="fetchProducts()">
+     x-data="productCatalog()">
 
     <!-- Header Section -->
     <div class="bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-100 rounded-3xl p-8 md:p-12 text-center space-y-3">
@@ -243,11 +242,11 @@
 <script>
     function productCatalog() {
         return {
-            products: [],
+            products: @json($initialProducts ?? []),
             categories: @json($categories),
             activeCategory: '{{ request('category', '') }}',
             searchQuery: '{{ request('search', '') }}',
-            loading: true,
+            loading: false,
 
             setCategory(cat) {
                 if (this.activeCategory === cat) return;
@@ -270,8 +269,7 @@
                 } catch (error) {
                     console.error('Failed to fetch products:', error);
                 } finally {
-                    // Small delay to let skeleton feel natural
-                    setTimeout(() => { this.loading = false; }, 180);
+                    this.loading = false;
                 }
             },
         }
