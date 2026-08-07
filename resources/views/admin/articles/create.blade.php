@@ -128,6 +128,46 @@
             reader.readAsDataURL(file);
         });
 
+        // Ensure thumbnail compression finishes before form submission
+        document.querySelector('form')?.addEventListener('submit', function(e) {
+            const fileInput = document.getElementById('thumbnail-input');
+            const hiddenBase64 = document.getElementById('thumbnail-base64');
+            const urlInput = document.getElementById('thumbnail-url-input');
+
+            if (fileInput && fileInput.files.length > 0 && (!hiddenBase64 || !hiddenBase64.value) && (!urlInput || !urlInput.value)) {
+                e.preventDefault();
+                const form = this;
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+                        const maxWidth = 800;
+
+                        if (width > maxWidth) {
+                            height = Math.round((height * maxWidth) / width);
+                            width = maxWidth;
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.78);
+                        if (hiddenBase64) hiddenBase64.value = compressedBase64;
+                        form.submit();
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
         // URL input preview
         document.getElementById('thumbnail-url-input')?.addEventListener('input', function(e) {
             const val = e.target.value.trim();

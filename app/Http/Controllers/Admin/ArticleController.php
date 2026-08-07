@@ -26,7 +26,7 @@ class ArticleController extends Controller
         $validated = $request->validate([
             'title'                => 'required|string|max:255',
             'content'              => 'nullable|string',
-            'thumbnail'            => 'nullable|image|max:10240',
+            'thumbnail'            => 'nullable|file|max:20480',
             'thumbnail_base64'     => 'nullable|string',
             'thumbnail_url_input'  => 'nullable|string|max:2000',
             'is_published'         => 'nullable',
@@ -50,7 +50,7 @@ class ArticleController extends Controller
         } elseif (!empty($request->input('thumbnail_url_input'))) {
             $validated['thumbnail'] = trim($request->input('thumbnail_url_input'));
         } elseif ($request->hasFile('thumbnail')) {
-            $validated['thumbnail'] = $this->fileToBase64DataUri($request->file('thumbnail'), 1200, 85);
+            $validated['thumbnail'] = $this->fileToBase64DataUri($request->file('thumbnail'), 800, 75);
         }
 
         unset($validated['thumbnail_base64'], $validated['thumbnail_url_input']);
@@ -71,7 +71,7 @@ class ArticleController extends Controller
         $validated = $request->validate([
             'title'                => 'required|string|max:255',
             'content'              => 'nullable|string',
-            'thumbnail'            => 'nullable|image|max:10240',
+            'thumbnail'            => 'nullable|file|max:20480',
             'thumbnail_base64'     => 'nullable|string',
             'thumbnail_url_input'  => 'nullable|string|max:2000',
             'is_published'         => 'nullable',
@@ -95,7 +95,7 @@ class ArticleController extends Controller
         } elseif (!empty($request->input('thumbnail_url_input'))) {
             $validated['thumbnail'] = trim($request->input('thumbnail_url_input'));
         } elseif ($request->hasFile('thumbnail')) {
-            $validated['thumbnail'] = $this->fileToBase64DataUri($request->file('thumbnail'), 1200, 85);
+            $validated['thumbnail'] = $this->fileToBase64DataUri($request->file('thumbnail'), 800, 75);
         }
 
         unset($validated['thumbnail_base64'], $validated['thumbnail_url_input']);
@@ -119,10 +119,10 @@ class ArticleController extends Controller
     public function uploadImage(Request $request)
     {
         $request->validate([
-            'file' => 'required|image|max:5120',
+            'file' => 'required|file|max:20480',
         ]);
 
-        $dataUri = $this->fileToBase64DataUri($request->file('file'), 1200, 82);
+        $dataUri = $this->fileToBase64DataUri($request->file('file'), 800, 75);
 
         return response()->json([
             'url' => $dataUri,
@@ -133,7 +133,7 @@ class ArticleController extends Controller
      * Convert an uploaded image file to a compressed Base64 Data URI string.
      * This allows images to be stored in the database and rendered on Vercel Serverless without a read-only filesystem limit.
      */
-    private function fileToBase64DataUri($file, int $maxWidth = 1200, int $quality = 82): string
+    private function fileToBase64DataUri($file, int $maxWidth = 800, int $quality = 75): string
     {
         $mime = $file->getMimeType() ?: 'image/jpeg';
         $realPath = $file->getRealPath();
