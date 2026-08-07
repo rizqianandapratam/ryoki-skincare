@@ -116,5 +116,20 @@ if ($useSqlite) {
     putenv('DB_DATABASE=/tmp/database.sqlite');
 }
 
+// Auto-run pending database migrations on Vercel (e.g. Supabase Cloud PostgreSQL)
+try {
+    $flagFile = '/tmp/migrated_v2.flag';
+    if (!file_exists($flagFile)) {
+        @file_put_contents($flagFile, time());
+        // Bootstrap Laravel application to run artisan command safely
+        $app = require_once __DIR__ . '/../bootstrap/app.php';
+        $kernel = $app->make(\Illuminate\Contracts\Console\Kernel::class);
+        $kernel->bootstrap();
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+    }
+} catch (\Throwable $e) {
+    // Suppress migration errors if already up to date
+}
+
 // Forward Vercel requests to public/index.php
 require __DIR__ . '/../public/index.php';

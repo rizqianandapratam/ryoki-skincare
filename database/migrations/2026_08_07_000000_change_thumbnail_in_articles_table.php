@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -11,9 +12,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->longText('thumbnail')->nullable()->change();
-        });
+        try {
+            DB::statement('ALTER TABLE articles ALTER COLUMN thumbnail TYPE TEXT;');
+        } catch (\Throwable $e) {
+            try {
+                Schema::table('articles', function (Blueprint $table) {
+                    $table->text('thumbnail')->nullable()->change();
+                });
+            } catch (\Throwable $e2) {
+                // Column change fallback
+            }
+        }
     }
 
     /**
@@ -21,8 +30,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->string('thumbnail')->nullable()->change();
-        });
+        try {
+            DB::statement('ALTER TABLE articles ALTER COLUMN thumbnail TYPE VARCHAR(255);');
+        } catch (\Throwable $e) {
+            Schema::table('articles', function (Blueprint $table) {
+                $table->string('thumbnail', 255)->nullable()->change();
+            });
+        }
     }
 };
