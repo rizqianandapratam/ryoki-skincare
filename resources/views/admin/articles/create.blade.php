@@ -47,9 +47,21 @@
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Gambar Thumbnail Artikel</label>
                     <div id="preview-container" class="hidden flex items-center gap-3 mb-2">
                         <img id="thumbnail-preview" class="w-24 h-16 object-contain p-1 bg-white rounded-xl border border-sky-100 shadow-xs">
-                        <span class="text-xs text-slate-500 font-medium">Pratinjau Thumbnail Baru</span>
+                        <span class="text-xs text-slate-500 font-medium">Pratinjau Thumbnail Siap Upload</span>
                     </div>
-                    <input type="file" name="thumbnail" id="thumbnail-input" accept="image/*" class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#0284C7] file:text-white hover:file:bg-[#0369A1]">
+                    
+                    <input type="hidden" name="thumbnail_base64" id="thumbnail-base64">
+
+                    <div class="space-y-2">
+                        <label class="block text-[11px] font-semibold text-slate-500">Opsi 1: Upload File Gambar Dari Perangkat</label>
+                        <input type="file" name="thumbnail" id="thumbnail-input" accept="image/*" class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#0284C7] file:text-white hover:file:bg-[#0369A1]">
+                    </div>
+
+                    <div class="space-y-1 pt-1">
+                        <label class="block text-[11px] font-semibold text-slate-500">Opsi 2: Atau Tempel URL Foto Langsung (https://...)</label>
+                        <input type="url" name="thumbnail_url_input" id="thumbnail-url-input" placeholder="https://domain.com/foto-skincare.jpg"
+                               class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0284C7] bg-white">
+                    </div>
                 </div>
 
                 <div class="flex items-center gap-2 pt-2">
@@ -78,13 +90,54 @@
     @push('scripts')
     <script src="https://unpkg.com/trix@2.1.12/dist/trix.umd.min.js"></script>
     <script>
-        // Live Thumbnail Preview
+        // Automatic Client-Side Image Compression & Live Preview
         document.getElementById('thumbnail-input')?.addEventListener('change', function(e) {
             const file = e.target.files[0];
             const container = document.getElementById('preview-container');
             const preview = document.getElementById('thumbnail-preview');
-            if (file && preview && container) {
-                preview.src = URL.createObjectURL(file);
+            const hiddenBase64 = document.getElementById('thumbnail-base64');
+
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    const maxWidth = 1000;
+
+                    if (width > maxWidth) {
+                        height = Math.round((height * maxWidth) / width);
+                        width = maxWidth;
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const compressedBase64 = canvas.toDataURL('image/jpeg', 0.82);
+                    if (hiddenBase64) hiddenBase64.value = compressedBase64;
+                    if (preview) preview.src = compressedBase64;
+                    if (container) container.classList.remove('hidden');
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // URL input preview
+        document.getElementById('thumbnail-url-input')?.addEventListener('input', function(e) {
+            const val = e.target.value.trim();
+            const container = document.getElementById('preview-container');
+            const preview = document.getElementById('thumbnail-preview');
+            const hiddenBase64 = document.getElementById('thumbnail-base64');
+
+            if (val && preview && container) {
+                if (hiddenBase64) hiddenBase64.value = '';
+                preview.src = val;
                 container.classList.remove('hidden');
             }
         });

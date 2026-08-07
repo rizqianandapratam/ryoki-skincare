@@ -24,10 +24,12 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title'        => 'required|string|max:255',
-            'content'      => 'nullable|string',
-            'thumbnail'    => 'nullable|image|max:5120',
-            'is_published' => 'nullable',
+            'title'                => 'required|string|max:255',
+            'content'              => 'nullable|string',
+            'thumbnail'            => 'nullable|image|max:10240',
+            'thumbnail_base64'     => 'nullable|string',
+            'thumbnail_url_input'  => 'nullable|string|max:2000',
+            'is_published'         => 'nullable',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']) ?: 'article-' . time();
@@ -42,10 +44,16 @@ class ArticleController extends Controller
             ]);
         }
 
-        if ($request->hasFile('thumbnail')) {
+        // Process thumbnail in priority order
+        if (!empty($request->input('thumbnail_base64')) && str_starts_with($request->input('thumbnail_base64'), 'data:image/')) {
+            $validated['thumbnail'] = $request->input('thumbnail_base64');
+        } elseif (!empty($request->input('thumbnail_url_input'))) {
+            $validated['thumbnail'] = trim($request->input('thumbnail_url_input'));
+        } elseif ($request->hasFile('thumbnail')) {
             $validated['thumbnail'] = $this->fileToBase64DataUri($request->file('thumbnail'), 1200, 85);
         }
 
+        unset($validated['thumbnail_base64'], $validated['thumbnail_url_input']);
         $validated['is_published'] = $request->has('is_published');
 
         Article::create($validated);
@@ -61,10 +69,12 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         $validated = $request->validate([
-            'title'        => 'required|string|max:255',
-            'content'      => 'nullable|string',
-            'thumbnail'    => 'nullable|image|max:5120',
-            'is_published' => 'nullable',
+            'title'                => 'required|string|max:255',
+            'content'              => 'nullable|string',
+            'thumbnail'            => 'nullable|image|max:10240',
+            'thumbnail_base64'     => 'nullable|string',
+            'thumbnail_url_input'  => 'nullable|string|max:2000',
+            'is_published'         => 'nullable',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']) ?: 'article-' . time();
@@ -79,10 +89,16 @@ class ArticleController extends Controller
             ]);
         }
 
-        if ($request->hasFile('thumbnail')) {
+        // Process thumbnail in priority order
+        if (!empty($request->input('thumbnail_base64')) && str_starts_with($request->input('thumbnail_base64'), 'data:image/')) {
+            $validated['thumbnail'] = $request->input('thumbnail_base64');
+        } elseif (!empty($request->input('thumbnail_url_input'))) {
+            $validated['thumbnail'] = trim($request->input('thumbnail_url_input'));
+        } elseif ($request->hasFile('thumbnail')) {
             $validated['thumbnail'] = $this->fileToBase64DataUri($request->file('thumbnail'), 1200, 85);
         }
 
+        unset($validated['thumbnail_base64'], $validated['thumbnail_url_input']);
         $validated['is_published'] = $request->has('is_published');
 
         $article->update($validated);

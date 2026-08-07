@@ -33,6 +33,6 @@ class Article extends Model
             }
             return '/storage/' . ltrim($this->thumbnail, '/');
         }
-        return asset('images/hero-banner.png');
+        return '/images/ryoki-japan.png';
     }
 }

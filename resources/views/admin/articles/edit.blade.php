@@ -51,7 +51,19 @@
                             {{ $article->thumbnail ? 'Thumbnail saat ini' : 'Foto template default' }}
                         </span>
                     </div>
-                    <input type="file" name="thumbnail" id="thumbnail-input" accept="image/*" class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#0284C7] file:text-white hover:file:bg-[#0369A1]">
+
+                    <input type="hidden" name="thumbnail_base64" id="thumbnail-base64">
+
+                    <div class="space-y-2">
+                        <label class="block text-[11px] font-semibold text-slate-500">Opsi 1: Upload File Gambar Baru Dari Perangkat</label>
+                        <input type="file" name="thumbnail" id="thumbnail-input" accept="image/*" class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#0284C7] file:text-white hover:file:bg-[#0369A1]">
+                    </div>
+
+                    <div class="space-y-1 pt-1">
+                        <label class="block text-[11px] font-semibold text-slate-500">Opsi 2: Atau Tempel URL Foto Langsung (https://...)</label>
+                        <input type="url" name="thumbnail_url_input" id="thumbnail-url-input" value="{{ (str_starts_with($article->thumbnail, 'http://') || str_starts_with($article->thumbnail, 'https://')) ? $article->thumbnail : '' }}" placeholder="https://domain.com/foto-skincare.jpg"
+                               class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0284C7] bg-white">
+                    </div>
                 </div>
 
                 <div class="flex items-center gap-2 pt-2">
@@ -80,14 +92,55 @@
     @push('scripts')
     <script src="https://unpkg.com/trix@2.1.12/dist/trix.umd.min.js"></script>
     <script>
-        // Live Thumbnail Preview
+        // Automatic Client-Side Image Compression & Live Preview
         document.getElementById('thumbnail-input')?.addEventListener('change', function(e) {
             const file = e.target.files[0];
             const preview = document.getElementById('thumbnail-preview');
             const label = document.getElementById('preview-label');
-            if (file && preview) {
-                preview.src = URL.createObjectURL(file);
-                if (label) label.textContent = 'Pratinjau Thumbnail Baru';
+            const hiddenBase64 = document.getElementById('thumbnail-base64');
+
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    const maxWidth = 1000;
+
+                    if (width > maxWidth) {
+                        height = Math.round((height * maxWidth) / width);
+                        width = maxWidth;
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const compressedBase64 = canvas.toDataURL('image/jpeg', 0.82);
+                    if (hiddenBase64) hiddenBase64.value = compressedBase64;
+                    if (preview) preview.src = compressedBase64;
+                    if (label) label.textContent = 'Pratinjau Thumbnail Baru Siap Upload';
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // URL input preview
+        document.getElementById('thumbnail-url-input')?.addEventListener('input', function(e) {
+            const val = e.target.value.trim();
+            const preview = document.getElementById('thumbnail-preview');
+            const label = document.getElementById('preview-label');
+            const hiddenBase64 = document.getElementById('thumbnail-base64');
+
+            if (val && preview) {
+                if (hiddenBase64) hiddenBase64.value = '';
+                preview.src = val;
+                if (label) label.textContent = 'Pratinjau Thumbnail URL Baru';
             }
         });
 
