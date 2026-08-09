@@ -140,12 +140,14 @@
                     </label>
                 </div>
 
-                <div class="pt-4 flex items-center gap-3">
+                <div class="pt-6 flex items-center gap-3 border-t border-slate-100 mt-6">
                     <button type="submit"
-                            class="bg-[#0284C7] hover:bg-[#0369A1] text-white font-semibold text-xs sm:text-sm px-4.5 py-2.5 rounded-xl shadow-xs hover:shadow transition-all cursor-pointer">
-                        Simpan Produk Baru
+                            class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-medium text-sm shadow-sm hover:shadow transition-all duration-200 cursor-pointer active:scale-95">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                        <span>Simpan Produk Baru</span>
                     </button>
-                    <a href="{{ route('admin.products.index') }}" class="px-3.5 py-2.5 text-xs font-semibold text-slate-500 hover:text-slate-700">
+                    <a href="{{ route('admin.products.index') }}"
+                       class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-800 font-medium text-sm transition-all duration-200 cursor-pointer">
                         Batal
                     </a>
                 </div>
