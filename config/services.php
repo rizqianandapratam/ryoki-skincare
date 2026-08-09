@@ -47,7 +47,7 @@ return [
     ],
 
     'google' => [
-        'verification' => env('GOOGLE_SITE_VERIFICATION', null),
+        'verification' => env('GOOGLE_SITE_VERIFICATION', 'c783BEYFw5kEyIolNOR5GijMGIMMPadqV7ZkgWyCB00'),
     ],
 
 ];

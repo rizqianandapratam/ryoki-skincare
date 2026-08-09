@@ -31,10 +31,8 @@
     <link rel="alternate" hreflang="id" href="{{ $currentUrl }}">
     <link rel="alternate" hreflang="x-default" href="{{ $currentUrl }}">
 
-    <!-- Google Search Console Verification (replace content with your actual verification code) -->
-    @if(config('services.google.verification'))
-    <meta name="google-site-verification" content="{{ config('services.google.verification') }}">
-    @endif
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="{{ config('services.google.verification', 'c783BEYFw5kEyIolNOR5GijMGIMMPadqV7ZkgWyCB00') }}">
 
     <!-- Open Graph / Facebook / WhatsApp Social Preview -->
     <meta property="og:type" content="@yield('og_type', 'website')">
