@@ -230,20 +230,20 @@
                                target="_blank"
                                rel="noopener noreferrer"
                                onclick="trackTikTokClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP Main CTA Desktop'); return true;"
-                               class="flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-900 text-slate-800 hover:text-white border border-slate-200/90 hover:border-slate-900 py-3.5 px-4 text-sm font-bold rounded-2xl shadow-2xs hover:shadow-md transition-all duration-300"
+                               class="flex items-center justify-center gap-2 bg-slate-900 hover:bg-black text-white border border-slate-900 py-3.5 px-4 text-sm font-bold rounded-2xl shadow-2xs hover:shadow-md transition-all duration-300"
                                id="btn-buy-tiktok-desktop">
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-                                TikTok Shop Official
+                                <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                                <span>TikTok Shop Official</span>
                             </a>
 
                             <a href="{{ $shopeeUrl }}"
                                target="_blank"
                                rel="noopener noreferrer"
                                onclick="trackShopeeClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP Main CTA Desktop'); return true;"
-                               class="flex items-center justify-center gap-2 bg-orange-50 hover:bg-[#EE4D2D] text-[#EE4D2D] hover:text-white border border-orange-200/90 hover:border-[#EE4D2D] py-3.5 px-4 text-sm font-bold rounded-2xl shadow-2xs hover:shadow-md transition-all duration-300"
+                               class="flex items-center justify-center gap-2 bg-[#EE4D2D] hover:bg-[#d63f21] text-white border border-[#EE4D2D] py-3.5 px-4 text-sm font-bold rounded-2xl shadow-2xs hover:shadow-md transition-all duration-300"
                                id="btn-buy-shopee-desktop">
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.77 7.06h-3.41V5.44C16.36 2.44 13.92 0 10.92 0S5.48 2.44 5.48 5.44v1.62H1.71L.12 21.61C-.07 22.9 1 24 2.29 24h16.89c1.29 0 2.36-1.1 2.17-2.39l-1.58-14.55zM7.48 5.44c0-1.9 1.54-3.44 3.44-3.44s3.44 1.54 3.44 3.44v1.62H7.48V5.44zm11.75 16.56H2.25L3.6 8.56h1.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h6.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h1.88l1.35 13.44z"/></svg>
-                                Shopee Official
+                                <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M19.77 7.06h-3.41V5.44C16.36 2.44 13.92 0 10.92 0S5.48 2.44 5.48 5.44v1.62H1.71L.12 21.61C-.07 22.9 1 24 2.29 24h16.89c1.29 0 2.36-1.1 2.17-2.39l-1.58-14.55zM7.48 5.44c0-1.9 1.54-3.44 3.44-3.44s3.44 1.54 3.44 3.44v1.62H7.48V5.44zm11.75 16.56H2.25L3.6 8.56h1.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h6.88v2.09c0 .55.45 1 1 1s1-.45 1-1V8.56h1.88l1.35 13.44z"/></svg>
+                                <span>Shopee Official</span>
                             </a>
                         </div>
 
@@ -251,8 +251,9 @@
                            target="_blank"
                            rel="noopener noreferrer"
                            onclick="trackWhatsAppClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP WhatsApp Desktop'); return true;"
-                           class="btn-ryoki btn-ryoki-secondary w-full py-3 text-xs justify-center font-semibold rounded-xl">
-                            💬 Konsultasi Produk via WhatsApp CS
+                           class="flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition-all duration-300 shadow-2xs hover:shadow-md text-center mt-3">
+                            <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.15 4.204 4.243-1.111z"/></svg>
+                            <span>Konsultasi Produk via WhatsApp CS</span>
                         </a>
                     </div>
                 </div>
@@ -466,8 +467,9 @@
                 <a href="https://wa.me/6282384991316?text={{ urlencode('Halo Ryoki Skincare, saya ingin berkonsultasi mengenai produk ' . $product->name) }}"
                    target="_blank" rel="noopener noreferrer"
                    onclick="trackWhatsAppClick('{{ addslashes($product->name) }}', {{ $product->id }}, 'PDP WhatsApp Mobile'); return true;"
-                   class="flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-xl bg-sky-50/80 hover:bg-sky-100/90 border border-sky-200 text-[#0284C7] font-bold text-xs transition-all shadow-2xs text-center mt-1">
-                    <span>💬</span> <span>Konsultasi via WhatsApp CS</span>
+                   class="flex items-center justify-center gap-2 w-full py-3 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-2xs text-center mt-2.5">
+                    <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.15 4.204 4.243-1.111z"/></svg>
+                    <span>Konsultasi Produk via WhatsApp CS</span>
                 </a>
             </div>
         </div>
