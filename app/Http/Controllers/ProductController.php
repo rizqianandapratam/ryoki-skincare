@@ -70,14 +70,16 @@ class ProductController extends Controller
         $query = Product::query();
 
         if ($request->filled('category')) {
-            $query->where('category', $request->category);
+            $cat = trim($request->category);
+            $query->whereRaw('LOWER(category) = ?', [strtolower($cat)]);
         }
 
         if ($request->filled('search')) {
-            $search = $request->search;
+            $search = trim($request->search);
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%");
+                  ->orWhere('description', 'like', "%{$search}%")
+                  ->orWhere('category', 'like', "%{$search}%");
             });
         }
 
