@@ -1,8 +1,8 @@
 @extends('layouts.public')
 
-@section('title', 'Ryoki Skincare — Rahasia Kulit Sehat & Glowing Alami | Skincare Jepang BPOM')
-@section('meta_description', 'Ryoki Skincare Official — Rangkaian skincare Jepang bersertifikasi BPOM RI. Facial Wash, Serum, Day & Night Cream, Toner, Peeling Spray untuk kulit cerah, glowing & sehat alami. Beli di TikTok Shop & Shopee Official.')
-@section('meta_keywords', 'ryoki skincare, skincare jepang, skincare bpom, facial wash niacinamide, serum pencerah wajah, day cream spf, night cream retinol, toner wajah, peeling spray, skincare glowing, skincare pemula, kulit cerah alami, ryoki japan, pt golden intan berlian, tiktok shop ryoki, shopee ryoki official')
+@section('title', 'Ryoki Skincare Official — Website Resmi Skincare Jepang BPOM RI')
+@section('meta_description', 'Official Website Ryoki Skincare — Rangkaian skincare Jepang bersertifikasi BPOM RI oleh PT Golden Intan Berlian. Facial Wash, Serum, Day & Night Cream, Toner, Peeling Spray untuk kulit cerah, glowing & sehat alami.')
+@section('meta_keywords', 'ryoki skincare, ryoki skincare website, website ryoki skincare, skincare jepang, skincare bpom, facial wash niacinamide, serum pencerah wajah, day cream spf, night cream retinol, toner wajah, peeling spray, skincare glowing, ryoki japan, pt golden intan berlian, tiktok shop ryoki, shopee ryoki official')
 
 @push('head')
 <script type="application/ld+json">
@@ -75,9 +75,9 @@
                     <!-- Main Heading -->
                     <div class="space-y-3 sm:space-y-4">
                         <h1 class="text-3xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold font-playfair text-slate-900 leading-[1.15] tracking-tight">
-                            Rahasia Kulit
+                            Ryoki Skincare:
                             <span class="relative inline-block">
-                                <span class="relative z-10 text-[#0284C7] italic font-playfair font-normal">Cerah &amp; Glowing</span>
+                                <span class="relative z-10 text-[#0284C7] italic font-playfair font-normal">Rahasia Kulit Cerah &amp; Glowing</span>
                                 <span class="absolute bottom-1 left-0 right-0 h-2.5 sm:h-3 bg-sky-200/50 -skew-x-2 rounded"></span>
                             </span>
                             <br class="hidden sm:block">Sepanjang Hari
