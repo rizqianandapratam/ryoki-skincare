@@ -96,6 +96,14 @@ ROBOTS;
     return response($content, 200)->header('Content-Type', 'text/plain');
 });
 
+// IndexNow Protocol Verification File for Instant Search Engine Indexing
+Route::get('/40a83b27e8d742fb83a54d6e9821bf64.txt', function () {
+    return response('40a83b27e8d742fb83a54d6e9821bf64', 200)->header('Content-Type', 'text/plain');
+});
+Route::get('/indexnow.txt', function () {
+    return response('40a83b27e8d742fb83a54d6e9821bf64', 200)->header('Content-Type', 'text/plain');
+});
+
 // Admin Authentication Routes
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
