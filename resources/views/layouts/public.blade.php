@@ -123,9 +123,31 @@
             "@@type": "SearchAction",
             "target": {
               "@@type": "EntryPoint",
-              "urlTemplate": "{{ url('/products') }}?q={search_term_string}"
+              "urlTemplate": "{{ url('/products') }}?search={search_term_string}"
             },
             "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@@type": "Brand",
+          "@@id": "{{ url('/') }}#brand",
+          "name": "Ryoki Skincare",
+          "alternateName": ["Ryoki Japan Skincare", "Ryoki Official", "Ryoki Skincare Official"],
+          "url": "{{ url('/') }}",
+          "logo": "{{ asset('images/logo.png') }}",
+          "sameAs": [
+            "https://shopee.co.id/ryokiofficialstore",
+            "https://www.tiktok.com/@ryokijapanskin"
+          ]
+        },
+        {
+          "@@type": "OnlineStore",
+          "@@id": "{{ url('/') }}#store",
+          "name": "Toko Resmi Ryoki Skincare",
+          "url": "{{ url('/') }}",
+          "description": "Website Resmi Penjualan Produk Skincare Ryoki Jepang BPOM RI oleh PT Golden Intan Berlian",
+          "parentOrganization": {
+            "@@id": "{{ url('/') }}#organization"
           }
         }
       ]

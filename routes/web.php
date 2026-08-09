@@ -27,14 +27,14 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact.index
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::post('/analytics/click', [AnalyticsController::class, 'recordClick'])->name('analytics.click');
 
-// Dynamic XML Sitemap & robots.txt (Google & Search Engine Optimized)
+// Dynamic XML Sitemap & robots.txt (Google & Search Engine & AI Crawler Optimized)
 Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
 
 Route::get('/robots.txt', function () {
     $sitemap = url('/sitemap.xml');
     $content = <<<ROBOTS
-# Ryoki Skincare — robots.txt (SEO Optimized)
-# Website: {$sitemap}
+# Ryoki Skincare — Official Website robots.txt (SEO & AI Search Engine Optimized)
+# Website Sitemap: {$sitemap}
 
 User-agent: Googlebot
 Allow: /
@@ -44,6 +44,30 @@ Disallow: /api/
 Disallow: /login
 Disallow: /register
 Disallow: /sanctum/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /analytics/
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /analytics/
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /analytics/
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /analytics/
+Disallow: /api/
 
 User-agent: Bingbot
 Allow: /
