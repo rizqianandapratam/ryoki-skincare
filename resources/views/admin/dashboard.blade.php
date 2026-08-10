@@ -108,7 +108,7 @@
                 </div>
                 <div>
                     <h4 class="text-xs font-bold text-slate-900 group-hover:text-[#0284C7]">Kelola Artikel Skinpedia</h4>
-                    <p class="text-[11px] text-slate-400">Tulis artikel edukasi & WYSIWYG</p>
+                    <p class="text-[11px] text-slate-400">Tulis &amp; kelola artikel edukasi</p>
                 </div>
             </a>
 
