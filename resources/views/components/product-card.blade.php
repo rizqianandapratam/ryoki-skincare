@@ -8,9 +8,7 @@
 
 @php
     $imgSrc = $product->image_url;
-    $hasSpecificLink = !empty($product->getAttributes()['shopee_url'] ?? null) || !empty($product->getAttributes()['tiktok_shop_url'] ?? null);
-    $displayRating = ($hasSpecificLink && $product->rating > 0) ? number_format($product->rating, 1) : '0.0';
-    $displaySoldCount = ($hasSpecificLink && $product->sold_count > 0) ? (int) $product->sold_count : 0;
+    $displayRating = $product->rating ? number_format($product->rating, 1) : '4.9';
 @endphp
 
 <div {{ $attributes->merge(['class' => 'relative skincare-card p-3 sm:p-5 flex flex-col justify-between group']) }}>
@@ -43,11 +41,7 @@
             <span class="text-amber-500 font-bold">★ {{ $displayRating }}</span>
             <span class="text-slate-300">·</span>
             <span class="text-slate-500 text-[10px] sm:text-[11px] font-medium">
-                @if($displaySoldCount > 0)
-                    {{ $displaySoldCount >= 1000 ? number_format($displaySoldCount / 1000, 1) . 'k' : number_format($displaySoldCount) }}+ Terjual (Shopee &amp; TikTok)
-                @else
-                    0 Terjual
-                @endif
+                {{ $product->sold_count >= 1000 ? number_format($product->sold_count / 1000, 1) . 'k' : number_format($product->sold_count) }}+ Terjual (Shopee &amp; TikTok)
             </span>
         </div>
 
