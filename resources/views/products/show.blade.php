@@ -22,7 +22,10 @@
         }
     }
 
-    $displayRating = $product->rating ? number_format($product->rating, 1) : '4.9';
+    $hasSpecificLink = !empty($product->getAttributes()['shopee_url'] ?? null) || !empty($product->getAttributes()['tiktok_shop_url'] ?? null);
+    $displayRating = ($hasSpecificLink && $product->rating > 0) ? number_format($product->rating, 1) : '0.0';
+    $displaySoldCount = ($hasSpecificLink && $product->sold_count > 0) ? (int) $product->sold_count : 0;
+    $displayReviewCount = ($hasSpecificLink && $product->review_count > 0) ? (int) $product->review_count : 0;
     $tiktokUrl = $product->tiktok_url;
     $shopeeUrl = $product->shopee_url;
 @endphp
@@ -202,9 +205,17 @@
                             <span class="font-bold text-slate-800 ml-1 text-xs">{{ $displayRating }} / 5.0</span>
                         </div>
                         <span class="text-slate-300">·</span>
-                        <span class="text-xs text-slate-500 font-medium">Terjual {{ number_format($product->sold_count) }}+ pcs di Shopee &amp; TikTok Shop Official</span>
+                        @if($displaySoldCount > 0)
+                            <span class="text-xs text-slate-500 font-medium">Terjual {{ number_format($displaySoldCount) }}+ pcs di Shopee &amp; TikTok Shop Official</span>
+                        @else
+                            <span class="text-xs text-slate-400 font-medium">Terjual 0 pcs</span>
+                        @endif
                         <span class="text-slate-300">·</span>
-                        <span class="text-xs text-slate-400 font-medium">{{ number_format($product->review_count) }} Penilaian Ulasan</span>
+                        @if($displayReviewCount > 0)
+                            <span class="text-xs text-slate-400 font-medium">{{ number_format($displayReviewCount) }} Penilaian Ulasan</span>
+                        @else
+                            <span class="text-xs text-slate-400 font-medium">0 Penilaian Ulasan</span>
+                        @endif
                     </div>
 
                     <!-- Price Section -->
@@ -433,7 +444,7 @@
                 <div class="flex items-center gap-2 text-xs text-slate-500 mt-1.5 font-medium">
                     <span class="text-amber-500 font-bold">★ {{ $displayRating }}</span>
                     <span class="text-slate-300">·</span>
-                    <span>{{ $product->sold_count >= 1000 ? number_format($product->sold_count / 1000, 1) . 'k' : number_format($product->sold_count) }}+ Terjual (Shopee &amp; TikTok)</span>
+                    <span>{{ $displaySoldCount >= 1000 ? number_format($displaySoldCount / 1000, 1) . 'k' : number_format($displaySoldCount) }}+ Terjual (Shopee &amp; TikTok)</span>
                     @if($product->in_stock)
                         <span class="text-slate-300">·</span>
                         <span class="text-emerald-600 font-semibold">Stok Ready</span>
