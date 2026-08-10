@@ -23,7 +23,10 @@
     <meta name="title" content="{{ $currentTitle }}">
     <meta name="description" content="{{ $currentDesc }}">
     <meta name="keywords" content="{{ $currentKeywords }}">
-    <meta name="author" content="PT Golden Intan Berlian — Ryoki Skincare">
+    <meta name="author" content="PT Golden Intan Berlian — Ryoki Japan Skincare">
+    <meta name="application-name" content="Ryoki Japan Skincare">
+    <meta name="site_name" content="Ryoki Japan Skincare">
+    <meta name="apple-mobile-web-app-title" content="Ryoki Japan Skincare">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="bingbot" content="index, follow">
@@ -36,7 +39,7 @@
 
     <!-- Open Graph / Facebook / WhatsApp Social Preview -->
     <meta property="og:type" content="@yield('og_type', 'website')">
-    <meta property="og:site_name" content="Ryoki Skincare Official">
+    <meta property="og:site_name" content="Ryoki Japan Skincare">
     <meta property="og:url" content="{{ $currentUrl }}">
     <meta property="og:title" content="{{ $currentTitle }}">
     <meta property="og:description" content="{{ $currentDesc }}">
@@ -62,7 +65,8 @@
         {
           "@@type": ["Organization", "LocalBusiness"],
           "@@id": "{{ url('/') }}#organization",
-          "name": "Ryoki Skincare",
+          "name": "Ryoki Japan Skincare",
+          "alternateName": ["Ryoki Skincare", "Ryoki Official", "PT Golden Intan Berlian"],
           "legalName": "PT Golden Intan Berlian",
           "url": "{{ url('/') }}",
           "logo": {
@@ -72,7 +76,7 @@
             "height": 512
           },
           "image": "{{ asset('images/hero-banner.png') }}",
-          "description": "Ryoki Skincare — Brand skincare Indonesia dengan formulasi Jepang bersertifikasi BPOM RI. Rangkaian lengkap Facial Wash, Serum, Day & Night Cream, Toner, dan Peeling Spray untuk kulit cerah, sehat, dan glowing alami.",
+          "description": "Ryoki Japan Skincare — Brand skincare Indonesia dengan formulasi Jepang bersertifikasi BPOM RI. Rangkaian lengkap Facial Wash, Serum, Day & Night Cream, Toner, dan Peeling Spray untuk kulit cerah, sehat, dan glowing alami.",
           "telephone": "+6282384991316",
           "email": "ryokijapanskincaree@gmail.com",
           "foundingDate": "2024",
@@ -110,9 +114,9 @@
           "@@type": "WebSite",
           "@@id": "{{ url('/') }}#website",
           "url": "{{ url('/') }}",
-          "name": "Ryoki Skincare Official",
-          "alternateName": "Ryoki Japan Skincare",
-          "description": "Official Website Ryoki Skincare — Rahasia Kulit Sehat & Glowing Alami. Skincare Jepang BPOM RI oleh PT Golden Intan Berlian.",
+          "name": "Ryoki Japan Skincare",
+          "alternateName": ["Ryoki Skincare", "Ryoki Skincare Official", "Ryoki Official Store"],
+          "description": "Official Website Ryoki Japan Skincare — Rahasia Kulit Sehat & Glowing Alami. Skincare Jepang BPOM RI oleh PT Golden Intan Berlian.",
           "publisher": {
             "@@id": "{{ url('/') }}#organization"
           },
@@ -129,8 +133,8 @@
         {
           "@@type": "Brand",
           "@@id": "{{ url('/') }}#brand",
-          "name": "Ryoki Skincare",
-          "alternateName": ["Ryoki Japan Skincare", "Ryoki Official", "Ryoki Skincare Official"],
+          "name": "Ryoki Japan Skincare",
+          "alternateName": ["Ryoki Skincare", "Ryoki Official", "Ryoki Skincare Official"],
           "url": "{{ url('/') }}",
           "logo": "{{ asset('images/logo.png') }}",
           "sameAs": [
