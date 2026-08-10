@@ -157,6 +157,33 @@
                             <p class="text-[11px] text-slate-400 font-light mt-1">Jika dikosongkan, tombol otomatis mengarah ke Link Utama Shopee Ryoki (https://shopee.co.id/ryokiofficialstore)</p>
                         </div>
                     </div>
+
+                    <!-- Marketplace Metrics: Rating, Sold Count & Review Count -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3 border-t border-slate-200/80">
+                        <!-- Rating -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Rating Ulasan (0.0 - 5.0)</label>
+                            <input type="number" step="0.1" min="0" max="5.0" name="rating" value="{{ old('rating', $product->rating ?? '5.0') }}" placeholder="5.0"
+                                   class="w-full px-4 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0284C7] bg-white">
+                            <p class="text-[11px] text-slate-400 font-light mt-1">Rating ulasan sesuai yang ada di link produk marketplace.</p>
+                        </div>
+
+                        <!-- Sold Count -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Jumlah Terjual (pcs)</label>
+                            <input type="number" min="0" name="sold_count" value="{{ old('sold_count', $product->sold_count ?? 0) }}" placeholder="0"
+                                   class="w-full px-4 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0284C7] bg-white">
+                            <p class="text-[11px] text-slate-400 font-light mt-1">Jumlah total pcs terjual dari link produk marketplace.</p>
+                        </div>
+
+                        <!-- Review Count -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Jumlah Penilaian Ulasan</label>
+                            <input type="number" min="0" name="review_count" value="{{ old('review_count', $product->review_count ?? 0) }}" placeholder="0"
+                                   class="w-full px-4 py-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0284C7] bg-white">
+                            <p class="text-[11px] text-slate-400 font-light mt-1">Jumlah ulasan yang ada di link produk marketplace.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Checkboxes -->
