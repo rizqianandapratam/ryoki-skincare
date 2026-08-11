@@ -7,11 +7,22 @@
                     Kelola Produk
                 </h2>
             </div>
-            <a href="{{ route('admin.products.create') }}"
-               class="bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white font-bold text-xs py-2.5 px-4 shadow-md shadow-sky-500/25 rounded-xl flex items-center justify-center gap-2 self-start sm:self-auto hover:from-[#0369A1] hover:to-[#075985] transition-all cursor-pointer">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-                Upload Produk Baru
-            </a>
+            <div class="flex items-center gap-3 self-start sm:self-auto">
+                <form action="{{ route('admin.products.sync-live-prices') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit"
+                            title="Tarik & sinkronkan harga produk otomatis real-time dari toko resmi Shopee & TikTok"
+                            class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-bold text-xs py-2.5 px-4 shadow-md shadow-emerald-500/20 rounded-xl flex items-center justify-center gap-2 hover:from-emerald-700 hover:to-teal-800 transition-all cursor-pointer">
+                        <svg class="w-4 h-4 text-emerald-100 animate-spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                        ⚡ Sync Harga Real-Time
+                    </button>
+                </form>
+                <a href="{{ route('admin.products.create') }}"
+                   class="bg-gradient-to-r from-[#0284C7] to-[#0369A1] text-white font-bold text-xs py-2.5 px-4 shadow-md shadow-sky-500/25 rounded-xl flex items-center justify-center gap-2 hover:from-[#0369A1] hover:to-[#075985] transition-all cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    Upload Produk Baru
+                </a>
+            </div>
         </div>
     </x-slot>
 

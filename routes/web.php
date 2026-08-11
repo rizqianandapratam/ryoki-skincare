@@ -19,6 +19,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/api/products', [ProductController::class, 'apiIndex'])->name('api.products.index');
+Route::post('/api/products/sync-live-prices', [AdminProductController::class, 'syncLivePrices'])->name('api.products.sync-live-prices');
 Route::get('/products/{product:slug}', [ProductController::class, 'show'])->name('products.show');
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
@@ -118,7 +119,8 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     // Analytics Dashboard
     Route::get('analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
 
-    // Products CRUD
+    // Products CRUD & Real-Time Price Sync
+    Route::post('products/sync-live-prices', [AdminProductController::class, 'syncLivePrices'])->name('products.sync-live-prices');
     Route::resource('products', AdminProductController::class);
     Route::delete('product-images/{productImage}', [AdminProductController::class, 'destroyImage'])->name('product-images.destroy');
     

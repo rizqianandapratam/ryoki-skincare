@@ -175,4 +175,10 @@ class ProductController extends Controller
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil dihapus.');
     }
+
+    public function syncLivePrices(\App\Services\MarketplacePriceService $service)
+    {
+        $updatedCount = $service->syncAllProducts();
+        return redirect()->back()->with('success', "⚡ Berhasil menyinkronkan {$updatedCount} harga produk real-time dari toko resmi Shopee & TikTok Shop!");
+    }
 }
