@@ -138,6 +138,11 @@
                         <input type="checkbox" name="is_best_seller" class="rounded text-[#0284C7] focus:ring-[#0284C7] w-4 h-4">
                         <span class="text-xs font-semibold text-slate-700">Tandai sebagai Best Seller</span>
                     </label>
+
+                    <label class="inline-flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" name="is_featured" checked class="rounded text-[#0284C7] focus:ring-[#0284C7] w-4 h-4">
+                        <span class="text-xs font-semibold text-slate-700">🌟 Tampilkan di Produk Skincare Unggulan (Beranda)</span>
+                    </label>
                 </div>
 
                 <div class="pt-6 flex items-center gap-3 border-t border-slate-100 mt-6">

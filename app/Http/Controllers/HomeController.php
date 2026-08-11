@@ -10,8 +10,21 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $featuredProducts = Product::featured()->available()->take(3)->get();
-        $bestSellers = Product::bestSeller()->available()->take(4)->get();
+        $priceService = app(\App\Services\MarketplacePriceService::class);
+
+        $featuredProducts = Product::featured()->available()->latest()->take(6)->get();
+        if ($featuredProducts->count() < 3) {
+            $featuredProducts = Product::available()->latest()->take(4)->get();
+        }
+
+        foreach ($featuredProducts as $fp) {
+            $fp->price = $priceService->resolveLivePrice($fp);
+        }
+
+        $bestSellers = Product::bestSeller()->available()->latest()->take(4)->get();
+        foreach ($bestSellers as $bs) {
+            $bs->price = $priceService->resolveLivePrice($bs);
+        }
 
         return view('home', compact('featuredProducts', 'bestSellers'));
     }

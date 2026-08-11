@@ -35,6 +35,7 @@ class ProductController extends Controller
             'gallery.*'       => 'nullable|image|max:5120',
             'in_stock'        => 'nullable',
             'is_best_seller'  => 'nullable',
+            'is_featured'     => 'nullable',
             'tiktok_shop_url' => 'nullable|string|max:500',
             'shopee_url'      => 'nullable|string|max:500',
             'rating'          => 'nullable|numeric|between:0,5',
@@ -60,6 +61,7 @@ class ProductController extends Controller
 
         $validated['in_stock'] = $request->has('in_stock');
         $validated['is_best_seller'] = $request->has('is_best_seller');
+        $validated['is_featured'] = $request->has('is_featured');
 
         // Remove gallery from validated array
         unset($validated['gallery']);
@@ -99,6 +101,7 @@ class ProductController extends Controller
             'gallery.*'       => 'nullable|image|max:5120',
             'in_stock'        => 'nullable',
             'is_best_seller'  => 'nullable',
+            'is_featured'     => 'nullable',
             'tiktok_shop_url' => 'nullable|string|max:500',
             'shopee_url'      => 'nullable|string|max:500',
             'rating'          => 'nullable|numeric|between:0,5',
@@ -127,6 +130,7 @@ class ProductController extends Controller
 
         $validated['in_stock'] = $request->has('in_stock');
         $validated['is_best_seller'] = $request->has('is_best_seller');
+        $validated['is_featured'] = $request->has('is_featured');
 
         // Remove gallery from validated array
         unset($validated['gallery']);
