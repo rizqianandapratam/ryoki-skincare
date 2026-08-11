@@ -31,7 +31,12 @@ if (file_exists($hotFile)) {
     @unlink($hotFile);
 }
 
-// Dynamically set APP_URL and HTTPS to current Vercel domain
+// Dynamically set APP_URL, HTTPS, and Timezone (WIB - Asia/Jakarta) on Vercel
+date_default_timezone_set('Asia/Jakarta');
+$_ENV['APP_TIMEZONE'] = 'Asia/Jakarta';
+$_SERVER['APP_TIMEZONE'] = 'Asia/Jakarta';
+putenv('APP_TIMEZONE=Asia/Jakarta');
+
 if (isset($_SERVER['HTTP_HOST'])) {
     $appUrl = "https://{$_SERVER['HTTP_HOST']}";
     $_ENV['APP_URL'] = $appUrl;

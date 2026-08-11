@@ -37,12 +37,25 @@ class AnalyticsController extends Controller
             $buttonLocationInput = $request->input('button_location') ?? $request->json('button_location', 'General');
             $buttonLocation = trim((string) $buttonLocationInput) ?: 'General';
 
+            // Resolve real visitor IP from Vercel / Cloudflare edge proxy headers
+            $rawIp = $request->header('x-forwarded-for')
+                ?? $request->header('x-real-ip')
+                ?? $request->header('cf-connecting-ip')
+                ?? $request->ip();
+
+            if (!empty($rawIp)) {
+                $ipParts = array_map('trim', explode(',', $rawIp));
+                $clientIp = $ipParts[0];
+            } else {
+                $clientIp = '127.0.0.1';
+            }
+
             $click = ClickAnalytic::create([
                 'platform'        => $platform,
                 'product_id'      => $productId,
                 'product_name'    => substr($productName, 0, 255),
                 'button_location' => substr($buttonLocation, 0, 255),
-                'ip_address'      => $request->ip() ?: '127.0.0.1',
+                'ip_address'      => substr($clientIp, 0, 45),
                 'user_agent'      => substr((string) $request->userAgent(), 0, 500),
             ]);
 

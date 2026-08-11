@@ -193,7 +193,7 @@
                         @forelse($recentClicks as $click)
                             <tr class="hover:bg-slate-50/60 transition-colors">
                                 <td class="py-3.5 px-4 font-medium text-slate-700 whitespace-nowrap">
-                                    {{ $click->created_at->format('d M Y H:i:s') }}
+                                    {{ $click->created_at->setTimezone('Asia/Jakarta')->format('d M Y H:i:s') }} WIB
                                 </td>
                                 <td class="py-3.5 px-4 whitespace-nowrap">
                                     @if(strtolower($click->platform) === 'shopee')

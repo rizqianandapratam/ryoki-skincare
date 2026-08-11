@@ -11,9 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->trustProxies(at: '*');
         $middleware->redirectGuestsTo('/admin/login');
         $middleware->validateCsrfTokens(except: [
             'analytics/click',
+            'api/analytics/click',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
