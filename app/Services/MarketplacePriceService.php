@@ -18,7 +18,7 @@ class MarketplacePriceService
         'ryoki-gold-whitening-serum'       => 60000,
         'ryoki-day-cream'                  => 75000,
         'ryoki-night-cream'                => 96667,
-        'ryoki-face-toner'                 => 50000,
+        'ryoki-face-toner'                 => 63000,
         'miss-comby-comby'                 => 65679,
         'ryoki-brightening-peeling-spray'  => 116667,
         'ryoki-deodorant-spray'            => 43333,

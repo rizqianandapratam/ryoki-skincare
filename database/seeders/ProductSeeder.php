@@ -91,7 +91,7 @@ class ProductSeeder extends Seeder
                 'description'    => 'Toner sekaligus essence dengan Hyaluronic Acid berlapis yang menghidrasi kulit secara mendalam dan mempersiapkan kulit untuk menyerap produk skincare selanjutnya secara maksimal.',
                 'usage'          => 'Tuangkan secukupnya ke telapak tangan atau kapas. Aplikasikan pada wajah yang sudah dibersihkan dengan gerakan menepuk lembut.',
                 'ingredients'    => 'Fish Collagen, Alpha Arbutin, Niacinamide, Aloe Barbadensis Extract.',
-                'price'          => 50000,
+                'price'          => 63000,
                 'category'       => 'Toner',
                 'image'          => 'images/face-toner.png',
                 'rating'         => 5.0,
