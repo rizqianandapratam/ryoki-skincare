@@ -15,38 +15,38 @@ Website ini **bukan** e-commerce — seluruh transaksi dialihkan ke marketplace 
 
 ## ✨ Fitur Utama
 
-### 🏠 Public Frontend
+### 🏠 Halaman Publik
 
 | Halaman | Deskripsi |
 |---------|-----------|
-| **Beranda (Home)** | Hero banner interaktif, testimoni pelanggan, ingredient highlights, dan produk best seller |
-| **Tentang Kami** | Profil PT Golden Intan Berlian, visi & misi, 4 pilar keunggulan, statistik brand |
-| **Katalog Produk** | Filter kategori & pencarian real-time (Alpine.js + REST API), grid responsif, badge best seller & rating |
-| **Detail Produk** | Layout 2 kolom dengan galeri foto, info lengkap, harga live dari marketplace, CTA ke TikTok Shop & WhatsApp |
-| **Skinpedia (Artikel)** | Blog edukasi skincare dengan artikel SEO-optimized & internal link ke produk |
-| **Kontak** | Form pesan pengunjung langsung ke inbox admin |
+| **Beranda (Home)** | Hero banner interaktif, testimoni pelanggan dengan tag *Verified Buyer*, ingredient highlights (Niacinamide, Alpha Arbutin, Collagen), dan produk best seller |
+| **Tentang Kami** | Profil resmi PT Golden Intan Berlian, visi & misi perusahaan, 4 pilar keunggulan (Cruelty-Free, BPOM Approved, Natural Ingredients, Dermatology Tested), serta statistik brand |
+| **Katalog Produk** | Filter kategori (Cleanser, Serum, Moisturizer, Sunscreen, Peeling) & pencarian real-time via Alpine.js, grid responsif 1–4 kolom, badge *Best Seller* & rating bintang |
+| **Detail Produk** | Layout 2 kolom — galeri foto produk, deskripsi lengkap, ingredients, cara pemakaian, harga live dari marketplace, dan CTA langsung ke TikTok Shop & WhatsApp CS |
+| **Skinpedia (Artikel)** | Blog edukasi seputar skincare & kesehatan kulit, SEO-optimized dengan internal link ke produk Ryoki |
+| **Kontak** | Form pesan bagi pengunjung yang ingin bertanya atau bekerja sama |
 
-**Desain & UX:**
-- 🎨 **Aquatic Luxury** — skema warna Sky Blue, Deep Slate, dan Soft Ice Blue
-- 📱 **Mobile-First Design** — sticky bottom bar untuk pembelian cepat
-- 💬 **Floating Action Button (FAB)** — shortcut WhatsApp CS & TikTok Shop
-- ⚡ **Lazy loading**, font preconnect, `dns-prefetch` untuk performa optimal
-- 🚫 **Custom 404 Page** — halaman error berdesain tema Ryoki
+### 🎨 Desain & User Experience
+
+- **Aquatic Luxury Theme** — skema warna Sky Blue (`#0284C7`), Deep Slate (`#0F172A`), dan Soft Ice Blue (`#F6F9FC`)
+- **Mobile-First Design** — sticky bottom bar untuk akses cepat ke TikTok Shop & WhatsApp CS
+- **Floating Action Button (FAB)** — widget melayang dengan efek pulse notification untuk shortcut WhatsApp & TikTok Shop
+- **Performa Optimal** — lazy loading gambar, font preconnect & `dns-prefetch`, build asset terkompilasi via Vite
+- **Custom 404 Page** — halaman error berdesain tema Ryoki dengan navigasi kembali ke beranda
+- **Typography Premium** — Playfair Display, Outfit, Plus Jakarta Sans (Google Fonts)
 
 ---
 
-### 🔐 Admin Panel (Protected)
+### 🔐 Admin Panel
 
-| Fitur | Deskripsi |
-|-------|-----------|
-| **Dashboard** | Ringkasan total produk, artikel, pesan belum dibaca, dan total klik CTA |
-| **Manajemen Produk** | CRUD lengkap + upload gambar utama & galeri multi-foto, link TikTok Shop & Shopee per produk |
-| **Manajemen Artikel** | CRUD + rich text editor dengan upload gambar inline |
-| **Kotak Masuk (Inbox)** | Baca, tandai sudah dibaca, dan hapus pesan dari pengunjung |
-| **Click Analytics** | Dashboard analitik klik CTA — breakdown per platform (Shopee/TikTok/WhatsApp), per lokasi tombol, leaderboard produk terklik, dan log klik real-time |
-| **Sync Harga Marketplace** | Sinkronisasi harga produk otomatis dari TikTok Shop & Shopee official store |
+Panel admin internal untuk mengelola seluruh konten website, dilindungi oleh autentikasi Laravel Breeze:
 
-Autentikasi admin menggunakan **Laravel Breeze** (Blade stack) dengan halaman login kustom di `/admin/login`.
+- **Dashboard** — ringkasan statistik website secara real-time
+- **Manajemen Produk** — CRUD lengkap dengan upload gambar utama & galeri multi-foto, link marketplace per produk
+- **Manajemen Artikel** — CRUD artikel Skinpedia dengan upload gambar inline
+- **Kotak Masuk** — kelola pesan dari pengunjung (baca, tandai, hapus)
+- **Click Analytics** — dashboard analitik klik CTA per platform (Shopee/TikTok/WhatsApp), leaderboard produk terklik, dan log aktivitas
+- **Sync Harga Marketplace** — sinkronisasi harga produk otomatis dari official store
 
 ---
 
@@ -54,21 +54,19 @@ Autentikasi admin menggunakan **Laravel Breeze** (Blade stack) dengan halaman lo
 
 - **Dynamic XML Sitemap** (`/sitemap.xml`) — otomatis mengindeks semua halaman, produk, dan artikel
 - **Dynamic `robots.txt`** — dikonfigurasi untuk Googlebot, Bingbot, GPTBot, PerplexityBot, ClaudeBot, dan Google-Extended (AI Search)
-- **IndexNow Protocol** — verifikasi file untuk notifikasi instant ke mesin pencari
-- **Open Graph & Twitter Cards** — pratinjau tautan yang rapi saat dibagikan ke media sosial
-- **Dynamic Meta Tags** — judul, deskripsi, keywords, canonical URL per halaman
+- **IndexNow Protocol** — notifikasi instant ke mesin pencari saat ada konten baru
+- **Open Graph & Twitter Cards** — pratinjau tautan yang rapi saat dibagikan ke WhatsApp, Instagram, Facebook, atau Twitter
+- **Dynamic Meta Tags** — judul, deskripsi, keywords, dan canonical URL per halaman
 - **Favicon SVG/ICO** — berlogo Ryoki Skincare
 
 ---
 
-### 💰 Marketplace Integration
+### 💰 Integrasi Marketplace
 
-- **Live Price Resolution** via `MarketplacePriceService`:
-  - Menampilkan harga terkini dari Shopee & TikTok Shop
-  - Cache 30 menit untuk performa optimal
-  - Fallback ke harga database jika marketplace tidak tersedia
-- **Tombol CTA per produk** langsung ke listing TikTok Shop & Shopee resmi
-- **Click Tracking** — setiap klik tombol marketplace direkam untuk analitik
+- **Live Price Resolution** — menampilkan harga terkini langsung dari Shopee & TikTok Shop dengan cache 30 menit
+- **Fallback Pricing** — otomatis menggunakan harga database jika marketplace tidak tersedia
+- **Tombol CTA per produk** — link langsung ke listing resmi di TikTok Shop & Shopee
+- **Click Tracking** — setiap klik tombol marketplace direkam untuk keperluan analitik bisnis
 
 ---
 
@@ -79,11 +77,9 @@ Autentikasi admin menggunakan **Laravel Breeze** (Blade stack) dengan halaman lo
 | **Backend** | Laravel 12, PHP 8.2+ |
 | **Frontend** | Blade Templates, Tailwind CSS 3.x, Alpine.js 3.x |
 | **Build Tool** | Vite 7.x |
-| **Database** | MySQL / MariaDB (lokal), SQLite (opsional) |
+| **Database** | SQLite (development), MySQL/MariaDB (production) |
 | **Auth** | Laravel Breeze (Blade) |
 | **Deployment** | Vercel (Serverless PHP via `vercel-php@0.7.1`) |
-| **Sitemap** | Dynamic XML Sitemap (custom controller) |
-| **Typography** | Playfair Display, Outfit, Plus Jakarta Sans (Google Fonts) |
 
 ---
 
@@ -92,7 +88,6 @@ Autentikasi admin menggunakan **Laravel Breeze** (Blade stack) dengan halaman lo
 - PHP >= 8.2
 - Composer
 - Node.js & NPM
-- MySQL / MariaDB (atau SQLite untuk development cepat)
 
 ---
 
@@ -113,28 +108,16 @@ npm install
 cp .env.example .env
 ```
 
-Edit file `.env` dan atur koneksi database:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=ryoki
-DB_USERNAME=root
-DB_PASSWORD=
-
-SHOPEE_OFFICIAL_URL="https://shopee.co.id/ryokiofficialstore"
-```
+Buka file `.env` dan sesuaikan konfigurasi jika diperlukan (secara default sudah menggunakan SQLite).
 
 ```bash
 # 5. Generate application key
 php artisan key:generate
 
 # 6. Migrasi & seeding database
-# (membuat tabel + data dummy: admin, produk, artikel)
 php artisan migrate:fresh --seed
 
-# 7. Buat symlink storage (agar gambar upload dapat diakses)
+# 7. Buat symlink storage
 php artisan storage:link
 
 # 8. Build asset frontend
@@ -150,30 +133,15 @@ Atau gunakan shortcut all-in-one:
 composer dev
 ```
 
-> Perintah `composer dev` menjalankan `php artisan serve`, `queue:listen`, dan `npm run dev` secara bersamaan menggunakan `concurrently`.
+> Perintah `composer dev` menjalankan `php artisan serve`, `queue:listen`, dan `npm run dev` secara bersamaan.
 
 Aplikasi dapat diakses di `http://127.0.0.1:8000`.
 
 ---
 
-## 🔑 Akses Admin Panel
+## 🌐 Deployment
 
-| | Kredensial |
-|---|---|
-| **URL** | `http://127.0.0.1:8000/admin/login` |
-| **Email** | `admin@ryokiskincare.com` |
-| **Password** | `password` |
-
----
-
-## 🌐 Deployment (Vercel)
-
-Project ini dikonfigurasi untuk deploy ke **Vercel** menggunakan serverless PHP runtime:
-
-- Konfigurasi: [`vercel.json`](vercel.json)
-- Runtime: `vercel-php@0.7.1`
-- Entry point: `api/index.php`
-- Environment variables dikonfigurasi di Vercel Dashboard
+Project ini dikonfigurasi untuk deploy ke **Vercel** menggunakan serverless PHP runtime (`vercel-php@0.7.1`). Konfigurasi deployment tersedia di [`vercel.json`](vercel.json). Environment variables dikonfigurasi melalui Vercel Dashboard.
 
 ---
 
@@ -186,8 +154,8 @@ ryoki-skincare/
 │   │   ├── Admin/              # Dashboard, Product, Article, Contact CRUD
 │   │   ├── AnalyticsController # Click tracking & analytics dashboard
 │   │   ├── HomeController      # Landing page
-│   │   ├── ProductController   # Public katalog + live price integration
-│   │   ├── ArticleController   # Skinpedia public
+│   │   ├── ProductController   # Katalog publik + live price integration
+│   │   ├── ArticleController   # Skinpedia
 │   │   ├── ContactController   # Form kontak pengunjung
 │   │   └── SitemapController   # Dynamic XML Sitemap
 │   ├── Models/
@@ -205,14 +173,13 @@ ryoki-skincare/
 │   ├── products/               # Katalog & detail produk
 │   ├── articles/               # Skinpedia (list & detail)
 │   ├── admin/                  # Panel admin (dashboard, CRUD, analytics)
-│   ├── layouts/                # Layout templates (public & admin)
+│   ├── layouts/                # Layout templates
 │   └── errors/                 # Custom error pages (404)
 ├── database/
 │   ├── migrations/             # Schema database
-│   └── seeders/                # Data dummy (admin, produk, artikel)
-├── routes/
-│   └── web.php                 # Semua route (public + admin + SEO)
-├── docs/                       # Dokumentasi internal project
+│   └── seeders/                # Data awal (produk, artikel)
+├── routes/web.php              # Semua route (publik + admin + SEO)
+├── docs/                       # Dokumentasi internal
 ├── vercel.json                 # Konfigurasi deployment Vercel
 └── tailwind.config.js          # Konfigurasi Tailwind CSS
 ```
