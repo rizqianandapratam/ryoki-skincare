@@ -11,14 +11,6 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        try {
-            if (Product::count() < 10) {
-                (new \Database\Seeders\ProductSeeder())->run();
-            }
-        } catch (\Throwable $e) {
-            // Suppress error if initial setup
-        }
-
         $query = Product::query();
         
         if ($request->has('category') && $request->category != '') {
@@ -61,14 +53,6 @@ class ProductController extends Controller
      */
     public function apiIndex(Request $request)
     {
-        try {
-            if (Product::count() < 10) {
-                (new \Database\Seeders\ProductSeeder())->run();
-            }
-        } catch (\Throwable $e) {
-            // Suppress error if initial setup
-        }
-
         $query = Product::query();
 
         if ($request->filled('category')) {

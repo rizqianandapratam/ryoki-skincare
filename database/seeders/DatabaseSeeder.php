@@ -16,22 +16,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Admin Users
-        User::updateOrCreate(
-            ['email' => 'ryokijapanskincaree@gmail.com'],
-            [
-                'name' => 'Administrator Ryoki',
-                'password' => Hash::make('skincareryoki_10'),
-            ]
-        );
+        // Admin Users — Password diambil dari environment variable, JANGAN hardcode di source code!
+        // Set ADMIN_PASSWORD di file .env atau Vercel Environment Variables
+        $adminPassword = env('ADMIN_PASSWORD');
+        if ($adminPassword) {
+            User::updateOrCreate(
+                ['email' => 'ryokijapanskincaree@gmail.com'],
+                [
+                    'name' => 'Administrator Ryoki',
+                    'password' => Hash::make($adminPassword),
+                ]
+            );
+        }
 
-        User::updateOrCreate(
-            ['email' => 'admin@ryokiskincare.com'],
-            [
-                'name' => 'Admin Ryoki',
-                'password' => Hash::make('password'),
-            ]
-        );
+        $admin2Password = env('ADMIN2_PASSWORD');
+        if ($admin2Password) {
+            User::updateOrCreate(
+                ['email' => 'admin@ryokiskincare.com'],
+                [
+                    'name' => 'Admin Ryoki',
+                    'password' => Hash::make($admin2Password),
+                ]
+            );
+        }
 
         // Products (with full Shopee + TikTok combined sales data)
         $this->call(ProductSeeder::class);

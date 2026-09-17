@@ -39,7 +39,8 @@
                     <div>
                         <span class="text-slate-400 font-medium">Nomor WhatsApp / HP:</span>
                         @if($contact->phone)
-                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact->phone) }}" target="_blank" class="block font-bold text-emerald-600 hover:underline">
+                            @php $waNumber = preg_replace('/[^0-9]/', '', $contact->phone); if (str_starts_with($waNumber, '0')) { $waNumber = '62' . substr($waNumber, 1); } @endphp
+                            <a href="https://wa.me/{{ $waNumber }}" target="_blank" class="block font-bold text-emerald-600 hover:underline">
                                 {{ $contact->phone }} (Hubungi via WA)
                             </a>
                         @else
@@ -66,14 +67,16 @@
 
                 <div class="flex items-center gap-2.5">
                     @if($contact->email)
-                        <a href="mailto:{{ $contact->email }}?subject={{ rawurlencode('Respon Pesan Ryoki Skincare') }}&body={{ rawurlencode("Halo " . $contact->name . ",\n\nTerima kasih telah menghubungi Ryoki Skincare.\n\n") }}"
+                        <a href="https://mail.google.com/mail/?view=cm&to={{ rawurlencode($contact->email) }}&su={{ rawurlencode('Respon Pesan Ryoki Skincare') }}&body={{ rawurlencode("Halo " . $contact->name . ",\n\nTerima kasih telah menghubungi Ryoki Skincare.\n\n") }}"
+                           target="_blank"
                            class="flex items-center gap-2 bg-[#0284C7] hover:bg-[#0369A1] text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-md shadow-sky-500/20 transition-all">
-                            ✉️ Balas via Email
+                            ✉️ Balas via Gmail
                         </a>
                     @endif
 
                     @if($contact->phone)
-                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact->phone) }}?text={{ urlencode('Halo ' . $contact->name . ', saya dari tim CS Ryoki Skincare ingin merespon pesan Anda.') }}"
+                        @php $waReplyNumber = preg_replace('/[^0-9]/', '', $contact->phone); if (str_starts_with($waReplyNumber, '0')) { $waReplyNumber = '62' . substr($waReplyNumber, 1); } @endphp
+                        <a href="https://wa.me/{{ $waReplyNumber }}?text={{ urlencode('Halo ' . $contact->name . ', saya dari tim CS Ryoki Skincare ingin merespon pesan Anda.') }}"
                            target="_blank"
                            class="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-md shadow-emerald-500/20 transition-all">
                             💬 Balas via WhatsApp

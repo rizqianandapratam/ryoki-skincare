@@ -35,13 +35,9 @@ class ArticleController extends Controller
         $validated['slug'] = Str::slug($validated['title']) ?: 'article-' . time();
         $validated['content'] = $validated['content'] ?? '';
 
-        // Sanitize HTML content — allow standard Trix / rich text tags
+        // Sanitize HTML content — strip XSS scripts, inline events, and javascript: links
         if (!empty($validated['content'])) {
-            $validated['content'] = strip_tags($validated['content'], [
-                'h1', 'h2', 'h3', 'p', 'br', 'strong', 'em', 'del', 'b', 'i', 'u',
-                'a', 'blockquote', 'ul', 'ol', 'li', 'pre', 'code',
-                'figure', 'figcaption', 'img', 'div', 'span',
-            ]);
+            $validated['content'] = $this->sanitizeHtmlContent($validated['content']);
         }
 
         // Process thumbnail in priority order
@@ -80,13 +76,9 @@ class ArticleController extends Controller
         $validated['slug'] = Str::slug($validated['title']) ?: 'article-' . time();
         $validated['content'] = $validated['content'] ?? ($article->content ?: '');
 
-        // Sanitize HTML content — allow standard Trix / rich text tags
+        // Sanitize HTML content — strip XSS scripts, inline events, and javascript: links
         if (!empty($validated['content'])) {
-            $validated['content'] = strip_tags($validated['content'], [
-                'h1', 'h2', 'h3', 'p', 'br', 'strong', 'em', 'del', 'b', 'i', 'u',
-                'a', 'blockquote', 'ul', 'ol', 'li', 'pre', 'code',
-                'figure', 'figcaption', 'img', 'div', 'span',
-            ]);
+            $validated['content'] = $this->sanitizeHtmlContent($validated['content']);
         }
 
         // Process thumbnail in priority order
@@ -104,6 +96,25 @@ class ArticleController extends Controller
         $article->update($validated);
 
         return redirect()->route('admin.articles.index')->with('success', 'Artikel berhasil diperbarui.');
+    }
+
+    /**
+     * Sanitize HTML content to prevent XSS attacks while keeping Trix editor rich formatting tags.
+     */
+    private function sanitizeHtmlContent(string $html): string
+    {
+        $allowedTags = [
+            'h1', 'h2', 'h3', 'p', 'br', 'strong', 'em', 'del', 'b', 'i', 'u',
+            'a', 'blockquote', 'ul', 'ol', 'li', 'pre', 'code',
+            'figure', 'figcaption', 'img', 'div', 'span',
+        ];
+        $clean = strip_tags($html, $allowedTags);
+        // Strip dangerous inline event handlers (e.g. onerror=, onclick=)
+        $clean = preg_replace('/on[a-z]+\s*=\s*(["\']).*?\1/i', '', $clean);
+        $clean = preg_replace('/on[a-z]+\s*=\s*[^"\'>\s]+/i', '', $clean);
+        // Strip javascript: protocol links
+        $clean = preg_replace('/href\s*=\s*(["\'])\s*javascript:[^\1]*?\1/i', '', $clean);
+        return $clean;
     }
 
     public function destroy(Article $article)
