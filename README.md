@@ -1,4 +1,4 @@
-# 🌸 Ryoki Skincare — Company Profile & Product Catalog
+# 🌸 Ryoki Skincare — Brand Website & Product Catalog
 
 ![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?logo=php&logoColor=white)
@@ -7,7 +7,7 @@
 ![Vite](https://img.shields.io/badge/Vite-7.x-646CFF?logo=vite&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white)
 
-Website resmi **Company Profile & Katalog Produk** untuk **Ryoki Skincare**, brand kosmetik Jepang di bawah naungan **PT Golden Intan Berlian** (Bandar Lampung, Indonesia).
+Website resmi **Brand Website & Katalog Produk** untuk **Ryoki Skincare**, brand kosmetik Jepang di bawah naungan **PT Golden Intan Berlian** (Bandar Lampung, Indonesia).
 
 Website ini **bukan** e-commerce — seluruh transaksi dialihkan ke marketplace resmi (**TikTok Shop** & **Shopee**). Dibangun dengan **Laravel 12**, **Tailwind CSS**, **Alpine.js**, dan di-deploy ke **Vercel** (Serverless PHP).
 
