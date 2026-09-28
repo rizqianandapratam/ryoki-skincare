@@ -94,7 +94,7 @@
                     <div class="grid grid-cols-4 sm:grid-cols-6 gap-3">
                         @foreach($product->galleryImages as $galleryImg)
                             <div class="relative group">
-                                <img src="{{ Storage::url($galleryImg->image_path) }}"
+                                <img src="{{ str_starts_with($galleryImg->image_path, 'storage/') || str_starts_with($galleryImg->image_path, 'images/') ? asset($galleryImg->image_path) : asset('storage/' . ltrim($galleryImg->image_path, '/')) }}"
                                      class="w-full aspect-square object-cover rounded-xl border border-slate-200 shadow-xs"
                                      alt="Gallery image">
                                 <button type="button"

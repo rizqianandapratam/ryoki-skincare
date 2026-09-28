@@ -119,7 +119,14 @@
                 $galleryUrls = collect();
                 $galleryUrls->push($imgSrc);
                 foreach ($product->galleryImages as $gImg) {
-                    $galleryUrls->push(Storage::url($gImg->image_path));
+                    $path = $gImg->image_path;
+                    if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+                        $galleryUrls->push($path);
+                    } elseif (str_starts_with($path, 'storage/') || str_starts_with($path, 'images/')) {
+                        $galleryUrls->push(asset($path));
+                    } else {
+                        $galleryUrls->push(asset('storage/' . ltrim($path, '/')));
+                    }
                 }
             @endphp
             <div class="col-span-5" x-data="{
