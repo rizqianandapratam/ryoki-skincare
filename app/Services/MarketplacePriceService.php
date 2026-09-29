@@ -27,7 +27,7 @@ class MarketplacePriceService
     ];
 
     /**
-     * Resolve live price from Shopee or TikTok URL.
+     * Resolve live price from Shopee URL, stored DB price, or fallback mapping.
      */
     public function resolveLivePrice(Product $product): float
     {
@@ -42,13 +42,17 @@ class MarketplacePriceService
                 }
             }
 
-            // 2. Fallback to official real-time mapping per slug
+            // 2. Prefer stored database price set by admin if valid (>0)
+            if (isset($product->price) && (float) $product->price > 0) {
+                return (float) $product->price;
+            }
+
+            // 3. Fallback to official default mapping per slug
             if (isset(self::$officialLivePriceMap[$product->slug])) {
                 return (float) self::$officialLivePriceMap[$product->slug];
             }
 
-            // 3. Fallback to stored price
-            return (float) ($product->price ?? 0);
+            return 0.0;
         });
     }
 
@@ -57,14 +61,38 @@ class MarketplacePriceService
      */
     public function fetchPriceFromShopeeUrl(string $url): ?float
     {
+        // Handle short links (shope.ee / s.shopee.co.id) by expanding redirect
+        if (str_contains($url, 'shope.ee') || str_contains($url, 's.shopee.co.id')) {
+            try {
+                $expandedResponse = Http::timeout(4)->withoutRedirects()->get($url);
+                $location = $expandedResponse->header('Location');
+                if ($location) {
+                    $url = $location;
+                }
+            } catch (\Throwable $e) {
+                // proceed with original url
+            }
+        }
+
+        $shopId = null;
+        $itemId = null;
+
         if (preg_match('/i\.(\d+)\.(\d+)/', $url, $matches)) {
             $shopId = $matches[1];
             $itemId = $matches[2];
+        } elseif (preg_match('/product\/(\d+)\/(\d+)/', $url, $matches)) {
+            $shopId = $matches[1];
+            $itemId = $matches[2];
+        } elseif (preg_match('/shopid=(\d+).*itemid=(\d+)/', $url, $matches)) {
+            $shopId = $matches[1];
+            $itemId = $matches[2];
+        }
 
+        if ($shopId && $itemId) {
             try {
                 $apiUrl = "https://shopee.co.id/api/v4/item/get?itemid={$itemId}&shopid={$shopId}";
                 $response = Http::withHeaders([
-                    'User-Agent'         => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+                    'User-Agent'         => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
                     'Referer'            => 'https://shopee.co.id/',
                     'x-api-source'       => 'pc',
                     'x-shopee-language' => 'id',
@@ -99,11 +127,13 @@ class MarketplacePriceService
             // Clear cache first
             Cache::forget('live_price_' . $product->id);
 
-            $livePrice = $this->resolveLivePrice($product);
-            if ($livePrice > 0) {
-                $product->price = $livePrice;
-                $product->save();
-                $updatedCount++;
+            if (!empty($product->shopee_url)) {
+                $livePrice = $this->fetchPriceFromShopeeUrl($product->shopee_url);
+                if ($livePrice && $livePrice > 0) {
+                    $product->price = $livePrice;
+                    $product->save();
+                    $updatedCount++;
+                }
             }
         }
 
