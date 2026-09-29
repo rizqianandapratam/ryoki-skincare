@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if (isset($_SERVER['VERCEL']) || env('VERCEL') || $this->app->environment('production')) {
+            \Illuminate\Support\Facades\Vite::useHotFile('/tmp/nonexistent_hot');
+        }
     }
 }
