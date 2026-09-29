@@ -105,7 +105,7 @@ if (!$useSqlite) {
         $pass = env('DB_PASSWORD');
         
         $dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
-        $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_TIMEOUT => 2]);
+        $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_TIMEOUT => 5]);
     } catch (\Throwable $e) {
         $useSqlite = true;
     }
