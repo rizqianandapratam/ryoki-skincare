@@ -200,14 +200,4 @@ class ProductController extends Controller
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil dihapus.');
     }
-
-    public function syncLivePrices(\App\Services\MarketplacePriceService $service)
-    {
-        $updatedCount = $service->syncAllProducts();
-        if ($updatedCount > 0) {
-            return redirect()->back()->with('success', "⚡ Berhasil menyinkronkan {$updatedCount} harga produk real-time dari toko resmi Shopee!");
-        }
-
-        return redirect()->back()->with('success', '⚡ Sinkronisasi selesai! Harga database saat ini tetap dipertahankan. (Catatan: Jika Shopee memblokir scraper otomatis, Anda dapat memperbarui harga secara manual melalui Edit Produk).');
-    }
 }

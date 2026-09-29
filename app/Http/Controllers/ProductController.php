@@ -21,18 +21,16 @@ class ProductController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
         
-        $priceService = app(\App\Services\MarketplacePriceService::class);
         $rawProducts = $query->latest()->get();
-        $initialProducts = $rawProducts->map(function ($product) use ($priceService) {
-            $livePrice = $priceService->resolveLivePrice($product);
+        $initialProducts = $rawProducts->map(function ($product) {
             return [
                 'id'             => $product->id,
                 'name'           => $product->name,
                 'slug'           => $product->slug,
                 'description'    => $product->description,
                 'category'       => $product->category,
-                'price'          => $livePrice,
-                'price_formatted'=> 'Rp ' . number_format($livePrice, 0, ',', '.'),
+                'price'          => (float) $product->price,
+                'price_formatted'=> 'Rp ' . number_format($product->price, 0, ',', '.'),
                 'rating'         => $product->rating ? number_format($product->rating, 1) : '4.9',
                 'is_best_seller' => (bool) $product->is_best_seller,
                 'image_url'      => $product->image_url,
@@ -69,17 +67,15 @@ class ProductController extends Controller
             });
         }
 
-        $priceService = app(\App\Services\MarketplacePriceService::class);
-        $products = $query->latest()->get()->map(function ($product) use ($priceService) {
-            $livePrice = $priceService->resolveLivePrice($product);
+        $products = $query->latest()->get()->map(function ($product) {
             return [
                 'id'             => $product->id,
                 'name'           => $product->name,
                 'slug'           => $product->slug,
                 'description'    => $product->description,
                 'category'       => $product->category,
-                'price'          => $livePrice,
-                'price_formatted'=> 'Rp ' . number_format($livePrice, 0, ',', '.'),
+                'price'          => (float) $product->price,
+                'price_formatted'=> 'Rp ' . number_format($product->price, 0, ',', '.'),
                 'rating'         => $product->rating ? number_format($product->rating, 1) : '4.9',
                 'is_best_seller' => (bool) $product->is_best_seller,
                 'image_url'      => $product->image_url,
@@ -100,9 +96,6 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $product->load('galleryImages');
-
-        $priceService = app(\App\Services\MarketplacePriceService::class);
-        $product->price = $priceService->resolveLivePrice($product);
 
         $relatedProducts = Product::where('category', $product->category)
             ->where('id', '!=', $product->id)

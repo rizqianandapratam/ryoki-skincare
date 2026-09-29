@@ -31,8 +31,9 @@
     27 => 'Carbon\\Laravel\\ServiceProvider',
     28 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     29 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    30 => 'App\\Providers\\AppServiceProvider',
-    31 => 'Spatie\\Sitemap\\SitemapServiceProvider',
+    30 => 'Spatie\\Sitemap\\SitemapServiceProvider',
+    31 => 'App\\Providers\\AppServiceProvider',
+    32 => 'Spatie\\Sitemap\\SitemapServiceProvider',
   ),
   'eager' => 
   array (
@@ -50,8 +51,9 @@
     11 => 'Carbon\\Laravel\\ServiceProvider',
     12 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     13 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    14 => 'App\\Providers\\AppServiceProvider',
-    15 => 'Spatie\\Sitemap\\SitemapServiceProvider',
+    14 => 'Spatie\\Sitemap\\SitemapServiceProvider',
+    15 => 'App\\Providers\\AppServiceProvider',
+    16 => 'Spatie\\Sitemap\\SitemapServiceProvider',
   ),
   'deferred' => 
   array (

@@ -164,8 +164,6 @@ ryoki-skincare/
 │   │   ├── Contact             # Pesan pengunjung
 │   │   ├── ProductImage        # Galeri multi-foto produk
 │   │   └── ClickAnalytic       # Log klik tombol CTA marketplace
-│   └── Services/
-│       └── MarketplacePriceService  # Live price dari Shopee & TikTok
 ├── resources/views/
 │   ├── home.blade.php          # Landing page
 │   ├── about.blade.php         # Tentang Kami
