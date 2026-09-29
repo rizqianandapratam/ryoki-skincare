@@ -159,6 +159,9 @@ class Product extends Model
             }
 
             $path = $this->image;
+            if (str_starts_with($path, 'data:')) {
+                return $path;
+            }
             if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, 'images/') || str_starts_with($path, 'storage/')) {
                 return asset($path);
             }
@@ -167,11 +170,13 @@ class Product extends Model
 
         if ($this->relationLoaded('galleryImages') && $this->galleryImages->isNotEmpty()) {
             $path = $this->galleryImages->first()->image_path;
+            if (str_starts_with($path, 'data:')) return $path;
             return str_starts_with($path, 'storage/') || str_starts_with($path, 'images/') ? asset($path) : asset('storage/' . ltrim($path, '/'));
         }
 
         $galleryImagePath = $this->galleryImages()->orderBy('sort_order')->value('image_path');
         if (!empty($galleryImagePath)) {
+            if (str_starts_with($galleryImagePath, 'data:')) return $galleryImagePath;
             return str_starts_with($galleryImagePath, 'storage/') || str_starts_with($galleryImagePath, 'images/') ? asset($galleryImagePath) : asset('storage/' . ltrim($galleryImagePath, '/'));
         }
 

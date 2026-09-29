@@ -28,6 +28,33 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact.index
 Route::post('/contact', [ContactController::class, 'store'])->middleware('throttle:5,1')->name('contact.store');
 Route::post('/analytics/click', [AnalyticsController::class, 'recordClick'])->middleware('throttle:30,1')->name('analytics.click');
 
+// Dynamic Storage Asset Handler (Serves uploaded images with proper MIME type including WebP)
+Route::get('/storage/{path}', function ($path) {
+    $pathsToTry = [
+        public_path('storage/' . $path),
+        storage_path('app/public/' . $path),
+        '/tmp/storage/app/public/' . $path,
+    ];
+
+    foreach ($pathsToTry as $file) {
+        if (file_exists($file) && !is_dir($file)) {
+            $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+            $mimeTypes = [
+                'webp' => 'image/webp',
+                'png'  => 'image/png',
+                'jpg'  => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                'svg'  => 'image/svg+xml',
+                'gif'  => 'image/gif',
+            ];
+            $contentType = $mimeTypes[$ext] ?? mime_content_type($file) ?: 'application/octet-stream';
+            return response()->file($file, ['Content-Type' => $contentType]);
+        }
+    }
+
+    abort(404);
+})->where('path', '.*');
+
 // Dynamic XML Sitemap & robots.txt (Google & Search Engine & AI Crawler Optimized)
 Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
 

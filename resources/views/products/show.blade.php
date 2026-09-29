@@ -120,7 +120,7 @@
                 $galleryUrls->push($imgSrc);
                 foreach ($product->galleryImages as $gImg) {
                     $path = $gImg->image_path;
-                    if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+                    if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, 'data:')) {
                         $galleryUrls->push($path);
                     } elseif (str_starts_with($path, 'storage/') || str_starts_with($path, 'images/')) {
                         $galleryUrls->push(asset($path));

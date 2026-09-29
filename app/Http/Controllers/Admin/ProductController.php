@@ -56,7 +56,13 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('products', 'public');
+            $file = $request->file('image');
+            $mime = $file->getMimeType() ?: 'image/jpeg';
+            if (strtolower($file->getClientOriginalExtension()) === 'webp') {
+                $mime = 'image/webp';
+            }
+            $base64 = base64_encode(file_get_contents($file->getRealPath()));
+            $validated['image'] = "data:{$mime};base64,{$base64}";
         }
 
         $validated['in_stock'] = $request->has('in_stock');
@@ -71,9 +77,15 @@ class ProductController extends Controller
         // Process gallery images
         if ($request->hasFile('gallery')) {
             foreach ($request->file('gallery') as $index => $file) {
-                $path = $file->store('products', 'public');
+                $mime = $file->getMimeType() ?: 'image/jpeg';
+                if (strtolower($file->getClientOriginalExtension()) === 'webp') {
+                    $mime = 'image/webp';
+                }
+                $base64 = base64_encode(file_get_contents($file->getRealPath()));
+                $dataUrl = "data:{$mime};base64,{$base64}";
+
                 $product->galleryImages()->create([
-                    'image_path' => $path,
+                    'image_path' => $dataUrl,
                     'sort_order' => $index,
                 ]);
             }
@@ -122,10 +134,13 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            if ($product->image) {
-                Storage::disk('public')->delete($product->image);
+            $file = $request->file('image');
+            $mime = $file->getMimeType() ?: 'image/jpeg';
+            if (strtolower($file->getClientOriginalExtension()) === 'webp') {
+                $mime = 'image/webp';
             }
-            $validated['image'] = $request->file('image')->store('products', 'public');
+            $base64 = base64_encode(file_get_contents($file->getRealPath()));
+            $validated['image'] = "data:{$mime};base64,{$base64}";
         }
 
         $validated['in_stock'] = $request->has('in_stock');
@@ -141,9 +156,15 @@ class ProductController extends Controller
         if ($request->hasFile('gallery')) {
             $maxSort = $product->galleryImages()->max('sort_order') ?? -1;
             foreach ($request->file('gallery') as $index => $file) {
-                $path = $file->store('products', 'public');
+                $mime = $file->getMimeType() ?: 'image/jpeg';
+                if (strtolower($file->getClientOriginalExtension()) === 'webp') {
+                    $mime = 'image/webp';
+                }
+                $base64 = base64_encode(file_get_contents($file->getRealPath()));
+                $dataUrl = "data:{$mime};base64,{$base64}";
+
                 $product->galleryImages()->create([
-                    'image_path' => $path,
+                    'image_path' => $dataUrl,
                     'sort_order' => $maxSort + $index + 1,
                 ]);
             }
